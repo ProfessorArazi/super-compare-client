@@ -1,0 +1,28 @@
+.products {
+  margin: 10px 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card {
+  width: 15rem;
+  margin: 20px 10px;
+  border-radius: 10px !important;
+}
+
+.fruits {
+  color: #fff;
+  text-align: center;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .products {
+    margin: 5px 20px !important;
+  }
+  .card {
+    width: 48%;
+    margin: 5px 0;
+  }
+}

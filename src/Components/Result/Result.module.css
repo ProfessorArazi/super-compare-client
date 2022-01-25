@@ -1,0 +1,33 @@
+.carousel {
+  color: #ffffff;
+  margin: 10px;
+}
+
+.button {
+  margin-top: 10px;
+}
+
+.actions {
+  display: flex;
+  margin: 10px 115px 45px 115px;
+  justify-content: space-between;
+}
+
+.carousel li {
+  margin-top: 5px;
+  direction: rtl;
+}
+
+.padding {
+  color: transparent;
+}
+
+.discount {
+  color: red;
+}
+
+@media (max-width: 768px) {
+  .actions {
+    margin: 10px 80px 45px 80px;
+  }
+}

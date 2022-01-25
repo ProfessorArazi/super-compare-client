@@ -1,0 +1,71 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 20;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.modal {
+  position: fixed;
+  top: 6rem;
+  left: 30%;
+  width: 30rem !important;
+  padding: 0.5rem;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(221, 213, 213, 0.25);
+  z-index: 30;
+  animation: slide-down 300ms ease-out forwards;
+}
+
+.modal-cart {
+  background-color: #010e1ab4;
+}
+
+.content {
+  max-height: 30rem;
+  overflow: auto;
+  padding: 0 1rem;
+}
+
+.content::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Track */
+.content::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+.content::-webkit-scrollbar-thumb {
+  background: red;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.content::-webkit-scrollbar-thumb:hover {
+  background: #b30000;
+}
+
+@media (max-width: 768px) {
+  .modal {
+    top: 8rem;
+    width: 27rem !important;
+    left: calc(78.5% - 24.5rem);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

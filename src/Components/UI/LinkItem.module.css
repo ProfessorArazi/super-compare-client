@@ -1,0 +1,28 @@
+.link {
+  text-decoration: none !important;
+}
+
+.link-item {
+  display: flex;
+  gap: 0.5rem;
+  margin: 10px;
+}
+
+.link-item:hover {
+  font-weight: 600;
+}
+
+.img {
+  width: 70px;
+  display: inline;
+}
+
+.name {
+  color: #000;
+}
+
+@media (max-width: 768px) {
+  .link-item {
+    gap: 1rem;
+  }
+}

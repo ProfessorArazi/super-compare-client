@@ -1,0 +1,60 @@
+.button {
+  cursor: pointer;
+  font: inherit;
+  border: none;
+  background-color: transparent;
+  color: white;
+  padding: 0.75rem 0.75rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 25px;
+  font-weight: bold;
+  margin-right: 350px;
+}
+
+.cart-icon {
+  width: 43.8px;
+  height: 40.8px;
+}
+
+.icon {
+  width: 2.35rem;
+  height: 2.35rem;
+  margin: 0 1rem;
+}
+
+.badge {
+  background-color: #19afbf;
+  padding: 0.25rem 0.75rem;
+  border-radius: 100%;
+  font-weight: bold;
+}
+
+.bump {
+  animation: bump 300ms ease-out;
+}
+
+@keyframes bump {
+  0% {
+    transform: scale(1);
+  }
+  10% {
+    transform: scale(0.9);
+  }
+  30% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .button {
+    margin-right: 150px;
+  }
+}
