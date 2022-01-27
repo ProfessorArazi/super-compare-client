@@ -47,6 +47,10 @@
   overflow-y: scroll;
 }
 
+.hidden-links-card {
+  visibility: hidden;
+}
+
 .cart-button {
   margin-left: 0;
 }
