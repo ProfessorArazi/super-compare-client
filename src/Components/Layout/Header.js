@@ -4,7 +4,7 @@ import { NavLink, Link } from "react-router-dom";
 import HeaderCartButton from "./HeaderCartButton";
 import Cart from "../Cart/Cart";
 import classes from "./Header.module.css";
-import Logo from "../../assets/Logo.png";
+import Logo from "../../assets/super compare new logo.png";
 import { links } from "../Products/ProductsData";
 import CompareContext from "../../store/compare-context";
 import LinkItem from "../UI/LinkItem";

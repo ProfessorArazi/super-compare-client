@@ -8,7 +8,7 @@
 }
 
 .cart-item h5 {
-  font-size: 13px;
+  font-size: 12px;
   display: inline;
   margin: 0 0 0.5rem 0;
   text-align: right;
@@ -53,12 +53,6 @@
   background: none !important;
 }
 
-@media (min-width: 768px) {
-  .actions {
-    flex-direction: row;
-  }
-}
-
 .cart-item button {
   font: inherit;
   font-weight: bold;
@@ -82,4 +76,14 @@
 
 .summary {
   margin-left: 75px;
+}
+
+@media (min-width: 768px) {
+  .actions {
+    flex-direction: row;
+  }
+
+  .cart-item h5 {
+    font-size: 13px;
+  }
 }

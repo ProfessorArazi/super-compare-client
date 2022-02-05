@@ -5,12 +5,10 @@
   background-color: transparent;
   color: white;
   padding: 0.75rem 0.75rem;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  position: absolute;
+  left: 0;
   border-radius: 25px;
   font-weight: bold;
-  margin-right: 350px;
 }
 
 .cart-icon {
@@ -55,6 +53,6 @@
 
 @media (max-width: 768px) {
   .button {
-    margin-right: 150px;
+    padding: 0;
   }
 }
