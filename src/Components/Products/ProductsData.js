@@ -71,7 +71,7 @@ const ProductsData = {
       id: "",
     },
     {
-      name: "דג סלמון מעושן 100 גר",
+      name: "דג סלמון מעושן 100 גרם",
       img: "https://storage.googleapis.com/sp-public/gs1-products/1182/large/7290014435704.jpg?_a=1637013039439",
       id: "",
     },

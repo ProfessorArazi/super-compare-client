@@ -6,7 +6,7 @@ import { Button } from "react-bootstrap";
 const Result = (props) => {
   const links = {
     מגה: "https://www.mega.co.il/",
-    שופרסל: "https://www.shufersal.co.il/online/",
+    "יינות ביתן": "https://www.ybitan.co.il/",
     "רמי לוי": "https://www.rami-levy.co.il/he",
   };
 
