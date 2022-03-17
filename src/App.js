@@ -7,6 +7,13 @@ import { Helmet } from "react-helmet";
 import ScrollToTop from "./helpers/ScrollToTop ";
 import Home from "./Components/Home/Home";
 
+/*
+todo:
+1.home page
+2.search bar
+3.modal in media
+*/
+
 function App() {
   return (
     <>

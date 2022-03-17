@@ -8,12 +8,7 @@ import Logo from "../../assets/super compare new logo.png";
 import { links } from "../Products/ProductsData";
 import CompareContext from "../../store/compare-context";
 import LinkItem from "../UI/LinkItem";
-import {
-  GiHamburger,
-  GiMilkCarton,
-  GiNoodles,
-  GiSlicedBread,
-} from "react-icons/gi";
+import { GiHamburger, GiMilkCarton, GiNoodles } from "react-icons/gi";
 import { FaAppleAlt } from "react-icons/fa";
 
 const Header = (props) => {
@@ -170,18 +165,6 @@ const Header = (props) => {
                 <div>
                   <FaAppleAlt className={classes["nav-icon"]} />
                   פירות וירקות
-                </div>
-              </Nav.Link>
-              <Nav.Link
-                className={`${classes.link} ml-auto`}
-                onClick={hideAllHandler}
-                as={NavLink}
-                activeClassName={window.innerWidth > 768 && classes.active}
-                to="/products/bread"
-              >
-                <div>
-                  <GiSlicedBread className={classes["nav-icon"]} />
-                  לחם ומאפים
                 </div>
               </Nav.Link>
             </Nav>

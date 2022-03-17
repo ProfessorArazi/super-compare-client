@@ -330,24 +330,7 @@ const ProductsData = {
       id: "",
     },
   ],
-  bread: [
-    { name: "", img: "", id: "" },
-    { name: "", img: "", id: "" },
-    { name: "", img: "", id: "" },
-    { name: "", img: "", id: "" },
-    { name: "", img: "", id: "" },
-    { name: "", img: "", id: "" },
-    { name: "", img: "", id: "" },
-    { name: "", img: "", id: "" },
-    { name: "", img: "", id: "" },
-    { name: "", img: "", id: "" },
-    { name: "", img: "", id: "" },
-    { name: "", img: "", id: "" },
-    { name: "", img: "", id: "" },
-    { name: "", img: "", id: "" },
-    { name: "", img: "", id: "" },
-    { name: "", img: "", id: "" },
-  ],
+
   // mega: [
   // {
   //   name: "המבורגר מזרחי טיבון ויל 400 גרם",
