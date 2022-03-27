@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import Footer from "./Components/Layout/Footer";
 import CartProvider from "./store/CartProvider";
 import { Route, Switch } from "react-router-dom";
@@ -7,7 +6,6 @@ import Header from "./Components/Layout/Header";
 import { Helmet } from "react-helmet";
 import ScrollToTop from "./helpers/ScrollToTop ";
 import Home from "./Components/Home/Home";
-import axios from "axios";
 
 /*
 todo:
@@ -17,10 +15,6 @@ todo:
 */
 
 function App() {
-  useEffect(() => {
-    axios(process.env.REACT_APP_SERVER);
-  }, []);
-
   return (
     <>
       <Helmet>
