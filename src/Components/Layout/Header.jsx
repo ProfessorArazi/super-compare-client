@@ -117,57 +117,55 @@ const Header = (props) => {
             aria-controls="basic-navbar-nav"
           />
           <Navbar.Collapse className={classes.collapse} id="basic-navbar-nav">
-            <Nav className="ml-auto">
-              <Nav.Link
-                className={`${classes.link} ml-auto`}
-                onClick={hideAllHandler}
-                as={NavLink}
-                activeClassName={window.innerWidth > 768 && classes.active}
-                to="/products/meats_and_fish"
-              >
-                <div>
-                  <GiHamburger className={classes["nav-icon"]} />
-                  בשר ודגים
-                </div>
-              </Nav.Link>
+            <Nav.Link
+              className={`${classes.link} ml-auto`}
+              onClick={hideAllHandler}
+              as={NavLink}
+              activeClassName={window.innerWidth > 768 && classes.active}
+              to="/products/meats_and_fish"
+            >
+              <div>
+                <GiHamburger className={classes["nav-icon"]} />
+                בשר ודגים
+              </div>
+            </Nav.Link>
 
-              <Nav.Link
-                className={`${classes.link} ml-auto`}
-                onClick={hideAllHandler}
-                as={NavLink}
-                activeClassName={window.innerWidth > 768 && classes.active}
-                to="/products/milks"
-              >
-                <div>
-                  <GiMilkCarton className={classes["nav-icon"]} />
-                  מוצרי חלב
-                </div>
-              </Nav.Link>
-              <Nav.Link
-                className={`${classes.link} ml-auto`}
-                onClick={hideAllHandler}
-                as={NavLink}
-                activeClassName={window.innerWidth >= 768 && classes.active}
-                to="/products/legumes_and_grains"
-              >
-                <div>
-                  <GiNoodles className={classes["nav-icon"]} />
-                  קטניות ודגנים
-                </div>
-              </Nav.Link>
-              <Nav.Link
-                className={`${classes.link} ml-auto`}
-                onClick={hideAllHandler}
-                as={NavLink}
-                activeClassName={window.innerWidth > 768 && classes.active}
-                to="/products/fruits_and_vegetables"
-              >
-                <div>
-                  <FaAppleAlt className={classes["nav-icon"]} />
-                  פירות וירקות
-                </div>
-              </Nav.Link>
-            </Nav>
+            <Nav.Link
+              className={`${classes.link} ml-auto`}
+              onClick={hideAllHandler}
+              as={NavLink}
+              activeClassName={window.innerWidth > 768 && classes.active}
+              to="/products/milks"
+            >
+              <div>
+                <GiMilkCarton className={classes["nav-icon"]} />
+                מוצרי חלב
+              </div>
+            </Nav.Link>
+            <Nav.Link
+              className={`${classes.link} ml-auto`}
+              onClick={hideAllHandler}
+              as={NavLink}
+              activeClassName={window.innerWidth >= 768 && classes.active}
+              to="/products/legumes_and_grains"
+            >
+              <div>
+                <GiNoodles className={classes["nav-icon"]} />
+                קטניות ודגנים
+              </div>
+            </Nav.Link>
+            <Nav.Link
+              className={`${classes.link} ml-auto`}
+              onClick={hideAllHandler}
+              as={NavLink}
+              activeClassName={window.innerWidth > 768 && classes.active}
+              to="/products/fruits_and_vegetables"
+            >
+              <div>
+                <FaAppleAlt className={classes["nav-icon"]} />
+                פירות וירקות
+              </div>
+            </Nav.Link>
           </Navbar.Collapse>
         </Container>
       </Navbar>

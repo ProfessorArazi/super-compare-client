@@ -3,9 +3,9 @@
   font-size: 20px;
 }
 
-/* .collapse {
-  margin-right: 15px;
-} */
+.collapse {
+  text-align: right;
+}
 
 .nav-icon {
   display: block;
@@ -31,7 +31,7 @@
 }
 
 .link {
-  margin: 0 93px;
+  margin: 0 auto;
   color: #fff !important;
 }
 
@@ -58,6 +58,7 @@
 @media (max-width: 768px) {
   .link {
     margin: 0;
+    padding: 0.5rem 0 !important;
   }
 
   .nav-icon {
