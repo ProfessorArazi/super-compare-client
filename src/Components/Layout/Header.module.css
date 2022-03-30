@@ -41,13 +41,16 @@
 }
 
 .links-card {
+  position: absolute !important ;
+  top: 63%;
+  z-index: 100;
   width: 15rem;
   max-height: 100px;
   direction: ltr;
   overflow-y: scroll;
 }
 
-.hidden-links-card {
+.links-card__hidden {
   visibility: hidden;
 }
 
@@ -74,5 +77,7 @@
   }
   .links-card {
     max-height: 135px;
+    position: relative;
+    top: auto;
   }
 }
