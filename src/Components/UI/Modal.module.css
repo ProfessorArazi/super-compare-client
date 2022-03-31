@@ -10,7 +10,7 @@
 
 .modal {
   position: fixed;
-  top: 6rem;
+  top: 1rem;
   left: 30%;
   width: 30rem !important;
   padding: 0.5rem;
@@ -64,7 +64,7 @@
 
 @media (max-width: 768px) {
   .modal {
-    top: 8rem;
+    top: 4rem;
     width: 100% !important;
     left: calc(78.5% - 17.5rem);
   }

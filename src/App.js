@@ -11,7 +11,7 @@ import Home from "./Components/Home/Home";
 todo:
 1.home page
 2.search bar - finished
-3.modal in media
+3.modal in media - finished
 */
 
 function App() {
