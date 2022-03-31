@@ -23,11 +23,11 @@
 }
 
 .nav-brand {
-  margin-right: 270px !important;
+  margin-right: 16rem !important;
 }
 
 .search {
-  margin-right: 50px;
+  margin-right: 10px;
 }
 
 .link {
@@ -45,7 +45,7 @@
   top: 63%;
   z-index: 100;
   width: 15rem;
-  max-height: 100px;
+  max-height: 18rem;
   direction: ltr;
   overflow-y: scroll;
 }
@@ -76,7 +76,7 @@
     margin: 0;
   }
   .links-card {
-    max-height: 135px;
+    max-height: 10rem;
     position: relative;
     top: auto;
   }
