@@ -26,6 +26,7 @@
 
 .search {
   margin-right: 10px;
+  display: inline;
 }
 
 .link {
@@ -70,14 +71,8 @@
   .nav-brand {
     margin: 0 !important;
   }
-
   .search {
-    text-align: right;
-  }
-
-  .search input {
     margin: 0;
-    width: 60%;
   }
   .links-card {
     max-height: 10rem;
