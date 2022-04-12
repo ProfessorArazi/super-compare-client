@@ -26,7 +26,6 @@
 
 .search {
   margin-right: 10px;
-  display: inline;
 }
 
 .link {
@@ -73,6 +72,11 @@
   }
   .search {
     margin: 0;
+    text-align: right;
+    width: 50%;
+  }
+  .search input {
+    width: 100%;
   }
   .links-card {
     max-height: 10rem;
