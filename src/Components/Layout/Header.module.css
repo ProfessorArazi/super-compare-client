@@ -5,6 +5,7 @@
 
 .collapse {
   text-align: right;
+  padding-right: 11%;
 }
 
 .nav-icon {
@@ -19,11 +20,8 @@
 }
 
 .nav-logo {
-  background-color: rgb(236, 236, 236);
-}
-
-.nav-brand {
-  margin-right: 16rem !important;
+  background-color: #000;
+  justify-content: space-between !important;
 }
 
 .search {
@@ -58,7 +56,7 @@
   margin-left: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .link {
     margin: 0;
     padding: 0.5rem 0 !important;
@@ -79,5 +77,8 @@
     max-height: 10rem;
     position: relative;
     top: auto;
+  }
+  .collapse {
+    padding: 0;
   }
 }

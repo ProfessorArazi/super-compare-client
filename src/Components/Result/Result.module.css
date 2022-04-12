@@ -9,8 +9,10 @@
 
 .actions {
   display: flex;
-  margin: 10px 115px 45px 115px;
-  justify-content: space-between;
+  margin: 10px auto;
+  justify-content: center;
+  gap: 10%;
+  padding-bottom: 2rem;
 }
 
 .carousel li {
