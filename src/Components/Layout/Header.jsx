@@ -74,13 +74,12 @@ const Header = (props) => {
   }, [escFunction]);
 
   const searchInput = (
-    <div>
+    <div className={classes.search}>
       <input
         ref={searchRef}
         type="text"
         placeholder="חפש"
         onChange={handleChange}
-        className={classes.search}
       />
       {searchResults.length < dataLinks.length && searchResults.length > 0 && (
         <Card className={classes["links-card"]}>
