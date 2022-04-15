@@ -1,4 +1,4 @@
-# super-compare-client
+# Super-Compare-Client
   This is a comparison site that compares three well-known markets.
           <br />
           I created a scraper to get all the latest prices from each market so
