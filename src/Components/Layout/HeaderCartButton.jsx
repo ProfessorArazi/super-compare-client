@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import CompareContext from "../../store/compare-context";
 import classes from "./HeaderCartButton.module.css";
-// import CartIcon from "./CartIcon";
 import CartIcon from "../../assets/CartIcon.png";
 
 const HeaderCartButton = (props) => {
