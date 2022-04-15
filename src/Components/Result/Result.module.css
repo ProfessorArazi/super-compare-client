@@ -1,6 +1,6 @@
 .carousel {
   color: #ffffff;
-  margin: 10px;
+  margin: 10px auto;
 }
 
 .button {
@@ -26,6 +26,10 @@
 
 .discount {
   color: red;
+}
+
+.control-arrow:hover {
+  background: transparent !important;
 }
 
 @media (max-width: 768px) {

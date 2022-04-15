@@ -1,6 +1,6 @@
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel";
 import classes from "./Result.module.css";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Button } from "react-bootstrap";
 
 const Result = (props) => {
@@ -62,6 +62,7 @@ const Result = (props) => {
         className={classes.carousel}
         showThumbs={false}
         useKeyboardArrows={true}
+        showStatus={false}
       >
         <div>
           <p>סופר : {prices[0][0]}</p>
