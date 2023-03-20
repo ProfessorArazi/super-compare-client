@@ -1,3 +1,4 @@
+//
 import Footer from "./Components/Layout/Footer";
 import CartProvider from "./store/CartProvider";
 import { Route, Switch } from "react-router-dom";
