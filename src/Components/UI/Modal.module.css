@@ -32,7 +32,7 @@
 }
 
 .content::-webkit-scrollbar {
-  width: 20px;
+  width: 10px;
 }
 
 .content::-webkit-scrollbar-track {
@@ -41,7 +41,7 @@
 }
 
 .content::-webkit-scrollbar-thumb {
-  background: red;
+  background: #ff6427;
   border-radius: 10px;
 }
 

@@ -25,6 +25,7 @@ const Header = (props) => {
   };
 
   const showCartHandler = () => {
+    window.scrollTo({top: 0})
     setCartIsShown(true);
     setExpanded(false);
   };
@@ -91,20 +92,40 @@ const Header = (props) => {
 
   return (
     <>
+    <div className={!cartIsShown && classes.sticky}>
       <Navbar className={classes["nav-logo"]} dir="rtl">
         {window.innerWidth > 992 && searchInput}
-        <Navbar.Brand
-          className={classes["nav-brand"]}
-          onClick={hideAllHandler}
-          as={Link}
-          to="/"
-        >
-          <img className={classes.logo} src={Logo} alt="logo" />
-        </Navbar.Brand>
-        <HeaderCartButton
-          className={classes["cart-button"]}
-          onClick={showCartHandler}
-        />
+        {window.innerWidth > 992 ? (
+          <>
+            <Navbar.Brand
+              className={classes["nav-brand"]}
+              onClick={hideAllHandler}
+              as={Link}
+              to="/"
+            >
+              <img className={classes.logo} src={Logo} alt="logo" />
+            </Navbar.Brand>
+            <HeaderCartButton
+              className={classes["cart-button"]}
+              onClick={showCartHandler}
+            />
+          </>
+        ) : (
+          <>
+            <HeaderCartButton
+              className={classes["cart-button"]}
+              onClick={showCartHandler}
+            />
+            <Navbar.Brand
+              className={classes["nav-brand"]}
+              onClick={hideAllHandler}
+              as={Link}
+              to="/"
+            >
+              <img className={classes.logo} src={Logo} alt="logo" />
+            </Navbar.Brand>
+          </>
+        )}
       </Navbar>
 
       <Navbar className={classes.nav} expanded={expanded} expand="lg" dir="rtl">
@@ -166,6 +187,7 @@ const Header = (props) => {
           </Nav.Link>
         </Navbar.Collapse>
       </Navbar>
+      </div>
       {cartIsShown && <Cart onClose={hideAllHandler} />}
       <div onClick={hideAllHandler}>{props.children}</div>
     </>

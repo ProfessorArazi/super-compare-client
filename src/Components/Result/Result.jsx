@@ -39,19 +39,18 @@ const Result = (props) => {
   const actions = (place) => {
     return (
       <div className={classes.actions}>
-        <Button
-          onClick={props.onClose}
-          className={`${classes.button} btn-lg`}
-          variant="danger"
-        >
-          סגור
-        </Button>
+      
         <Button
           href={links[prices[place][0]]}
-          className={`${classes.button} btn-lg`}
-          variant="info"
+          className={`${classes.button} ${classes["compare--btn"]}`}
         >
           הזמן
+        </Button>
+        <Button
+          onClick={props.onClose}
+          className={`${classes.button} ${classes["close--btn"]}`}
+        >
+          סגור
         </Button>
       </div>
     );

@@ -64,13 +64,13 @@ const Cart = (props) => {
 
   const modalActions = (
     <div className={classes.actions}>
-      <button className={classes["button--alt"]} onClick={props.onClose}>
+      <button className={`${classes["button--alt"]} ${classes["close--btn"]}`} onClick={props.onClose}>
         סגור
       </button>
 
       {hasItems && (
         <button
-          className={classes["button--alt"]}
+          className={`${classes["button--alt"]} ${classes["clear--btn"]} `}
           onClick={cartClearItemsHandler}
         >
           נקה עגלה
@@ -90,7 +90,7 @@ const Cart = (props) => {
                 .flat()
             )
           }
-          className={classes.button}
+          className={`${classes.button} ${classes['compare--btn']}`}
         >
           השווה
         </button>

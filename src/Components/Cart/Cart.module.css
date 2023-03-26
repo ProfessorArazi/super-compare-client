@@ -13,15 +13,16 @@
   font: inherit;
   cursor: pointer;
   background-color: transparent;
-  border: 1px solid #dc0029;
+  border: 1px solid transparent;
   padding: 0.5rem 2rem;
   border-radius: 25px;
   margin-left: 1rem;
+  color: #ffffff;
 }
 
 .actions button:hover,
 .actions button:active {
-  background-color: #f53054;
+  filter: brightness(120%);
   color: white;
 }
 
@@ -29,14 +30,16 @@
   color: #ffffff;
 }
 
-.actions .button {
-  background-color: #dc0029;
-  color: white;
+.actions .close--btn {
+  background-color: #ff6427;
 }
 
-.actions .button:hover,
-.actions .button:active {
-  background-color: #f53054;
+.actions .compare--btn {
+  background-color: #31c431;
+}
+
+.actions .clear--btn {
+  background-color: #13b4bc;
 }
 
 .loading {

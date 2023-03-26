@@ -1,3 +1,10 @@
+.sticky{
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
 .nav {
   background-color: #2b9940 !important;
   font-size: 20px;
@@ -5,7 +12,6 @@
 
 .collapse {
   text-align: right;
-  padding-right: 11%;
 }
 
 .nav-icon {
@@ -20,7 +26,7 @@
 }
 
 .nav-logo {
-  background-color: #000;
+  background-color: #2f302e;
   justify-content: space-between !important;
 }
 
@@ -50,6 +56,10 @@
 
 .cart-button {
   margin-left: 0;
+}
+.search input {
+  border-radius: 0.25rem;
+  border-color: transparent;
 }
 
 @media (max-width: 992px) {
@@ -81,5 +91,10 @@
   }
   .collapse {
     padding: 0;
+  }
+  .logo {
+    width: 177.73px;
+    height: 83px;
+    margin: 5px;
   }
 }

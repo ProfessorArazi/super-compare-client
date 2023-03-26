@@ -36,6 +36,11 @@ const CardForm = (props) => {
         הוסף לעגלה
       </Button>
       <input
+        onChange={(e) => {
+          if (e.target.value === "") {
+            e.target.value = 1;
+          }
+        }}
         id={"amount_" + Math.random()}
         ref={amountInputRef}
         className={classes.input}
