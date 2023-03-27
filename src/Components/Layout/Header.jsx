@@ -19,6 +19,7 @@ const Header = (props) => {
   const ctx = useContext(CompareContext);
 
   const searchRef = useRef();
+  const listRef = useRef();
 
   const toggleHandler = () => {
     setExpanded(expanded ? false : "expanded");
@@ -73,6 +74,18 @@ const Header = (props) => {
       document.removeEventListener("keydown", escFunction);
     };
   }, [escFunction]);
+  
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (listRef.current && !listRef.current.contains(event.target)) {
+        setSearchResults([]);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [listRef]);
 
   const searchInput = (
     <div className={classes.search}>
@@ -81,9 +94,10 @@ const Header = (props) => {
         type="text"
         placeholder="חפש"
         onChange={handleChange}
+        onFocus={handleChange}
       />
       {searchResults.length < dataLinks.length && searchResults.length > 0 && (
-        <Card className={classes["links-card"]}>
+        <Card ref={listRef} className={classes["links-card"]}>
           <ul onClick={resetSearchHandler}>{searchResults}</ul>
         </Card>
       )}

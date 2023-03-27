@@ -15,10 +15,10 @@ const MyCard = (props) => {
       amount: +amount,
     });
   };
-
+  
   return (
-    <div id={props.id}>
-      <Card className={classes.card}>
+    <div >
+      <Card id={props.id} className={classes.card}>
         <Card.Img className={classes.img} variant="top" src={props.img} />
         <Card.Body>
           <Card.Text className={classes.title}>{props.name}</Card.Text>
