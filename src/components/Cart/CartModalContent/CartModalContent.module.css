@@ -1,0 +1,9 @@
+.loading {
+    text-align: center;
+}
+
+.empty {
+    color: #ffffff;
+    text-align: center;
+    margin: 10px;
+}
