@@ -29,6 +29,7 @@ const CardForm = ({ onAddToCart }) => {
                 הוסף לעגלה
             </Button>
             <input
+                name="amount"
                 className={classes.input}
                 type="number"
                 value={amount}
