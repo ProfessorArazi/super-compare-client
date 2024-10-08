@@ -18,7 +18,7 @@ const Products = () => {
     const fetchProducts = useCallback(async (subject, page) => {
         try {
             const response = await axios(
-                `${process.env.REACT_APP_SERVER}/products/${subject}?page=${page}&limit=11`
+                `${process.env.REACT_APP_SERVER}/products/${subject}?page=${page}&limit=15`
             );
 
             if (response.data.length === 0) {
