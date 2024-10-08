@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import axios from "axios";
 import ProductList from "../../components/Products/ProductList/ProductList";
 import ProductDetails from "../../components/Products/ProductDetails/ProductDetails";
-//
+
 const Products = () => {
     const { subject } = useParams();
     const [products, setProducts] = useState([]);
