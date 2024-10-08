@@ -89,6 +89,7 @@ const Header = (props) => {
     const searchInput = (
         <div className={classes.search}>
             <input
+                name="search"
                 ref={searchRef}
                 type="text"
                 placeholder="חפש"

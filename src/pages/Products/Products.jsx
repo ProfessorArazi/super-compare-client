@@ -13,6 +13,7 @@ const Products = () => {
 
     const prevSubject = useRef(null);
     const prevPage = useRef(page);
+    const lastProductRef = useRef(null);
 
     const fetchProducts = useCallback(async (subject, page) => {
         try {
@@ -33,32 +34,6 @@ const Products = () => {
         }
     }, []);
 
-    const handleScroll = useCallback(() => {
-        clearTimeout(window.scrollTimeout);
-        window.scrollTimeout = setTimeout(() => {
-            const scrollY = window.scrollY;
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight;
-
-            if (
-                documentHeight > windowHeight &&
-                scrollY + windowHeight >= documentHeight - 300
-            ) {
-                setPage((prev) => prev + 1);
-            }
-        }, 200);
-    }, []);
-
-    useEffect(() => {
-        if (hasMore) {
-            window.addEventListener("scroll", handleScroll);
-        }
-
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, [handleScroll, hasMore]);
-
     useEffect(() => {
         if (prevPage.current !== page && page > 1) {
             fetchProducts(subject, page);
@@ -71,7 +46,36 @@ const Products = () => {
 
         prevSubject.current = subject;
         prevPage.current = page;
-    }, [page, subject, fetchProducts]);
+    }, [subject, page, fetchProducts, hasMore]);
+
+    const handleIntersection = useCallback(
+        (entries) => {
+            const [entry] = entries;
+            if (entry.isIntersecting && hasMore) {
+                setPage((prev) => prev + 1);
+            }
+        },
+        [hasMore]
+    );
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(handleIntersection, {
+            root: null,
+            rootMargin: "0px",
+            threshold: 0.1,
+        });
+
+        const currentLastProduct = lastProductRef.current;
+        if (currentLastProduct) {
+            observer.observe(currentLastProduct);
+        }
+
+        return () => {
+            if (currentLastProduct) {
+                observer.unobserve(currentLastProduct);
+            }
+        };
+    }, [handleIntersection, products]);
 
     const showProductDetails = (productDetails) => {
         window.scrollTo({ top: 0 });
@@ -89,6 +93,7 @@ const Products = () => {
             <ProductList
                 products={products}
                 onProductClick={showProductDetails}
+                lastProductRef={lastProductRef}
             />
         </>
     );
