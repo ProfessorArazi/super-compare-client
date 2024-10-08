@@ -1,0 +1,48 @@
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.card-body {
+    display: flex !important;
+}
+
+.img {
+    margin: 0 auto;
+
+    padding-top: 20px;
+    align-items: center;
+}
+
+.img-container {
+    width: 100px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    text-align: center;
+    font-size: 20px;
+    flex: 1;
+}
+
+@media (max-width: 768px) {
+    .img {
+        width: 50% !important;
+    }
+
+    .title {
+        font-size: 16px;
+    }
+}

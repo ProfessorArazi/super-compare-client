@@ -1,0 +1,42 @@
+.actions {
+    text-align: center;
+}
+
+.actions button {
+    font: inherit;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.5rem 2rem;
+    border-radius: 25px;
+    margin-left: 1rem;
+    color: #ffffff;
+}
+
+.actions button:hover,
+.actions button:active {
+    filter: brightness(120%);
+    color: white;
+}
+
+.actions .button--alt {
+    color: #ffffff;
+}
+
+.actions .close--btn {
+    background-color: #ff6427;
+}
+
+.actions .compare--btn {
+    background-color: #31c431;
+}
+
+.actions .clear--btn {
+    background-color: #13b4bc;
+}
+
+@media only screen and (max-width: 768px) {
+    .actions button {
+        margin-top: 1rem;
+    }
+}

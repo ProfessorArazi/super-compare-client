@@ -1,0 +1,14 @@
+.text-center {
+    padding: 20px;
+    color: #fff;
+    text-align: center;
+    direction: rtl;
+}
+
+.text-center p {
+    margin: 0;
+}
+
+strong {
+    color: #f57c00;
+}
