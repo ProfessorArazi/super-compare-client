@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
-import axios from "axios";
 import Modal from "../../components/UI/Modal/Modal";
 import CompareContext from "../../store/compare-context";
 import CartModalContent from "../../components/Cart/CartModalContent/CartModalContext";
 import Result from "../../components/Cart/Result/Result";
+import { compareItems } from "../../services/products-api";
 
 const Cart = (props) => {
     const [showCarousel, setShowCarousel] = useState(false);
@@ -26,16 +26,17 @@ const Cart = (props) => {
         ctx.clearCart();
     };
 
-    const compare = (items) => {
+    const compare = async (items) => {
         setIsLoading(true);
-        axios
-            .post(process.env.REACT_APP_SERVER + "/compare", items)
-            .then((res) => {
-                setPrices(res.data);
-                setIsLoading(false);
-                setShowCarousel(true);
-            })
-            .catch((err) => console.log(err));
+        try {
+            const res = await compareItems(items);
+            setPrices(res.data);
+            setShowCarousel(true);
+        } catch (err) {
+            console.error("Error comparing items", err);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (

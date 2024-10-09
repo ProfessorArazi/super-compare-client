@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect, useCallback, useRef } from "react";
-import axios from "axios";
 import ProductList from "../../components/Products/ProductList/ProductList";
 import ProductDetails from "../../components/Products/ProductDetails/ProductDetails";
+import { fetchProductsBySubject } from "../../services/products-api";
 
 const Products = () => {
     const { subject } = useParams();
@@ -17,10 +17,7 @@ const Products = () => {
 
     const fetchProducts = useCallback(async (subject, page) => {
         try {
-            const response = await axios(
-                `${process.env.REACT_APP_SERVER}/products/${subject}?page=${page}&limit=15`
-            );
-
+            const response = await fetchProductsBySubject(subject, page);
             if (response.data.length === 0) {
                 setHasMore(false);
             } else {
