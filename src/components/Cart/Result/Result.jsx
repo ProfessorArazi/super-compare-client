@@ -4,6 +4,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Actions } from "../Actions/Actions";
 
 const Result = ({ prices, onClose }) => {
+    console.log(prices);
     return (
         <>
             <Carousel
@@ -15,7 +16,7 @@ const Result = ({ prices, onClose }) => {
                 {prices
                     .sort((a, b) => a[1].price - b[1].price)
                     .map((price) => (
-                        <div>
+                        <div key={price[1].id}>
                             <p>סופר : {price[0]}</p>
                             <p>מחיר : {price[1].price.toFixed(2)}</p>
 
