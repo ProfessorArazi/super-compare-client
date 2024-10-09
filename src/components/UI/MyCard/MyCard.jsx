@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import CompareContext from "../../../store/compare-context";
-
 import { Card } from "react-bootstrap";
 import CardForm from "../CardForm/CardForm";
 import classes from "./MyCard.module.css";
@@ -8,9 +7,13 @@ import classes from "./MyCard.module.css";
 const MyCard = (props) => {
     const cartCtx = useContext(CompareContext);
 
+    const stopPropagation = (event) => {
+        event.stopPropagation();
+    };
+
     const addToCartHandler = (event, amount) => {
         event.preventDefault();
-        event.stopPropagation();
+        stopPropagation(event);
         cartCtx.addItem({
             id: props.id,
             name: props.name,
@@ -19,30 +22,24 @@ const MyCard = (props) => {
     };
 
     return (
-        <div>
-            <Card
-                onClick={props.onClickHandler}
-                id={props.id}
-                className={classes.card}
-            >
-                <div className={classes["img-container"]}>
-                    <Card.Img
-                        className={classes.img}
-                        variant="top"
-                        src={props.img}
-                    />
-                </div>
-                <Card.Body>
-                    <Card.Text className={classes.title}>
-                        {props.name}
-                    </Card.Text>
-                    <CardForm
-                        className={classes.form}
-                        onAddToCart={addToCartHandler}
-                    />
-                </Card.Body>
-            </Card>
-        </div>
+        <Card
+            onClick={props.onClickHandler}
+            id={props.id}
+            className={classes.card}
+        >
+            <div className={classes["img-container"]}>
+                <img className={classes.img} src={props.img} alt={props.name} />
+            </div>
+            <div className={classes.content}>
+                <p className={classes.title}>{props.name}</p>
+                <CardForm
+                    className={classes.form}
+                    onAddToCart={addToCartHandler}
+                    stopPropagation={stopPropagation}
+                />
+            </div>
+        </Card>
     );
 };
+
 export default MyCard;

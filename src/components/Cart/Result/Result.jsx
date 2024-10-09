@@ -4,7 +4,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Actions } from "../Actions/Actions";
 
 const Result = ({ prices, onClose }) => {
-    console.log(prices);
     return (
         <>
             <Carousel
