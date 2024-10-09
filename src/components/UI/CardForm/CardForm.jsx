@@ -2,7 +2,7 @@ import { useState } from "react";
 import classes from "./CardForm.module.css";
 import { Button } from "react-bootstrap";
 
-const CardForm = ({ onAddToCart }) => {
+const CardForm = ({ onAddToCart, stopPropagation }) => {
     const [fade, setFade] = useState(false);
     const [amount, setAmount] = useState(1);
 
@@ -10,6 +10,10 @@ const CardForm = ({ onAddToCart }) => {
         event.preventDefault();
         event.stopPropagation();
         onAddToCart(event, amount);
+    };
+
+    const handleInputChange = (event) => {
+        setAmount(event.target.value);
     };
 
     return (
@@ -34,7 +38,8 @@ const CardForm = ({ onAddToCart }) => {
                 type="number"
                 value={amount}
                 min="1"
-                onChange={(e) => setAmount(e.target.value)}
+                onChange={handleInputChange}
+                onClick={stopPropagation}
             />
         </form>
     );
