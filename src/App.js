@@ -7,8 +7,6 @@ import { Helmet } from "react-helmet";
 import ScrollToTop from "./utils/ScrollToTop ";
 import Home from "./pages/Home/Home";
 
-//
-
 function App() {
     return (
         <>
