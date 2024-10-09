@@ -107,7 +107,7 @@ const Header = (props) => {
 
     return (
         <>
-            <div className={!cartIsShown && classes.sticky}>
+            <div className={!cartIsShown ? classes.sticky : ""}>
                 <Navbar className={classes["nav-logo"]} dir="rtl">
                     {window.innerWidth > 992 && searchInput}
                     {window.innerWidth > 992 ? (
