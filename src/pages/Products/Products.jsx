@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import ProductList from "../../components/Products/ProductList/ProductList";
 import ProductDetails from "../../components/Products/ProductDetails/ProductDetails";
 import { fetchProductsBySubject } from "../../services/products-api";
+import LoadingSpinner from "../../components/UI/LoadingSpinner/LoadingSpinner";
 
 const Products = () => {
     const { subject } = useParams();
@@ -10,6 +11,7 @@ const Products = () => {
     const [productData, setProductData] = useState(null);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     const prevSubject = useRef(null);
     const prevPage = useRef(page);
@@ -31,19 +33,25 @@ const Products = () => {
         }
     }, []);
 
+    const firstFetch = useCallback(async () => {
+        setProducts([]);
+        setPage(1);
+        setHasMore(true);
+        setIsLoading(true);
+        await fetchProducts(subject, 1);
+        setIsLoading(false);
+    }, [fetchProducts, subject]);
+
     useEffect(() => {
         if (prevPage.current !== page && page > 1) {
             fetchProducts(subject, page);
         } else if (prevSubject.current !== subject) {
-            setProducts([]);
-            setPage(1);
-            setHasMore(true);
-            fetchProducts(subject, 1);
+            firstFetch();
         }
 
         prevSubject.current = subject;
         prevPage.current = page;
-    }, [subject, page, fetchProducts, hasMore]);
+    }, [subject, page, fetchProducts, firstFetch, hasMore]);
 
     const handleIntersection = useCallback(
         (entries) => {
@@ -81,6 +89,11 @@ const Products = () => {
 
     return (
         <>
+            {isLoading && (
+                <div className="loading">
+                    <LoadingSpinner />
+                </div>
+            )}
             {productData && (
                 <ProductDetails
                     productData={productData}

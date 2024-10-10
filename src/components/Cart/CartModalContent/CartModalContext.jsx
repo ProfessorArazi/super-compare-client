@@ -33,7 +33,7 @@ const CartModalContent = ({
                     />
                 </>
             ) : (
-                <div className={classes.loading}>
+                <div className="loading">
                     <LoadingSpinner />
                 </div>
             )}

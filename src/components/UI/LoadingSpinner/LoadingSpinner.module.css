@@ -1,24 +1,27 @@
+.loadingSpinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Take full width of the parent */
+    height: 100%; /* Take full height of the parent */
+    position: relative; /* Set to relative to position within parent */
+    z-index: 1000; /* Ensure it's on top of other elements */
+}
+
 .spinner {
-  display: inline-block;
-  width: 80px;
-  height: 80px;
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 60px; /* Size of the spinner */
+    height: 60px; /* Size of the spinner */
+    animation: spin 1s linear infinite; /* Spinning animation */
 }
-.spinner:after {
-  content: " ";
-  display: block;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
-  border-radius: 50%;
-  border: 6px solid teal;
-  border-color: teal transparent teal transparent;
-  animation: spinner 1.2s linear infinite;
-}
-@keyframes spinner {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
