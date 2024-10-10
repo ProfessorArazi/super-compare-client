@@ -14,7 +14,7 @@ const ProductList = ({ products, onProductClick, lastProductRef }) => {
                         onClickHandler={() => onProductClick(product)}
                         id={product.id}
                         name={product.name}
-                        img={product.prices[0].img}
+                        images={product.prices.map((product) => product.img)}
                     />
                 </div>
             ))}
