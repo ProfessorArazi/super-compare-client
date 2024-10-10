@@ -6,7 +6,7 @@ const ProductDetails = ({ productData, onClose }) => {
         <Modal onClose={onClose}>
             <div className={classes["text-center"]}>
                 <h3>{productData.name}</h3>
-                <ul className="list-unstyled">
+                <ul className={classes["list-unstyled"]}>
                     {productData.prices
                         .sort(
                             (a, b) =>
