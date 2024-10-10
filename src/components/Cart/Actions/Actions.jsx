@@ -2,11 +2,15 @@ import React from "react";
 import classes from "../Result/Result.module.css";
 import { Button } from "react-bootstrap";
 
-export const Actions = ({ onClose }) => {
+export const Actions = ({ url, onClose }) => {
+    const openMarketSite = () => {
+        window.open(url);
+    };
+
     return (
         <div className={classes.actions}>
             <Button
-                href={"https://www.mega.co.il/"}
+                onClick={openMarketSite}
                 className={`${classes.button} ${classes["compare--btn"]}`}
             >
                 הזמן
