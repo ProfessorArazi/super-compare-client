@@ -15,11 +15,11 @@ const Result = ({ prices, onClose }) => {
                 {prices
                     .sort((a, b) => a[1].price - b[1].price)
                     .map((price) => (
-                        <div key={price[1].id}>
+                        <div key={price[1].url}>
                             <p>סופר : {price[0]}</p>
                             <p>מחיר : {price[1].price.toFixed(2)}</p>
 
-                            <Actions onClose={onClose} />
+                            <Actions url={price[1].url} onClose={onClose} />
                         </div>
                     ))}
             </Carousel>
