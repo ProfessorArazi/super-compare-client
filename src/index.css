@@ -15,3 +15,9 @@ code {
     flex-direction: column;
     min-height: 100vh;
 }
+
+.loading {
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+}
