@@ -25,7 +25,7 @@ const Home = () => {
                 <li>
                     הוסיפו את{" "}
                     <a
-                        href="https://greasyfork.org/en/scripts/512078-super-compare-cart"
+                        href="https://greasyfork.org/scripts/512078-super-compare-cart/code/Super%20Compare%20Cart.user.js"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
