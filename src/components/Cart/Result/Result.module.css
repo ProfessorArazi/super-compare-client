@@ -1,72 +1,72 @@
 .carousel {
-  color: #ffffff;
-  margin: 10px auto;
+    color: #333;
+    margin: 10px auto;
 }
 
 .button {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 
 .actions {
-  display: flex;
-  margin: 10px auto;
-  justify-content: center;
-  gap: 10%;
-  padding-bottom: 2rem;
+    display: flex;
+    margin: 10px auto;
+    justify-content: center;
+    gap: 10%;
+    padding-bottom: 2rem;
 }
 
 .actions .button {
-  font: inherit;
-  cursor: pointer;
-  background-color: transparent;
-  border: 1px solid transparent;
-  padding: 0.5rem 2rem;
-  border-radius: 25px;
-  margin-left: 1rem;
-  color: #ffffff;
+    font: inherit;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 0.5rem 2rem;
+    border-radius: 25px;
+    margin-left: 1rem;
+    color: #ffffff;
 }
 
 .actions .button:hover,
 .actions .button:active {
-  filter: brightness(120%);
-  color: white;
+    filter: brightness(120%);
+    color: white;
 }
 
 .actions .button--alt {
-  color: #ffffff;
+    color: #ffffff;
 }
 
 .actions .close--btn {
-  background-color: #ff6427;
+    background-color: #ff6427;
 }
 
 .actions .compare--btn {
-  background-color: #31c431;
+    background-color: #31c431;
 }
 
 .actions .clear--btn {
-  background-color: #13b4bc;
+    background-color: #13b4bc;
 }
 
 .carousel li {
-  margin-top: 5px;
-  direction: rtl;
+    margin-top: 5px;
+    direction: rtl;
 }
 
 .padding {
-  color: transparent;
+    color: transparent;
 }
 
 .discount {
-  color: red;
+    color: red;
 }
 
 .control-arrow:hover {
-  background: transparent !important;
+    background: transparent !important;
 }
 
 @media (max-width: 768px) {
-  .actions {
-    margin: 10px 80px 45px 80px;
-  }
+    .actions {
+        margin: 10px 80px 45px 80px;
+    }
 }
