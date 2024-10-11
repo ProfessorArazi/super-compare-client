@@ -10,9 +10,7 @@ const ProductDetails = ({ productData, onClose }) => {
     const addToCartHandler = (event, amount) => {
         event.preventDefault();
         cartCtx.addItem({
-            id: productData.id,
-            name: productData.name,
-            image: productData.prices[0].img,
+            ...productData,
             amount: +amount,
         });
     };
@@ -21,7 +19,7 @@ const ProductDetails = ({ productData, onClose }) => {
         <Modal onClose={onClose}>
             <div className={classes["text-center"]}>
                 <img
-                    src={productData.prices[0].img}
+                    src={productData.image}
                     alt={productData.name}
                     className={classes.image}
                 />

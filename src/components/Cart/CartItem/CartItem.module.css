@@ -9,6 +9,11 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+.cart-item:hover {
+    cursor: pointer;
+    background-color: #dcd5d5;
+}
+
 .image {
     flex-shrink: 0;
     margin-right: 1rem;

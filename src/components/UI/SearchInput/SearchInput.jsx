@@ -3,14 +3,12 @@ import { useNavigate } from "react-router-dom";
 import classes from "./SearchInput.module.css";
 import { Card } from "react-bootstrap";
 import { fetchProductsBySubject } from "../../../services/products-api";
-import ProductDetails from "../../Products/ProductDetails/ProductDetails";
 
-export const SearchInput = () => {
+export const SearchInput = ({ setProductData }) => {
     const [searchResults, setSearchResults] = useState([]);
     const [value, setValue] = useState("");
     const [typingTimeout, setTypingTimeout] = useState(null);
     const [showResults, setShowResults] = useState(false);
-    const [productData, setProductData] = useState(null);
 
     const listRef = useRef();
 
@@ -57,6 +55,10 @@ export const SearchInput = () => {
         navigate(`/products/${subject}`);
     };
 
+    const setProduct = (result) => {
+        setProductData({ ...result, image: result.prices[0].img });
+    };
+
     useEffect(() => {
         function handleClickOutside(event) {
             if (listRef.current && !listRef.current.contains(event.target)) {
@@ -89,10 +91,7 @@ export const SearchInput = () => {
                 <Card className={classes["links-card"]}>
                     <ul onClick={resetSearchHandler}>
                         {searchResults.map((result, index) => (
-                            <li
-                                onClick={() => setProductData(result)}
-                                key={index}
-                            >
+                            <li onClick={() => setProduct(result)} key={index}>
                                 {result.name}
                             </li>
                         ))}
@@ -101,12 +100,6 @@ export const SearchInput = () => {
                         לכל התוצאות
                     </button>
                 </Card>
-            )}
-            {productData && (
-                <ProductDetails
-                    productData={productData}
-                    onClose={() => setProductData(null)}
-                />
             )}
         </div>
     );

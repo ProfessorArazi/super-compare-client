@@ -1,15 +1,8 @@
 import classes from "./CartActions.module.css";
 
-const CartActions = ({ hasItems, onClear, onCompare, onClose }) => {
+const CartActions = ({ hasItems, onClear, onCompare }) => {
     return (
         <div className={classes.actions}>
-            <button
-                className={`${classes["button--alt"]} ${classes["close--btn"]}`}
-                onClick={onClose}
-            >
-                סגור
-            </button>
-
             {hasItems && (
                 <button
                     className={`${classes["button--alt"]} ${classes["clear--btn"]}`}

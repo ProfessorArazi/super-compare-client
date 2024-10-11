@@ -15,9 +15,7 @@ const Card = (props) => {
         event.preventDefault();
         stopPropagation(event);
         cartCtx.addItem({
-            id: props.id,
-            name: props.name,
-            image: props.images[0],
+            ...props,
             amount: +amount,
         });
     };

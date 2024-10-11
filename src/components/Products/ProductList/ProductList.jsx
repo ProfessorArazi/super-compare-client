@@ -1,7 +1,11 @@
-import MyCard from "../../UI/Card/Card";
+import Card from "../../UI/Card/Card";
 import classes from "./ProductList.module.css";
 
 const ProductList = ({ products, onProductClick, lastProductRef }) => {
+    const setProduct = (result) => {
+        onProductClick({ ...result, image: result.prices[0].img });
+    };
+
     return (
         <div className={classes.products}>
             {products.map((product, index) => (
@@ -10,11 +14,9 @@ const ProductList = ({ products, onProductClick, lastProductRef }) => {
                     key={product.id}
                     className={classes.card}
                 >
-                    <MyCard
-                        onClickHandler={() => onProductClick(product)}
-                        id={product.id}
-                        name={product.name}
-                        brand={product.brand}
+                    <Card
+                        onClickHandler={() => setProduct(product)}
+                        {...product}
                         images={product.prices.map((product) => product.img)}
                     />
                 </div>

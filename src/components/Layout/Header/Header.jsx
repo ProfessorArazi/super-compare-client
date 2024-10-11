@@ -9,23 +9,12 @@ import CompareContext from "../../../store/compare-context";
 import { SearchInput } from "../../UI/SearchInput/SearchInput";
 
 const Header = (props) => {
-    // const [expanded, setExpanded] = useState(false);
     const [cartIsShown, setCartIsShown] = useState(false);
 
     const ctx = useContext(CompareContext);
 
-    // const toggleHandler = () => {
-    //     setExpanded(expanded ? false : "expanded");
-    // };
-
-    const showCartHandler = () => {
-        setCartIsShown(true);
-        // setExpanded(false);
-    };
-
-    const hideAllHandler = () => {
-        setCartIsShown(false);
-        // setExpanded(false);
+    const cartClickHandler = () => {
+        setCartIsShown((prev) => !prev);
     };
 
     useEffect(() => {
@@ -57,26 +46,33 @@ const Header = (props) => {
                 <Navbar className={classes["nav-logo"]} dir="rtl">
                     <Navbar.Brand
                         className={classes["nav-brand"]}
-                        onClick={hideAllHandler}
                         as={Link}
                         to="/"
                     >
                         <img className={classes.logo} src={Logo} alt="logo" />
                     </Navbar.Brand>
-                    {window.innerWidth > 992 && <SearchInput />}
+                    {window.innerWidth > 992 && (
+                        <SearchInput setProductData={props.setProductData} />
+                    )}
                     <HeaderCartButton
                         className={classes["cart-button"]}
-                        onClick={showCartHandler}
+                        onClick={cartClickHandler}
                     />
                 </Navbar>
             </div>
-            {cartIsShown && <Cart onClose={hideAllHandler} />}
+            <Cart isOpen={cartIsShown} setProductData={props.setProductData} />
             {window.innerWidth <= 992 && (
                 <div>
-                    <SearchInput />
+                    <SearchInput setProductData={props.setProductData} />
                 </div>
             )}
-            <div onClick={hideAllHandler}>{props.children}</div>
+            <div
+                className={`${classes.children} ${
+                    cartIsShown ? classes["open-cart"] : ""
+                }`}
+            >
+                {props.children}
+            </div>
         </>
     );
 };
