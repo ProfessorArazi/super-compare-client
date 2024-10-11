@@ -1,17 +1,16 @@
 import CartItem from "../CartItem/CartItem";
 import classes from "./CartItems.module.css";
 
-const CartItems = ({ items, onRemove, onAdd }) => {
+const CartItems = ({ items, onRemove, onAdd, setProductData }) => {
     return (
         <ul className={classes["cart-items"]}>
             {items.map((item) => (
                 <CartItem
                     key={item.id}
-                    name={item.name}
-                    image={item.image}
-                    amount={item.amount}
-                    onRemove={() => onRemove(item.id)}
-                    onAdd={() => onAdd(item)}
+                    {...item}
+                    onRemove={(e) => onRemove(e, item.id)}
+                    onAdd={(e) => onAdd(e, item)}
+                    setProductData={setProductData}
                 />
             ))}
         </ul>

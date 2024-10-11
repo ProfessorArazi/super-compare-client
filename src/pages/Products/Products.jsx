@@ -1,14 +1,12 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect, useCallback, useRef } from "react";
 import ProductList from "../../components/Products/ProductList/ProductList";
-import ProductDetails from "../../components/Products/ProductDetails/ProductDetails";
 import { fetchProductsBySubject } from "../../services/products-api";
 import LoadingSpinner from "../../components/UI/LoadingSpinner/LoadingSpinner";
 
-const Products = () => {
+const Products = ({ setProductData }) => {
     const { subject } = useParams();
     const [products, setProducts] = useState([]);
-    const [productData, setProductData] = useState(null);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
@@ -82,10 +80,6 @@ const Products = () => {
         };
     }, [handleIntersection, products]);
 
-    const showProductDetails = (productDetails) => {
-        setProductData(productDetails);
-    };
-
     return (
         <>
             {isLoading && (
@@ -93,15 +87,9 @@ const Products = () => {
                     <LoadingSpinner />
                 </div>
             )}
-            {productData && (
-                <ProductDetails
-                    productData={productData}
-                    onClose={() => setProductData(null)}
-                />
-            )}
             <ProductList
                 products={products}
-                onProductClick={showProductDetails}
+                onProductClick={setProductData}
                 lastProductRef={lastProductRef}
             />
         </>
