@@ -1,4 +1,4 @@
-import MyCard from "../../UI/MyCard/MyCard";
+import MyCard from "../../UI/Card/Card";
 import classes from "./ProductList.module.css";
 
 const ProductList = ({ products, onProductClick, lastProductRef }) => {

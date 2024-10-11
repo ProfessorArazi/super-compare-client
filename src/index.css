@@ -3,6 +3,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #cfd3c8 !important;
+    overflow-y: scroll;
 }
 
 code {
