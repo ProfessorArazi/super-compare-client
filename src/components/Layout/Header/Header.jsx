@@ -19,7 +19,6 @@ const Header = (props) => {
     // };
 
     const showCartHandler = () => {
-        window.scrollTo({ top: 0 });
         setCartIsShown(true);
         // setExpanded(false);
     };
@@ -54,7 +53,7 @@ const Header = (props) => {
 
     return (
         <>
-            <div className={!cartIsShown ? classes.sticky : ""}>
+            <div className={classes.sticky}>
                 <Navbar className={classes["nav-logo"]} dir="rtl">
                     <Navbar.Brand
                         className={classes["nav-brand"]}

@@ -3,11 +3,14 @@ import { useNavigate } from "react-router-dom";
 import classes from "./SearchInput.module.css";
 import { Card } from "react-bootstrap";
 import { fetchProductsBySubject } from "../../../services/products-api";
+import ProductDetails from "../../Products/ProductDetails/ProductDetails";
 
 export const SearchInput = () => {
     const [searchResults, setSearchResults] = useState([]);
     const [value, setValue] = useState("");
     const [typingTimeout, setTypingTimeout] = useState(null);
+    const [showResults, setShowResults] = useState(false);
+    const [productData, setProductData] = useState(null);
 
     const listRef = useRef();
 
@@ -44,10 +47,12 @@ export const SearchInput = () => {
             }, 500);
 
             setTypingTimeout(timeoutId);
+            setShowResults(true);
         }
     };
 
     const showAllResults = (subject) => {
+        setShowResults(false);
         resetSearchHandler();
         navigate(`/products/${subject}`);
     };
@@ -68,7 +73,9 @@ export const SearchInput = () => {
         <div ref={listRef} className={classes.search}>
             <input
                 className={
-                    searchResults.length > 0 ? classes["input-active"] : ""
+                    showResults && searchResults.length > 0
+                        ? classes["input-active"]
+                        : ""
                 }
                 name="search"
                 value={value}
@@ -78,17 +85,28 @@ export const SearchInput = () => {
                 onChange={handleChange}
                 onKeyDown={handleChange}
             />
-            {searchResults.length > 0 && (
+            {showResults && searchResults.length > 0 && (
                 <Card className={classes["links-card"]}>
                     <ul onClick={resetSearchHandler}>
                         {searchResults.map((result, index) => (
-                            <li key={index}>{result.name}</li>
+                            <li
+                                onClick={() => setProductData(result)}
+                                key={index}
+                            >
+                                {result.name}
+                            </li>
                         ))}
                     </ul>
                     <button onClick={() => showAllResults(value)}>
                         לכל התוצאות
                     </button>
                 </Card>
+            )}
+            {productData && (
+                <ProductDetails
+                    productData={productData}
+                    onClose={() => setProductData(null)}
+                />
             )}
         </div>
     );
