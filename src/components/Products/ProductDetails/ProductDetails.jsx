@@ -1,7 +1,22 @@
+import { useContext } from "react";
 import Modal from "../../UI/Modal/Modal";
 import classes from "./ProductDetails.module.css";
+import CompareContext from "../../../store/compare-context";
+import CardForm from "../../UI/CardForm/CardForm";
 
 const ProductDetails = ({ productData, onClose }) => {
+    const cartCtx = useContext(CompareContext);
+
+    const addToCartHandler = (event, amount) => {
+        event.preventDefault();
+        cartCtx.addItem({
+            id: productData.id,
+            name: productData.name,
+            image: productData.prices[0].img,
+            amount: +amount,
+        });
+    };
+
     return (
         <Modal onClose={onClose}>
             <div className={classes["text-center"]}>
@@ -9,6 +24,10 @@ const ProductDetails = ({ productData, onClose }) => {
                     src={productData.prices[0].img}
                     alt={productData.name}
                     className={classes.image}
+                />
+                <CardForm
+                    className={classes.form}
+                    onAddToCart={addToCartHandler}
                 />
                 <h3>{productData.name}</h3>
                 <ul className={classes["list-unstyled"]}>
