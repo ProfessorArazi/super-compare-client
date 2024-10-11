@@ -1,100 +1,85 @@
-.sticky{
-  position: -webkit-sticky; /* Safari */
-  position: sticky;
-  top: 0;
-  z-index: 2;
+.sticky {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0;
+    z-index: 2;
 }
 
-.nav {
-  background-color: #2b9940 !important;
-  font-size: 20px;
+nav {
+    background-color: #2f302e;
+    justify-content: space-between !important;
 }
 
 .collapse {
-  text-align: right;
+    text-align: right;
 }
 
 .nav-icon {
-  display: block;
-  margin: 0 auto;
-  font-size: 30px;
+    display: block;
+    margin: 0 auto;
+    font-size: 30px;
 }
 
 .logo {
-  width: 197px;
-  height: 92px;
-}
-
-.nav-logo {
-  background-color: #2f302e;
-  justify-content: space-between !important;
+    width: 197px;
+    height: 92px;
 }
 
 .link {
-  margin: 0 auto;
-  color: #fff !important;
+    margin: 0 auto;
+    color: #fff !important;
 }
 
 .link :hover {
-  transition: all 0.4s ease-in-out;
-  color: #272727;
-}
-
-.links-card {
-  position: absolute !important ;
-  top: 63%;
-  z-index: 100;
-  width: 15rem;
-  max-height: 18rem;
-  direction: ltr;
-  overflow-y: scroll;
+    transition: all 0.4s ease-in-out;
+    color: #272727;
 }
 
 .links-card__hidden {
-  visibility: hidden;
+    visibility: hidden;
 }
 
 .cart-button {
-  margin-left: 0;
+    margin-left: 0;
 }
 .search input {
-  border-radius: 0.25rem;
-  border-color: transparent;
+    border-radius: 0.25rem;
+    border-color: transparent;
 }
 
 @media (max-width: 992px) {
-  .link {
-    margin: 0;
-    padding: 0.5rem 0 !important;
-  }
+    .link {
+        margin: 0;
+        padding: 0.5rem 0 !important;
+    }
 
-  .nav-icon {
-    display: inline;
-    margin-left: 10px;
-    color: #ffffff;
-  }
-  .nav-brand {
-    margin: 0 !important;
-  }
-  .search {
-    margin: 0;
-    text-align: right;
-    width: 50%;
-  }
-  .search input {
-    width: 100%;
-  }
-  .links-card {
-    max-height: 10rem;
-    position: relative;
-    top: auto;
-  }
-  .collapse {
-    padding: 0;
-  }
-  .logo {
-    width: 177.73px;
-    height: 83px;
-    margin: 5px;
-  }
+    .nav-icon {
+        display: inline;
+        margin-left: 10px;
+        color: #ffffff;
+    }
+    .nav-brand {
+        margin: 0 !important;
+    }
+    .search {
+        margin: 0;
+        text-align: right;
+        width: 50%;
+    }
+    .search input {
+        width: 100%;
+    }
+    .links-card {
+        max-height: 10rem;
+        position: relative;
+        top: auto;
+    }
+    .collapse {
+        padding: 0;
+    }
+    .logo {
+        width: 177.73px;
+        height: 83px;
+        margin: 5px;
+    }
 }

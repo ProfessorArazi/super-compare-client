@@ -1,10 +1,9 @@
 import { useContext, useState } from "react";
 import CompareContext from "../../../store/compare-context";
-import { Card } from "react-bootstrap";
 import CardForm from "../CardForm/CardForm";
-import classes from "./MyCard.module.css";
+import classes from "./Card.module.css";
 
-const MyCard = (props) => {
+const Card = (props) => {
     const cartCtx = useContext(CompareContext);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -29,7 +28,7 @@ const MyCard = (props) => {
     };
 
     return (
-        <Card
+        <div
             onClick={props.onClickHandler}
             id={props.id}
             className={classes.card}
@@ -50,8 +49,8 @@ const MyCard = (props) => {
                     stopPropagation={stopPropagation}
                 />
             </div>
-        </Card>
+        </div>
     );
 };
 
-export default MyCard;
+export default Card;

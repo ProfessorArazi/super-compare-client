@@ -1,6 +1,7 @@
+import React from "react";
 import Footer from "./components/Layout/Footer/Footer";
 import CartProvider from "./store/CartProvider";
-import { Route, Switch } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Products from "./pages/Products/Products";
 import Header from "./components/Layout/Header/Header";
 import { Helmet } from "react-helmet";
@@ -16,14 +17,13 @@ function App() {
             <ScrollToTop>
                 <CartProvider>
                     <Header>
-                        <Switch>
-                            <Route path="/" exact>
-                                <Home />
-                            </Route>
-                            <Route path="/products/:subject">
-                                <Products />
-                            </Route>
-                        </Switch>
+                        <Routes>
+                            <Route path="/" element={<Home />} />
+                            <Route
+                                path="/products/:subject"
+                                element={<Products />}
+                            />
+                        </Routes>
                     </Header>
                     <Footer />
                 </CartProvider>
