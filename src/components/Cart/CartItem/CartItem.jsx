@@ -8,7 +8,7 @@ const CartItem = (props) => {
     return (
         <li onClick={() => setProduct(props)} className={classes["cart-item"]}>
             <div className={classes.image}>
-                <img src={props.images[0]} alt={props.name} />
+                <img src={props.image} alt={props.name} />
             </div>
             <div className={classes.details}>
                 <h5>{props.name}</h5>
