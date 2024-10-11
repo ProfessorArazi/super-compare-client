@@ -42,7 +42,7 @@ export const SearchInput = ({ setProductData }) => {
         } else {
             const timeoutId = setTimeout(() => {
                 searchHandler(inputValue);
-            }, 500);
+            }, 300);
 
             setTypingTimeout(timeoutId);
             setShowResults(true);
