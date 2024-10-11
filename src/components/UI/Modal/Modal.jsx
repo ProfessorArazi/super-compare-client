@@ -7,10 +7,8 @@ const Backdrop = (props) => {
 };
 
 const ModalOverlay = (props) => {
-    const modalClasses = `${classes.modal} ${classes["modal-cart"]}`;
-
     return (
-        <div className={modalClasses}>
+        <div className={classes.modal}>
             <div className={classes.content}>{props.children}</div>
         </div>
     );

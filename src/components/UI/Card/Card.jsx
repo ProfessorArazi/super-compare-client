@@ -17,6 +17,7 @@ const Card = (props) => {
         cartCtx.addItem({
             id: props.id,
             name: props.name,
+            image: props.images[0],
             amount: +amount,
         });
     };
@@ -42,6 +43,7 @@ const Card = (props) => {
                 />
             </div>
             <div className={classes.content}>
+                {props.brand && <p className={classes.brand}>{props.brand}</p>}
                 <p className={classes.title}>{props.name}</p>
                 <CardForm
                     className={classes.form}

@@ -83,7 +83,6 @@ const Products = () => {
     }, [handleIntersection, products]);
 
     const showProductDetails = (productDetails) => {
-        window.scrollTo({ top: 0 });
         setProductData(productDetails);
     };
 
