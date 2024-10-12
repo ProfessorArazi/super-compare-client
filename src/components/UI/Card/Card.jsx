@@ -16,7 +16,7 @@ const Card = (props) => {
         stopPropagation(event);
         cartCtx.addItem({
             ...props,
-            image: props.images[0],
+            image: props.images[currentImageIndex],
             amount: +amount,
         });
     };
