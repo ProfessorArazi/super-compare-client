@@ -1,8 +1,13 @@
+:root {
+    --turquoise: #00adb5;
+    --black: #222831;
+}
+
 body {
+    font-family: "Assistant", sans-serif;
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: #cfd3c8 !important;
     overflow-y: scroll;
 }
 

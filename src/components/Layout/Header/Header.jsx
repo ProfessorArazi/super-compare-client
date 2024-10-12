@@ -4,9 +4,12 @@ import { Link } from "react-router-dom";
 import HeaderCartButton from "../../UI/HeaderCartButton/HeaderCartButton";
 import Cart from "../../../pages/Cart/Cart";
 import classes from "./Header.module.css";
-import Logo from "../../../assets/super compare new logo.png";
+import Logo from "../../../assets/logo.png";
 import CompareContext from "../../../store/compare-context";
 import { SearchInput } from "../../UI/SearchInput/SearchInput";
+import LoginIcon from "../../../assets/LoginIcon";
+import CategoriesIcon from "../../../assets/CategoriesIcon";
+import ListIcon from "../../../assets/ListIcon";
 
 const Header = (props) => {
     const [cartIsShown, setCartIsShown] = useState(false);
@@ -42,7 +45,32 @@ const Header = (props) => {
 
     return (
         <>
-            <div className={classes.sticky}>
+            <div className={classes["login-container"]}>
+                <button className={classes.btn}>{<LoginIcon />} כניסה</button>
+            </div>
+            <div className={classes.container}>
+                <div className={classes["side-container"]}>
+                    <HeaderCartButton onClick={cartClickHandler} />
+                    <button
+                        className={`${classes.btn} ${classes["categories-btn"]}`}
+                    >
+                        {<ListIcon />} רשימות שמורות
+                    </button>
+                </div>
+
+                <div className={classes["search-container"]}>
+                    <SearchInput setProductData={props.setProductData} />
+                </div>
+                <div className={classes["side-container"]}>
+                    <button
+                        className={`${classes.btn} ${classes["categories-btn"]}`}
+                    >
+                        {<CategoriesIcon />} קטגוריות
+                    </button>
+                    <img src={Logo} alt="logo" />
+                </div>
+            </div>
+            {/* <div className={classes.sticky}>
                 <Navbar className={classes["nav-logo"]} dir="rtl">
                     <Navbar.Brand
                         className={classes["nav-brand"]}
@@ -65,14 +93,14 @@ const Header = (props) => {
                 <div>
                     <SearchInput setProductData={props.setProductData} />
                 </div>
-            )}
-            <div
+            )} */}
+            {/* <div
                 className={`${classes.children} ${
                     cartIsShown ? classes["open-cart"] : ""
                 }`}
             >
                 {props.children}
-            </div>
+            </div> */}
         </>
     );
 };
