@@ -29,41 +29,29 @@ const ProductDetails = ({ productData, onClose }) => {
                 />
                 <h3>{productData.name}</h3>
                 <ul className={classes["list-unstyled"]}>
-                    {productData.prices
-                        .sort((a, b) =>
-                            a.discountPrice && !b.discountPrice
-                                ? -1
-                                : b.discountPrice && !a.discountPrice
-                                ? 1
-                                : (a.discountPrice || a.price) -
-                                  (b.discountPrice || b.price)
-                        )
-                        .map((info) => (
-                            <li key={info._id} className="mb-3">
-                                <h6>{info.market}</h6>
-                                <p className={classes.price}>
-                                    {`מחיר${info.discount ? " רגיל: " : ": "}`}
-                                    <strong>{info.price.toFixed(2)}</strong>
+                    {productData.prices.map((info) => (
+                        <li key={info._id} className="mb-3">
+                            <h6>{info.market}</h6>
+                            <p className={classes.price}>
+                                {`מחיר${info.discount ? " רגיל: " : ": "}`}
+                                <strong>{info.price.toFixed(2)}</strong>
+                            </p>
+                            {info.discount > 0 && (
+                                <p className={classes.discount}>
+                                    {info.discount === 1 ? (
+                                        <strong>מבצע: </strong>
+                                    ) : (
+                                        <>
+                                            <strong>{info.discount} </strong>ב{" "}
+                                        </>
+                                    )}
+                                    <strong>
+                                        {info.discountPrice.toFixed(2)}
+                                    </strong>
                                 </p>
-                                {info.discount > 0 && (
-                                    <p className={classes.discount}>
-                                        {info.discount === 1 ? (
-                                            <strong>מבצע: </strong>
-                                        ) : (
-                                            <>
-                                                <strong>
-                                                    {info.discount}{" "}
-                                                </strong>
-                                                ב{" "}
-                                            </>
-                                        )}
-                                        <strong>
-                                            {info.discountPrice.toFixed(2)}
-                                        </strong>
-                                    </p>
-                                )}
-                            </li>
-                        ))}
+                            )}
+                        </li>
+                    ))}
                 </ul>
             </div>
         </Modal>
