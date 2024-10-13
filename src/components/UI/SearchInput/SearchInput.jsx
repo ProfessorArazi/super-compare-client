@@ -75,11 +75,11 @@ export const SearchInput = ({ setProductData }) => {
         <div ref={listRef} className={classes.search}>
             <div className={classes["input-container"]}>
                 <input
-                    className={
+                    className={`${classes.input} ${
                         showResults && searchResults.length > 0
                             ? classes["input-active"]
                             : ""
-                    }
+                    }`}
                     name="search"
                     value={value}
                     type="text"

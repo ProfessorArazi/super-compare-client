@@ -1,29 +1,35 @@
 .cart-item {
+    background: #fff;
+    border-radius: 50px;
+    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.25);
+    padding: 10px 25px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    border-bottom: 1px solid #ccc;
-    background-color: #e8e2e2;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    align-items: start;
+    direction: rtl;
+    gap: 10px;
+    text-align: right;
+    position: relative;
 }
 
-.cart-item:hover {
+.img {
+    width: 30%;
+}
+
+.img:hover {
     cursor: pointer;
-    background-color: #dcd5d5;
 }
 
-.image {
-    flex-shrink: 0;
-    margin-right: 1rem;
+.delete {
+    position: absolute;
+    left: 30px;
+    bottom: 10px;
+    color: #222831;
+    cursor: pointer;
+    font-size: 14px;
 }
 
-.image img {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 8px;
+.name {
+    margin: 0;
 }
 
 .details {
@@ -48,7 +54,9 @@
 .actions {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
+    margin: 8px 0;
+    gap: 10px;
 }
 
 .actions button {
@@ -59,16 +67,17 @@
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    margin: 0.25rem 0;
-    padding: 0.5rem;
     width: 3rem;
     text-align: center;
 }
 
-.actions button:hover,
-.actions button:active {
-    background-color: #f57c00;
-    border-color: #f57c00;
+.actions .btn:hover {
+    cursor: pointer;
+}
+
+.actions p,
+.delete p {
+    margin: 0;
 }
 
 @media (min-width: 768px) {
@@ -82,6 +91,5 @@
 
     .actions {
         flex-direction: row;
-        margin-left: 1rem;
     }
 }

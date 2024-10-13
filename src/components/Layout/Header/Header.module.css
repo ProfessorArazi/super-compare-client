@@ -1,13 +1,16 @@
-.sticky {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
+.header {
+    position: fixed;
+    width: 100%;
     z-index: 2;
+    background-color: #fff;
 }
 
 .login-container {
     background-color: var(--turquoise);
-    padding: 10px 60px;
+    padding: 0 60px;
+    display: flex;
+    height: 8vh;
+    align-items: center;
 }
 
 .btn {
@@ -27,6 +30,10 @@
     background-color: var(--turquoise);
 }
 
+.categories-btn:hover {
+    background-color: var(--turquoiseHover);
+}
+
 .btn svg {
     margin-right: 10px;
 }
@@ -36,23 +43,102 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    height: 10vh;
 }
 
 .side-container {
-    flex: 0.25;
+    flex: 0.2;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: row;
+    padding: 0 30px;
+    gap: 30px;
+}
+
+.side-top {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    gap: 30px;
+    justify-content: start;
     align-items: center;
+    width: 100%;
+}
+
+.categories-container {
+    direction: rtl;
+    align-items: start;
 }
 
 .search-container {
     flex: 0.5;
     display: flex;
     justify-content: center;
+    align-items: start;
+    flex-direction: column;
+}
+
+.lists {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.side-popup {
+    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 0 0 20px 0;
+    position: fixed;
+    top: 18vh;
+    width: 18%;
+    height: 82vh;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.categories-popup {
+    border-radius: 0 0 0 20px;
+    right: 0;
+}
+
+.side-title {
+    background-color: var(--turquoise);
+    color: #fff;
+    padding: 0 20px;
+    text-align: right;
+    flex: 0.1;
+    display: flex;
     align-items: center;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+
+.side-title-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.side-title-action {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.side-title h3 {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 40px;
+    font-style: normal;
+    margin: 0;
 }
 
 nav {

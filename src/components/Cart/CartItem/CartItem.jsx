@@ -1,4 +1,6 @@
 import classes from "./CartItem.module.css";
+import PlusIcon from "../../../assets/PlusIcon";
+import MinusIcon from "../../../assets/MinusIcon";
 
 const CartItem = (props) => {
     const setProduct = (product) => {
@@ -6,17 +8,39 @@ const CartItem = (props) => {
     };
 
     return (
-        <li onClick={() => setProduct(props)} className={classes["cart-item"]}>
-            <div className={classes.image}>
-                <img src={props.image} alt={props.name} />
-            </div>
-            <div className={classes.details}>
-                <h5>{props.name}</h5>
-                <span className={classes.amount}>x {props.amount}</span>
-            </div>
-            <div className={classes.actions}>
-                <button onClick={(e) => props.onAdd(e)}>+</button>
-                <button onClick={(e) => props.onRemove(e)}>−</button>
+        <li>
+            <div className={classes["cart-item"]}>
+                <img
+                    onClick={() => setProduct(props)}
+                    className={classes.img}
+                    src={props.image}
+                    alt={props.name}
+                />
+                <div>
+                    <p className={classes.name}>{props.name}</p>
+                    <div className={classes.actions}>
+                        <p
+                            className={classes.btn}
+                            onClick={(e) => props.onAdd(e)}
+                        >
+                            <PlusIcon />
+                        </p>
+                        <p>{props.amount}</p>
+                        <p
+                            className={classes.btn}
+                            onClick={(e) => props.onRemove(e)}
+                        >
+                            <MinusIcon />
+                        </p>
+                        <p>יח'</p>
+                    </div>
+                </div>
+                <div
+                    onClick={(e) => props.onRemoveTotal(e)}
+                    className={classes.delete}
+                >
+                    <p>הסרה</p>
+                </div>
             </div>
         </li>
     );

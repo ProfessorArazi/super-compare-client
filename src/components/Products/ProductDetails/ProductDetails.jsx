@@ -23,10 +23,14 @@ const ProductDetails = ({ productData, onClose }) => {
                     alt={productData.name}
                     className={classes.image}
                 />
-                <CardForm
-                    className={classes.form}
-                    onAddToCart={addToCartHandler}
-                />
+                <div className={classes["form-wrapper"]}>
+                    <div className={classes["form-container"]}>
+                        <CardForm
+                            className={classes.form}
+                            onAddToCart={addToCartHandler}
+                        />
+                    </div>
+                </div>
                 <h3>{productData.name}</h3>
                 <ul className={classes["list-unstyled"]}>
                     {productData.prices.map((info) => (
