@@ -17,7 +17,7 @@ const Result = ({ prices, onClose }) => {
                             className={classes.card}
                         >
                             <h3>{price[0]}</h3>
-                            <p>מחיר : {price[1].price.toFixed(2)}</p>
+                            <p>מחיר: ₪{price[1].price.toFixed(2)} </p>
                             <div
                                 onClick={() => navigateHandler(price[1].url)}
                                 className={classes.marketButton}
