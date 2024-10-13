@@ -1,8 +1,20 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --turquoise: #00adb5;
+    --black: #222831;
+    --turquoiseHover: #009ea3;
+}
+
 body {
+    font-family: "Assistant", sans-serif;
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: #cfd3c8 !important;
     overflow-y: scroll;
 }
 

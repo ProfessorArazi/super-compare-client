@@ -7,9 +7,10 @@ const HeaderCartButton = (props) => {
     const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
     const ctx = useContext(CompareContext);
 
-    const numberOfCartItems = ctx.items.reduce((curNumber, item) => {
-        return curNumber + item.amount;
-    }, 0);
+    const numberOfCartItems =
+        ctx.items?.reduce((curNumber, item) => {
+            return curNumber + item.amount;
+        }, 0) || 0;
 
     const { items } = ctx;
 
@@ -18,7 +19,7 @@ const HeaderCartButton = (props) => {
     } `;
 
     useEffect(() => {
-        if (items.length === 0) {
+        if (!items || items.length === 0) {
             return;
         }
         setBtnIsHighlighted(true);

@@ -11,13 +11,12 @@
     width: 100%;
     max-width: 250px;
     height: auto;
-    margin-bottom: 20px;
 }
 
 .text-center h3 {
     margin: 10px 0;
     font-size: 1.8em;
-    color: #f57c00;
+    color: #333;
     font-weight: bold;
 }
 
@@ -51,6 +50,16 @@ strong {
 .discount {
     font-weight: bold;
     color: #d32f2f;
+}
+
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.form-container {
+    flex: 0.4;
 }
 
 @media (max-width: 768px) {

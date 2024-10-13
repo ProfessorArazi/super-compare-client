@@ -1,30 +1,67 @@
 import { useCallback, useEffect, useState, useContext } from "react";
-import { Navbar } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import HeaderCartButton from "../../UI/HeaderCartButton/HeaderCartButton";
 import Cart from "../../../pages/Cart/Cart";
 import classes from "./Header.module.css";
-import Logo from "../../../assets/super compare new logo.png";
+import Logo from "../../../assets/logo.png";
 import CompareContext from "../../../store/compare-context";
 import { SearchInput } from "../../UI/SearchInput/SearchInput";
+import LoginIcon from "../../../assets/LoginIcon";
+import CategoriesIcon from "../../../assets/CategoriesIcon";
+import ListIcon from "../../../assets/ListIcon";
+import SaveIcon from "../../../assets/SaveIcon";
+import TrashIcon from "../../../assets/TrashIcon";
+import Categories from "../../../pages/Categories/Categories";
 
 const Header = (props) => {
+    const [isFirstRender, setIsFirstRender] = useState(true);
     const [cartIsShown, setCartIsShown] = useState(false);
+    const [categoriesIsShown, setCategoriesIsShown] = useState(false);
 
     const ctx = useContext(CompareContext);
+
+    const cartItemRemoveHandler = (event, id) => {
+        event.stopPropagation();
+        ctx.removeItem(id);
+    };
+
+    const cartItemRemoveTotalHandler = (event, id) => {
+        event.stopPropagation();
+        ctx.removeTotalItem(id);
+    };
+
+    const cartItemAddHandler = (event, item) => {
+        event.stopPropagation();
+        ctx.addItem({ ...item, amount: 1 });
+    };
+
+    const cartClearItemsHandler = () => {
+        sessionStorage.removeItem("items");
+        ctx.clearCart();
+    };
 
     const cartClickHandler = () => {
         setCartIsShown((prev) => !prev);
     };
 
+    const categoriesClickHandler = () => {
+        setCategoriesIsShown((prev) => !prev);
+    };
+
     useEffect(() => {
-        if (ctx.items.length > 0) {
-            sessionStorage.setItem("items", JSON.stringify(ctx.items));
-        } else if (sessionStorage.getItem("items")) {
-            const items = JSON.parse(sessionStorage.getItem("items"));
-            ctx.updateItems(items);
+        if (isFirstRender) {
+            const storedItems = sessionStorage.getItem("items");
+            if (storedItems) {
+                ctx.updateItems(JSON.parse(storedItems));
+            }
+            setIsFirstRender(false);
+        } else {
+            if (ctx.items.length) {
+                sessionStorage.setItem("items", JSON.stringify(ctx.items));
+            } else {
+                sessionStorage.removeItem("items");
+            }
         }
-    }, [ctx]);
+    }, [ctx, isFirstRender]);
 
     const escFunction = useCallback((event) => {
         if (event.keyCode === 27) {
@@ -42,37 +79,78 @@ const Header = (props) => {
 
     return (
         <>
-            <div className={classes.sticky}>
-                <Navbar className={classes["nav-logo"]} dir="rtl">
-                    <Navbar.Brand
-                        className={classes["nav-brand"]}
-                        as={Link}
-                        to="/"
-                    >
-                        <img className={classes.logo} src={Logo} alt="logo" />
-                    </Navbar.Brand>
-                    {window.innerWidth > 992 && (
-                        <SearchInput setProductData={props.setProductData} />
-                    )}
-                    <HeaderCartButton
-                        className={classes["cart-button"]}
-                        onClick={cartClickHandler}
-                    />
-                </Navbar>
-            </div>
-            <Cart isOpen={cartIsShown} setProductData={props.setProductData} />
-            {window.innerWidth <= 992 && (
-                <div>
-                    <SearchInput setProductData={props.setProductData} />
+            <div className={classes.header}>
+                <div className={classes["login-container"]}>
+                    <button className={classes.btn}>
+                        {<LoginIcon />} כניסה
+                    </button>
                 </div>
-            )}
-            <div
-                className={`${classes.children} ${
-                    cartIsShown ? classes["open-cart"] : ""
-                }`}
-            >
-                {props.children}
+                <div className={classes.container}>
+                    <div className={classes["side-container"]}>
+                        <HeaderCartButton onClick={cartClickHandler} />
+                        <button
+                            className={`${classes.btn} ${classes["categories-btn"]}`}
+                        >
+                            {<ListIcon />} רשימות שמורות
+                        </button>
+                    </div>
+
+                    <div className={classes["search-container"]}>
+                        <SearchInput setProductData={props.setProductData} />
+                    </div>
+                    <div
+                        className={`${classes["side-container"]} ${classes["categories-container"]}`}
+                    >
+                        <img src={Logo} alt="logo" />
+                        <button
+                            onClick={categoriesClickHandler}
+                            className={`${classes.btn} ${classes["categories-btn"]}`}
+                        >
+                            קטגוריות {<CategoriesIcon />}
+                        </button>
+                    </div>
+                </div>
             </div>
+            <>
+                <div
+                    className={`${classes["side-popup"]} ${
+                        cartIsShown ? classes.show : ""
+                    }`}
+                >
+                    <div className={classes["side-title"]}>
+                        <h3>הסל שלי</h3>
+                        <div className={classes["side-title-actions"]}>
+                            <div
+                                onClick={cartClearItemsHandler}
+                                className={classes["side-title-action"]}
+                            >
+                                {<TrashIcon />} ניקוי סל
+                            </div>
+                            <div className={classes["side-title-action"]}>
+                                {<SaveIcon />} שמירת סל
+                            </div>
+                        </div>
+                    </div>
+                    <Cart
+                        items={ctx.items}
+                        onAdd={cartItemAddHandler}
+                        onRemove={cartItemRemoveHandler}
+                        onRemoveTotal={cartItemRemoveTotalHandler}
+                        setProductData={props.setProductData}
+                    />
+                </div>
+
+                <div
+                    className={`${classes["side-popup"]} ${
+                        classes["categories-popup"]
+                    } ${categoriesIsShown ? classes.show : ""}`}
+                >
+                    <div className={classes["side-title"]}>
+                        <h3>קטגוריות</h3>
+                    </div>
+                    <Categories />
+                </div>
+            </>
         </>
     );
 };

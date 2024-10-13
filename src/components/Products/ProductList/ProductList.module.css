@@ -14,9 +14,4 @@
     align-items: center;
     overflow: hidden;
     border-radius: 8px;
-    transition: transform 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-5px);
 }

@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import classes from "./SearchInput.module.css";
-import { Card } from "react-bootstrap";
 import { fetchProductsBySubject } from "../../../services/products-api";
+import SearchIcon from "../../../assets/SearchIcon";
 
 export const SearchInput = ({ setProductData }) => {
     const [searchResults, setSearchResults] = useState([]);
@@ -73,22 +73,35 @@ export const SearchInput = ({ setProductData }) => {
 
     return (
         <div ref={listRef} className={classes.search}>
-            <input
-                className={
-                    showResults && searchResults.length > 0
-                        ? classes["input-active"]
-                        : ""
-                }
-                name="search"
-                value={value}
-                type="text"
-                placeholder="חפש"
-                onClick={handleChange}
-                onChange={handleChange}
-                onKeyDown={handleChange}
-            />
+            <div className={classes["input-container"]}>
+                <input
+                    className={`${classes.input} ${
+                        showResults && searchResults.length > 0
+                            ? classes["input-active"]
+                            : ""
+                    }`}
+                    name="search"
+                    value={value}
+                    type="text"
+                    placeholder="חיפוש פריט, קטגוריה או מותג..."
+                    onClick={handleChange}
+                    onChange={handleChange}
+                    onKeyDown={handleChange}
+                />
+                <button
+                    className={`${classes["search-button"]} ${
+                        showResults && searchResults.length > 0
+                            ? classes["input-active"]
+                            : ""
+                    }`}
+                    onClick={() => showAllResults(value)}
+                >
+                    חיפוש <SearchIcon />
+                </button>
+            </div>
+
             {showResults && searchResults.length > 0 && (
-                <Card className={classes["links-card"]}>
+                <div className={classes["links-card"]}>
                     <ul onClick={resetSearchHandler}>
                         {searchResults.map((result, index) => (
                             <li onClick={() => setProduct(result)} key={index}>
@@ -96,10 +109,13 @@ export const SearchInput = ({ setProductData }) => {
                             </li>
                         ))}
                     </ul>
-                    <button onClick={() => showAllResults(value)}>
+                    <button
+                        className={classes["result-btn"]}
+                        onClick={() => showAllResults(value)}
+                    >
                         לכל התוצאות
                     </button>
-                </Card>
+                </div>
             )}
         </div>
     );

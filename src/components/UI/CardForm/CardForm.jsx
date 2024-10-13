@@ -1,47 +1,33 @@
 import { useState } from "react";
 import classes from "./CardForm.module.css";
-import { Button } from "react-bootstrap";
 
-const CardForm = ({ onAddToCart, stopPropagation }) => {
-    const [fade, setFade] = useState(false);
-    const [amount, setAmount] = useState(1);
+const CardForm = ({ onAddToCart }) => {
+    const [quantity, setQuantity] = useState(1);
+
+    const inputClickHandler = (event) => {
+        event.stopPropagation();
+    };
 
     const handleButtonClick = (event) => {
         event.preventDefault();
         event.stopPropagation();
-        onAddToCart(event, amount);
-    };
-
-    const handleInputChange = (event) => {
-        setAmount(event.target.value);
+        onAddToCart(event, quantity);
     };
 
     return (
-        <form className={classes.form}>
-            <Button
-                type="button"
-                variant="light"
-                onClick={(event) => {
-                    setFade(true);
-                    handleButtonClick(event);
-                }}
-                onAnimationEnd={() => setFade(false)}
-                className={
-                    !fade ? classes.button : `${classes.button} ${classes.fade}`
-                }
-            >
-                הוסף לעגלה
-            </Button>
+        <div className={classes["card-form-container"]}>
+            <div onClick={handleButtonClick}>
+                <p className={classes["add-to-cart-button"]}>הוספה לעגלה</p>
+            </div>
             <input
-                name="amount"
-                className={classes.input}
                 type="number"
-                value={amount}
+                value={quantity}
+                onChange={(e) => setQuantity(+e.target.value)}
+                onClick={inputClickHandler}
+                className={classes["quantity-input"]}
                 min="1"
-                onChange={handleInputChange}
-                onClick={stopPropagation}
             />
-        </form>
+        </div>
     );
 };
 export default CardForm;
