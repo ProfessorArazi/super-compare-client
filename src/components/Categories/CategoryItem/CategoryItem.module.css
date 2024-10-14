@@ -30,3 +30,10 @@
     background: #eee;
     padding: 0.5rem;
 }
+
+@media (max-width: 1600px) {
+    .category {
+        min-width: 30%;
+        max-width: 400px;
+    }
+}

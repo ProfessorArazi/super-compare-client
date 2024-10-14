@@ -4,14 +4,9 @@
     gap: 20px;
     padding: 20px;
     max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
     direction: rtl;
-}
-
-.card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    border-radius: 8px;
+    box-sizing: border-box;
+    justify-items: center;
 }

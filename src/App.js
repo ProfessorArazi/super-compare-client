@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Footer from "./components/Layout/Footer/Footer";
 import CartProvider from "./store/CartProvider";
 import { Route, Routes } from "react-router-dom";
 import Products from "./pages/Products/Products";
@@ -49,7 +48,7 @@ function App() {
                         />
                     </Routes>
                 </Wrapper>
-                <Footer />
+                {/* <Footer /> */}
             </CartProvider>
         </>
     );

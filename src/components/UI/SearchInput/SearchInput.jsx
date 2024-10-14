@@ -4,7 +4,7 @@ import classes from "./SearchInput.module.css";
 import { fetchProductsBySubject } from "../../../services/products-api";
 import SearchIcon from "../../../assets/SearchIcon";
 
-export const SearchInput = ({ setProductData }) => {
+export const SearchInput = ({ setProductData, closeAll, isMobile }) => {
     const [searchResults, setSearchResults] = useState([]);
     const [value, setValue] = useState("");
     const [typingTimeout, setTypingTimeout] = useState(null);
@@ -52,6 +52,7 @@ export const SearchInput = ({ setProductData }) => {
     const showAllResults = (subject) => {
         setShowResults(false);
         resetSearchHandler();
+        closeAll();
         navigate(`/products/${subject}`);
     };
 
@@ -83,20 +84,24 @@ export const SearchInput = ({ setProductData }) => {
                     name="search"
                     value={value}
                     type="text"
-                    placeholder="חיפוש פריט, קטגוריה או מותג..."
+                    placeholder={
+                        isMobile ? "חיפוש" : "חיפוש פריט, קטגוריה או מותג..."
+                    }
                     onClick={handleChange}
                     onChange={handleChange}
                     onKeyDown={handleChange}
                 />
                 <button
                     className={`${classes["search-button"]} ${
+                        classes["btn-mobile"]
+                    } ${
                         showResults && searchResults.length > 0
                             ? classes["input-active"]
                             : ""
-                    }`}
+                    } `}
                     onClick={() => showAllResults(value)}
                 >
-                    חיפוש <SearchIcon />
+                    {isMobile ? "" : "חיפוש"} <SearchIcon />
                 </button>
             </div>
 

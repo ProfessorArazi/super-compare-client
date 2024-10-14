@@ -1,21 +1,24 @@
-import { useCallback, useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import HeaderCartButton from "../../UI/HeaderCartButton/HeaderCartButton";
 import Cart from "../../../pages/Cart/Cart";
 import classes from "./Header.module.css";
-import Logo from "../../../assets/logo.png";
+import LogoMobile from "../../../assets/logo-white.png";
+import LogoWeb from "../../../assets/logo.png";
 import CompareContext from "../../../store/compare-context";
 import { SearchInput } from "../../UI/SearchInput/SearchInput";
 import LoginIcon from "../../../assets/LoginIcon";
-import CategoriesIcon from "../../../assets/CategoriesIcon";
-import ListIcon from "../../../assets/ListIcon";
 import SaveIcon from "../../../assets/SaveIcon";
 import TrashIcon from "../../../assets/TrashIcon";
 import Categories from "../../../pages/Categories/Categories";
+import CategoriesIconBlack from "../../../assets/CategoriesIconBlack";
+import CategoriesIcon from "../../../assets/CategoriesIcon";
+import ListIcon from "../../../assets/ListIcon";
 
 const Header = (props) => {
     const [isFirstRender, setIsFirstRender] = useState(true);
     const [cartIsShown, setCartIsShown] = useState(false);
     const [categoriesIsShown, setCategoriesIsShown] = useState(false);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 1600);
 
     const ctx = useContext(CompareContext);
 
@@ -41,11 +44,31 @@ const Header = (props) => {
 
     const cartClickHandler = () => {
         setCartIsShown((prev) => !prev);
+        if (isMobile) setCategoriesIsShown(false);
     };
 
     const categoriesClickHandler = () => {
         setCategoriesIsShown((prev) => !prev);
+        if (isMobile) setCartIsShown(false);
     };
+
+    const closeAll = () => {
+        if (isMobile) {
+            setCategoriesIsShown(false);
+            setCartIsShown(false);
+        }
+    };
+
+    useEffect(() => {
+        const updateScreenSize = () => {
+            setIsMobile(window.innerWidth <= 1600);
+        };
+
+        window.addEventListener("resize", updateScreenSize);
+        return () => {
+            window.removeEventListener("resize", updateScreenSize);
+        };
+    }, []);
 
     useEffect(() => {
         if (isFirstRender) {
@@ -63,60 +86,74 @@ const Header = (props) => {
         }
     }, [ctx, isFirstRender]);
 
-    const escFunction = useCallback((event) => {
-        if (event.keyCode === 27) {
-            setCartIsShown(false);
-        }
-    }, []);
-
-    useEffect(() => {
-        document.addEventListener("keydown", escFunction);
-
-        return () => {
-            document.removeEventListener("keydown", escFunction);
-        };
-    }, [escFunction]);
-
     return (
         <>
             <div className={classes.header}>
                 <div className={classes["login-container"]}>
-                    <button className={classes.btn}>
-                        {<LoginIcon />} כניסה
-                    </button>
-                </div>
-                <div className={classes.container}>
-                    <div className={classes["side-container"]}>
-                        <HeaderCartButton onClick={cartClickHandler} />
-                        <button
-                            className={`${classes.btn} ${classes["categories-btn"]}`}
-                        >
-                            {<ListIcon />} רשימות שמורות
+                    {isMobile ? (
+                        <>
+                            <div className={classes["mobile-actions"]}>
+                                <HeaderCartButton onClick={cartClickHandler} />
+                                <LoginIcon />
+                            </div>
+                            <img
+                                className={classes.logo}
+                                src={LogoMobile}
+                                alt="logo"
+                            />
+                        </>
+                    ) : (
+                        <button className={classes.btn}>
+                            <LoginIcon /> כניסה
                         </button>
+                    )}
+                </div>
+
+                <div className={classes.container}>
+                    {!isMobile && (
+                        <div className={classes["side-container"]}>
+                            <HeaderCartButton onClick={cartClickHandler} />
+                            <button
+                                className={`${classes.btn} ${classes["categories-btn"]}`}
+                            >
+                                {<ListIcon />} רשימות שמורות
+                            </button>
+                        </div>
+                    )}
+                    <div className={classes["search-container"]}>
+                        <SearchInput
+                            closeAll={closeAll}
+                            isMobile={isMobile}
+                            setProductData={props.setProductData}
+                        />
+                        {isMobile && (
+                            <div
+                                onClick={categoriesClickHandler}
+                                className={classes["categories-icon"]}
+                            >
+                                <CategoriesIconBlack />
+                            </div>
+                        )}
                     </div>
 
-                    <div className={classes["search-container"]}>
-                        <SearchInput setProductData={props.setProductData} />
-                    </div>
-                    <div
-                        className={`${classes["side-container"]} ${classes["categories-container"]}`}
-                    >
-                        <img src={Logo} alt="logo" />
-                        <button
-                            onClick={categoriesClickHandler}
-                            className={`${classes.btn} ${classes["categories-btn"]}`}
+                    {!isMobile && (
+                        <div
+                            className={`${classes["side-container"]} ${classes["categories-container"]}`}
                         >
-                            קטגוריות {<CategoriesIcon />}
-                        </button>
-                    </div>
+                            <img src={LogoWeb} alt="logo" />
+                            <button
+                                onClick={categoriesClickHandler}
+                                className={`${classes.btn} ${classes["categories-btn"]}`}
+                            >
+                                קטגוריות <CategoriesIcon />
+                            </button>
+                        </div>
+                    )}
                 </div>
             </div>
-            <>
-                <div
-                    className={`${classes["side-popup"]} ${
-                        cartIsShown ? classes.show : ""
-                    }`}
-                >
+
+            {cartIsShown && (
+                <div className={classes["side-popup"]}>
                     <div className={classes["side-title"]}>
                         <h3>הסל שלי</h3>
                         <div className={classes["side-title-actions"]}>
@@ -124,10 +161,10 @@ const Header = (props) => {
                                 onClick={cartClearItemsHandler}
                                 className={classes["side-title-action"]}
                             >
-                                {<TrashIcon />} ניקוי סל
+                                <TrashIcon /> ניקוי סל
                             </div>
                             <div className={classes["side-title-action"]}>
-                                {<SaveIcon />} שמירת סל
+                                <SaveIcon /> שמירת סל
                             </div>
                         </div>
                     </div>
@@ -139,18 +176,21 @@ const Header = (props) => {
                         setProductData={props.setProductData}
                     />
                 </div>
+            )}
 
+            {categoriesIsShown && (
                 <div
-                    className={`${classes["side-popup"]} ${
-                        classes["categories-popup"]
-                    } ${categoriesIsShown ? classes.show : ""}`}
+                    className={`${classes["side-popup"]} ${classes["categories-popup"]}`}
                 >
                     <div className={classes["side-title"]}>
                         <h3>קטגוריות</h3>
                     </div>
-                    <Categories />
+                    <Categories
+                        isMobile={isMobile}
+                        setCategoriesIsShown={setCategoriesIsShown}
+                    />
                 </div>
-            </>
+            )}
         </>
     );
 };

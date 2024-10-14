@@ -1,3 +1,8 @@
+.item {
+    display: flex;
+    justify-content: end;
+}
+
 .cart-item {
     background: #fff;
     border-radius: 50px;
@@ -57,6 +62,7 @@
     align-items: center;
     margin: 8px 0;
     gap: 10px;
+    flex-direction: row;
 }
 
 .actions button {
@@ -80,16 +86,14 @@
     margin: 0;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 1600px) {
     .cart-item {
-        flex-direction: row;
+        min-width: 30%;
+        max-width: 400px;
     }
 
-    .details {
-        text-align: left;
-    }
-
-    .actions {
-        flex-direction: row;
+    .img {
+        width: 100%;
+        max-width: 100px;
     }
 }
