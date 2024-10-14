@@ -1,6 +1,6 @@
 import classes from "./Result.module.css";
 
-const Result = ({ prices, onClose }) => {
+const Result = ({ prices }) => {
     const navigateHandler = (link) => {
         window.open(link, "_blank");
     };
@@ -26,11 +26,6 @@ const Result = ({ prices, onClose }) => {
                             </div>
                         </div>
                     ))}
-            </div>
-            <div className={classes.backButtonContainer}>
-                <button onClick={onClose} className={classes.backButton}>
-                    חזרה לעגלה
-                </button>
             </div>
         </>
     );

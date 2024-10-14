@@ -14,12 +14,14 @@ import CategoriesIconBlack from "../../../assets/CategoriesIconBlack";
 import CategoriesIcon from "../../../assets/CategoriesIcon";
 import ListIcon from "../../../assets/ListIcon";
 import { useNavigate } from "react-router-dom";
+import ArrowLeftIcon from "../../../assets/ArrowLeftIcon";
 
 const Header = (props) => {
     const [isFirstRender, setIsFirstRender] = useState(true);
     const [cartIsShown, setCartIsShown] = useState(false);
     const [categoriesIsShown, setCategoriesIsShown] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 1600);
+    const [showCarousel, setShowCarousel] = useState(false);
 
     const navigate = useNavigate();
 
@@ -50,16 +52,25 @@ const Header = (props) => {
         if (isMobile) setCategoriesIsShown(false);
     };
 
+    const closeCart = () => {
+        setCartIsShown(false);
+        backToCartHandler();
+    };
+
     const categoriesClickHandler = () => {
         setCategoriesIsShown((prev) => !prev);
-        if (isMobile) setCartIsShown(false);
+        if (isMobile) closeCart(false);
     };
 
     const closeAll = () => {
         if (isMobile) {
             setCategoriesIsShown(false);
-            setCartIsShown(false);
+            closeCart(false);
         }
+    };
+
+    const backToCartHandler = () => {
+        setShowCarousel(false);
     };
 
     const logoClickHandler = () => {
@@ -171,12 +182,23 @@ const Header = (props) => {
                     <div className={classes["side-title"]}>
                         <h3>הסל שלי</h3>
                         <div className={classes["side-title-actions"]}>
-                            <div
-                                onClick={cartClearItemsHandler}
-                                className={classes["side-title-action"]}
-                            >
-                                <TrashIcon /> ניקוי סל
-                            </div>
+                            {showCarousel ? (
+                                <div
+                                    onClick={backToCartHandler}
+                                    className={classes["side-title-action"]}
+                                >
+                                    <ArrowLeftIcon />
+                                    חזרה לסל
+                                </div>
+                            ) : (
+                                <div
+                                    onClick={cartClearItemsHandler}
+                                    className={classes["side-title-action"]}
+                                >
+                                    <TrashIcon />
+                                    ניקוי סל
+                                </div>
+                            )}
                             <div className={classes["side-title-action"]}>
                                 <SaveIcon /> שמירת סל
                             </div>
@@ -188,6 +210,8 @@ const Header = (props) => {
                         onRemove={cartItemRemoveHandler}
                         onRemoveTotal={cartItemRemoveTotalHandler}
                         setProductData={props.setProductData}
+                        showCarousel={showCarousel}
+                        setShowCarousel={setShowCarousel}
                     />
                 </div>
             )}
