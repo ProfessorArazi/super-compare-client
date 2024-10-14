@@ -1,5 +1,5 @@
 .card-form-container {
-    display: flex;
+    display: inline-flex;
     width: 100%;
     border: 1px solid #eeeeee;
     border-radius: 30px;
