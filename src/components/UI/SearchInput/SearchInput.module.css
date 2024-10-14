@@ -1,6 +1,7 @@
 .search {
     position: relative;
     width: 600px;
+    max-width: 90%;
     margin: 0 auto;
     text-align: right;
     direction: rtl;
@@ -100,4 +101,15 @@
     border-bottom-left-radius: 0 !important;
     border-top-right-radius: 10px !important;
     border-top-left-radius: 10px !important;
+}
+
+@media (max-width: 1600px) {
+    .search {
+        max-width: 600px;
+        width: 70%;
+    }
+
+    .btn-mobile {
+        padding: 10px 13px;
+    }
 }

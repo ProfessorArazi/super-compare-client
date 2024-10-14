@@ -35,6 +35,7 @@
 .actions .compare--btn {
     background-color: var(--turquoise);
     width: 100%;
+    max-width: 350px;
 }
 
 .actions .compare--btn:hover {
