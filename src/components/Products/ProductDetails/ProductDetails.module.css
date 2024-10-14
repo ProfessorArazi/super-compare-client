@@ -58,6 +58,25 @@ strong {
     margin: 20px;
 }
 
+.modal-header {
+    display: flex;
+    justify-content: flex-start;
+    background-color: transparent;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: #333;
+}
+
+.close-button:hover {
+    color: rgb(120, 117, 117);
+}
+
 @media (max-width: 1024px) {
     .text-center {
         padding: 15px;

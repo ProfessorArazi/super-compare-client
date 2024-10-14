@@ -48,7 +48,11 @@ const Header = (props) => {
     };
 
     const cartClickHandler = () => {
-        setCartIsShown((prev) => !prev);
+        if (cartIsShown) {
+            closeCart();
+        } else {
+            setCartIsShown(true);
+        }
         if (isMobile) setCategoriesIsShown(false);
     };
 
