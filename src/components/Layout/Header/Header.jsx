@@ -83,6 +83,18 @@ const Header = (props) => {
     };
 
     useEffect(() => {
+        if (isMobile && (cartIsShown || categoriesIsShown)) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
+        }
+
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, [cartIsShown, categoriesIsShown, isMobile]);
+
+    useEffect(() => {
         const updateScreenSize = () => {
             setIsMobile(window.innerWidth <= 1600);
         };
