@@ -13,12 +13,15 @@ import Categories from "../../../pages/Categories/Categories";
 import CategoriesIconBlack from "../../../assets/CategoriesIconBlack";
 import CategoriesIcon from "../../../assets/CategoriesIcon";
 import ListIcon from "../../../assets/ListIcon";
+import { useNavigate } from "react-router-dom";
 
 const Header = (props) => {
     const [isFirstRender, setIsFirstRender] = useState(true);
     const [cartIsShown, setCartIsShown] = useState(false);
     const [categoriesIsShown, setCategoriesIsShown] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 1600);
+
+    const navigate = useNavigate();
 
     const ctx = useContext(CompareContext);
 
@@ -59,6 +62,11 @@ const Header = (props) => {
         }
     };
 
+    const logoClickHandler = () => {
+        closeAll();
+        navigate("/");
+    };
+
     useEffect(() => {
         const updateScreenSize = () => {
             setIsMobile(window.innerWidth <= 1600);
@@ -97,6 +105,7 @@ const Header = (props) => {
                                 <LoginIcon />
                             </div>
                             <img
+                                onClick={logoClickHandler}
                                 className={classes.logo}
                                 src={LogoMobile}
                                 alt="logo"
@@ -140,7 +149,12 @@ const Header = (props) => {
                         <div
                             className={`${classes["side-container"]} ${classes["categories-container"]}`}
                         >
-                            <img src={LogoWeb} alt="logo" />
+                            <img
+                                onClick={logoClickHandler}
+                                className={classes.logo}
+                                src={LogoWeb}
+                                alt="logo"
+                            />
                             <button
                                 onClick={categoriesClickHandler}
                                 className={`${classes.btn} ${classes["categories-btn"]}`}
