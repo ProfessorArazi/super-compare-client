@@ -6,8 +6,15 @@ import { useState } from "react";
 import { compareItems } from "../../services/products-api";
 import Result from "../../components/Cart/Result/Result";
 
-const Cart = ({ items, onRemove, onRemoveTotal, onAdd, setProductData }) => {
-    const [showCarousel, setShowCarousel] = useState(false);
+const Cart = ({
+    items,
+    onRemove,
+    onRemoveTotal,
+    onAdd,
+    setProductData,
+    showCarousel,
+    setShowCarousel,
+}) => {
     const [prices, setPrices] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -34,10 +41,7 @@ const Cart = ({ items, onRemove, onRemoveTotal, onAdd, setProductData }) => {
                         <LoadingSpinner />
                     </div>
                 ) : showCarousel ? (
-                    <Result
-                        prices={Object.entries(prices)}
-                        onClose={() => setShowCarousel(false)}
-                    />
+                    <Result prices={Object.entries(prices)} />
                 ) : (
                     <>
                         <CartItems
