@@ -5,3 +5,9 @@
     background-color: white;
     border-bottom-right-radius: 50px;
 }
+
+@media (max-width: 1600px) {
+    .cart {
+        padding-bottom: 1.5rem;
+    }
+}
