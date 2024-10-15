@@ -200,7 +200,6 @@ nav {
 
     .categories-icon {
         position: absolute;
-        right: 0;
-        padding: 20px;
+        right: 20px;
     }
 }
