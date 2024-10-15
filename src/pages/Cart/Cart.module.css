@@ -9,5 +9,6 @@
 @media (max-width: 1600px) {
     .cart {
         padding-bottom: 1.5rem;
+        border-radius: 0;
     }
 }
