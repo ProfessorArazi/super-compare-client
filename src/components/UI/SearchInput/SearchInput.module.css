@@ -14,13 +14,12 @@
 
 .input {
     width: 100%;
-    padding: 10px;
+    padding: 10px 20px;
     border-radius: 30px;
     border: 1px solid #ccc;
     outline: none;
     font-size: 16px;
     color: #4a4a4a;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
 }
 
 .input::placeholder {
