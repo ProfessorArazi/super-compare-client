@@ -95,6 +95,7 @@
     flex-direction: column;
     box-sizing: border-box;
     transition: opacity 0.2s ease-in-out;
+    padding-bottom: env(safe-area-inset-bottom);
 }
 
 .categories-popup {
