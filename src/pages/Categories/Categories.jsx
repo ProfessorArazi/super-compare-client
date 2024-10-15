@@ -40,15 +40,17 @@ const Categories = ({ isMobile, setCategoriesIsShown }) => {
     };
 
     return (
-        <ul className={classes.categories}>
-            {categories.map((category) => (
-                <CategoryItem
-                    clickHandler={() => categoryHandler(category.name)}
-                    key={category.name}
-                    {...category}
-                />
-            ))}
-        </ul>
+        <div className={classes.container}>
+            <ul className={classes.categories}>
+                {categories.map((category) => (
+                    <CategoryItem
+                        clickHandler={() => categoryHandler(category.name)}
+                        key={category.name}
+                        {...category}
+                    />
+                ))}
+            </ul>
+        </div>
     );
 };
 

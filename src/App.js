@@ -6,7 +6,6 @@ import Header from "./components/Layout/Header/Header";
 import { Helmet } from "react-helmet";
 import Home from "./pages/Home/Home";
 import ProductDetails from "./components/Products/ProductDetails/ProductDetails";
-import { Wrapper } from "./components/UI/Wrapper/Wrapper";
 
 function App() {
     const [productData, setProductData] = useState(null);
@@ -34,8 +33,7 @@ function App() {
                         onClose={() => setProductData(null)}
                     />
                 )}
-                <Header setProductData={setProductData} />
-                <Wrapper>
+                <Header setProductData={setProductData}>
                     <div style={bannerStyle}>
                         <h1>Banner</h1>
                     </div>
@@ -48,7 +46,7 @@ function App() {
                             }
                         />
                     </Routes>
-                </Wrapper>
+                </Header>
                 {/* <Footer /> */}
             </CartProvider>
         </>

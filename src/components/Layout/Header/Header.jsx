@@ -192,59 +192,62 @@ const Header = (props) => {
                     )}
                 </div>
             </div>
-
-            {cartIsShown && (
-                <div className={classes["side-popup"]}>
-                    <div className={classes["side-title"]}>
-                        <h3>הסל שלי</h3>
-                        <div className={classes["side-title-actions"]}>
-                            {showCarousel ? (
-                                <div
-                                    onClick={backToCartHandler}
-                                    className={classes["side-title-action"]}
-                                >
-                                    <ArrowLeftIcon />
-                                    חזרה לסל
+            <div>
+                {cartIsShown && (
+                    <div className={classes["side-popup"]}>
+                        <div className={classes["side-title"]}>
+                            <h3>הסל שלי</h3>
+                            <div className={classes["side-title-actions"]}>
+                                {showCarousel ? (
+                                    <div
+                                        onClick={backToCartHandler}
+                                        className={classes["side-title-action"]}
+                                    >
+                                        <ArrowLeftIcon />
+                                        חזרה לסל
+                                    </div>
+                                ) : (
+                                    <div
+                                        onClick={cartClearItemsHandler}
+                                        className={classes["side-title-action"]}
+                                    >
+                                        <TrashIcon />
+                                        ניקוי סל
+                                    </div>
+                                )}
+                                <div className={classes["side-title-action"]}>
+                                    <SaveIcon /> שמירת סל
                                 </div>
-                            ) : (
-                                <div
-                                    onClick={cartClearItemsHandler}
-                                    className={classes["side-title-action"]}
-                                >
-                                    <TrashIcon />
-                                    ניקוי סל
-                                </div>
-                            )}
-                            <div className={classes["side-title-action"]}>
-                                <SaveIcon /> שמירת סל
                             </div>
                         </div>
+                        <Cart
+                            items={ctx.items}
+                            onAdd={cartItemAddHandler}
+                            onRemove={cartItemRemoveHandler}
+                            onRemoveTotal={cartItemRemoveTotalHandler}
+                            setProductData={props.setProductData}
+                            showCarousel={showCarousel}
+                            setShowCarousel={setShowCarousel}
+                        />
                     </div>
-                    <Cart
-                        items={ctx.items}
-                        onAdd={cartItemAddHandler}
-                        onRemove={cartItemRemoveHandler}
-                        onRemoveTotal={cartItemRemoveTotalHandler}
-                        setProductData={props.setProductData}
-                        showCarousel={showCarousel}
-                        setShowCarousel={setShowCarousel}
-                    />
-                </div>
-            )}
+                )}
 
-            {categoriesIsShown && (
-                <div
-                    className={`${classes["side-popup"]} ${classes["categories-popup"]}`}
-                >
-                    <div className={classes["side-title"]}>
-                        <h3>קטגוריות</h3>
+                {props.children}
+
+                {categoriesIsShown && (
+                    <div
+                        className={`${classes["side-popup"]} ${classes["categories-popup"]}`}
+                    >
+                        <div className={classes["side-title"]}>
+                            <h3>קטגוריות</h3>
+                        </div>
+                        <Categories
+                            isMobile={isMobile}
+                            setCategoriesIsShown={setCategoriesIsShown}
+                        />
                     </div>
-                    <Categories
-                        isMobile={isMobile}
-                        setCategoriesIsShown={setCategoriesIsShown}
-                    />
-                </div>
-            )}
+                )}
+            </div>
         </>
     );
 };
