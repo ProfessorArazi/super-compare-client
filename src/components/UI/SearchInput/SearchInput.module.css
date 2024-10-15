@@ -111,3 +111,10 @@
         padding: 10px 13px;
     }
 }
+
+@media (max-width: 768px) {
+    .input {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+}
