@@ -11,7 +11,7 @@
     display: flex;
     align-items: start;
     direction: rtl;
-    gap: 10px;
+    gap: 15px;
     text-align: right;
     position: relative;
 }
