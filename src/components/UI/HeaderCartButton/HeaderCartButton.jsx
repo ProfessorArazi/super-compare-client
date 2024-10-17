@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import CompareContext from "../../../store/compare-context";
 import classes from "./HeaderCartButton.module.css";
-import CartIcon from "../../../assets/CartIcon.png";
+import CartIconWhite from "../../../assets/CartIcon-white.png";
+import CartIconTurquoise from "../../../assets/CartIcon-turquoise.png";
 
 const HeaderCartButton = (props) => {
     const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
@@ -39,7 +40,7 @@ const HeaderCartButton = (props) => {
             <span className={classes.icon}>
                 <img
                     className={classes["cart-icon"]}
-                    src={CartIcon}
+                    src={props.isMobile ? CartIconWhite : CartIconTurquoise}
                     alt="cart"
                 />
             </span>
