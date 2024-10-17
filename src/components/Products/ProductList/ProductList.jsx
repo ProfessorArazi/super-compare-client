@@ -3,7 +3,7 @@ import classes from "./ProductList.module.css";
 
 const ProductList = ({ products, onProductClick, lastProductRef }) => {
     const setProduct = (result) => {
-        onProductClick({ ...result, image: result.prices[0].img });
+        onProductClick({ ...result });
     };
 
     return (
@@ -17,7 +17,6 @@ const ProductList = ({ products, onProductClick, lastProductRef }) => {
                     <Card
                         onClickHandler={() => setProduct(product)}
                         {...product}
-                        images={product.prices.map((product) => product.img)}
                     />
                 </div>
             ))}

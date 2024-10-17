@@ -4,7 +4,7 @@ import MinusIcon from "../../../assets/MinusIcon";
 
 const CartItem = (props) => {
     const setProduct = (product) => {
-        props.setProductData({ ...product, image: product.prices[0].img });
+        props.setProductData({ ...product });
     };
 
     return (

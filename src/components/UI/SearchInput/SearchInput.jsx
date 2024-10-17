@@ -37,7 +37,7 @@ export const SearchInput = ({ setProductData, closeAll, isMobile }) => {
 
         if (event.key === "Enter") {
             showAllResults(inputValue);
-        } else if (inputValue.length < 3) {
+        } else if (inputValue.length < 2) {
             resetSearchHandler();
         } else {
             const timeoutId = setTimeout(() => {
@@ -57,7 +57,7 @@ export const SearchInput = ({ setProductData, closeAll, isMobile }) => {
     };
 
     const setProduct = (result) => {
-        setProductData({ ...result, image: result.prices[0].img });
+        setProductData({ ...result });
     };
 
     useEffect(() => {
