@@ -20,6 +20,7 @@ const CardForm = ({ onAddToCart }) => {
                 <p className={classes["add-to-cart-button"]}>הוספה לעגלה</p>
             </div>
             <input
+                name="quantity"
                 type="number"
                 value={quantity}
                 onChange={(e) => setQuantity(+e.target.value)}
