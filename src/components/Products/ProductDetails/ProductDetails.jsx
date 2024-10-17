@@ -42,8 +42,17 @@ const ProductDetails = ({ productData, onClose }) => {
                         <li key={info._id} className="mb-3">
                             <h6>{info.market}</h6>
                             <p className={classes.price}>
-                                {`מחיר${info.discount ? " רגיל: " : ": "}`}
-                                <strong>{info.price.toFixed(2)}</strong>
+                                {!info.price ? (
+                                    "חסר במלאי"
+                                ) : (
+                                    <>
+                                        מחיר {info.discount ? " רגיל: " : ": "}
+                                        <strong>
+                                            {" "}
+                                            {info.price.toFixed(2)}
+                                        </strong>
+                                    </>
+                                )}
                             </p>
                             {info.discount > 0 && (
                                 <p className={classes.discount}>
