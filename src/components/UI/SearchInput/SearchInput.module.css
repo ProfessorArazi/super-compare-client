@@ -122,6 +122,10 @@
         height: 42px;
         border-radius: 50%;
     }
+
+    .search-button svg {
+        margin-right: 1px;
+    }
 }
 
 @media (max-width: 768px) {
