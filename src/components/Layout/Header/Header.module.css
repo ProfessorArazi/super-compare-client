@@ -201,4 +201,8 @@ nav {
         position: absolute;
         right: 20px;
     }
+
+    .logo {
+        max-width: 80px;
+    }
 }
