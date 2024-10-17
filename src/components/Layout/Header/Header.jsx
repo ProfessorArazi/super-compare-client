@@ -128,7 +128,10 @@ const Header = (props) => {
                     {isMobile ? (
                         <>
                             <div className={classes["mobile-actions"]}>
-                                <HeaderCartButton onClick={cartClickHandler} />
+                                <HeaderCartButton
+                                    onClick={cartClickHandler}
+                                    isMobile={isMobile}
+                                />
                                 <LoginIcon />
                             </div>
                             <img
@@ -148,7 +151,10 @@ const Header = (props) => {
                 <div className={classes.container}>
                     {!isMobile && (
                         <div className={classes["side-container"]}>
-                            <HeaderCartButton onClick={cartClickHandler} />
+                            <HeaderCartButton
+                                onClick={cartClickHandler}
+                                isMobile={isMobile}
+                            />
                             <button
                                 className={`${classes.btn} ${classes["categories-btn"]}`}
                             >
@@ -215,7 +221,10 @@ const Header = (props) => {
                                         ניקוי סל
                                     </div>
                                 )}
-                                <div className={classes["side-title-action"]}>
+                                <div
+                                    onClick={() => console.log(ctx.items)}
+                                    className={classes["side-title-action"]}
+                                >
                                     <SaveIcon /> שמירת סל
                                 </div>
                             </div>

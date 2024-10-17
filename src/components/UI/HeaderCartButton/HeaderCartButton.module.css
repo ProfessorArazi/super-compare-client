@@ -18,7 +18,7 @@
 }
 
 .badge {
-    background-color: #ff6427;
+    background-color: var(--turquoise);
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -49,6 +49,13 @@
     }
     100% {
         transform: scale(1);
+    }
+}
+
+@media (max-width: 1600px) {
+    .badge {
+        background-color: #ffffff;
+        color: var(--turquoise);
     }
 }
 
