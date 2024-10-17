@@ -25,7 +25,6 @@
 
 .input::placeholder {
     color: #999999;
-    font-style: italic;
 }
 
 .input-active {
@@ -130,7 +129,7 @@
 
 @media (max-width: 768px) {
     .input {
-        padding: 10px 10px;
+        padding: 10px;
         font-size: 14px;
     }
 
