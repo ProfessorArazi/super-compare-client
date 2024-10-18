@@ -46,4 +46,32 @@
     .add-to-cart-button::before {
         content: "הוספה";
     }
+
+    .card-form-container {
+        width: 80%;
+    }
+
+    .quantity-input {
+        width: 100%;
+    }
+
+    .add-to-cart-button {
+        padding: 8px 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .card-form-container {
+        width: 100%;
+    }
+
+    .quantity-input {
+        width: 100%;
+    }
+}
+
+@media (max-width: 330px) {
+    .card-form-container {
+        width: 60%;
+    }
 }
