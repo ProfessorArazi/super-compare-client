@@ -2,8 +2,9 @@ import { useContext } from "react";
 import CompareContext from "../../../store/compare-context";
 import CardForm from "../CardForm/CardForm";
 import classes from "./Card.module.css";
+import React from "react";
 
-const Card = (props) => {
+const Card = React.forwardRef((props, ref) => {
     const cartCtx = useContext(CompareContext);
 
     const stopPropagation = (event) => {
@@ -24,6 +25,7 @@ const Card = (props) => {
             onClick={props.onClickHandler}
             id={props.id}
             className={classes.card}
+            ref={ref}
         >
             <div className={classes["img-container"]}>
                 <img
@@ -43,6 +45,6 @@ const Card = (props) => {
             </div>
         </div>
     );
-};
+});
 
 export default Card;

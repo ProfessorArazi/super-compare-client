@@ -18,6 +18,10 @@
     margin: 0;
 }
 
+.add-to-cart-button::before {
+    content: "הוספה לעגלה";
+}
+
 .add-to-cart-button:hover {
     cursor: pointer;
     background-color: var(--turquoiseHover);
@@ -36,4 +40,10 @@
 
 .quantity-input:focus {
     outline: 0 !important;
+}
+
+@media (max-width: 768px) {
+    .add-to-cart-button::before {
+        content: "הוספה";
+    }
 }

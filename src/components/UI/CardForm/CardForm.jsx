@@ -17,7 +17,7 @@ const CardForm = ({ onAddToCart }) => {
     return (
         <div className={classes["card-form-container"]}>
             <div onClick={handleButtonClick}>
-                <p className={classes["add-to-cart-button"]}>הוספה לעגלה</p>
+                <p className={classes["add-to-cart-button"]}></p>
             </div>
             <input
                 name="quantity"
