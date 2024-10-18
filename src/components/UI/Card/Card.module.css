@@ -1,6 +1,7 @@
 .card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 250px;
+    width: 100%;
+    max-width: 250px;
     height: 400px;
     border-radius: 8px;
     overflow: hidden;
@@ -56,4 +57,73 @@
 
 .form {
     margin-top: auto;
+}
+
+@media (max-width: 768px) {
+    .card {
+        max-width: 200px;
+        height: 350px;
+    }
+
+    .title {
+        font-size: 16px;
+    }
+
+    .brand {
+        font-size: 12px;
+    }
+
+    .content {
+        padding: 12px;
+    }
+
+    .img-container {
+        height: 150px;
+    }
+}
+
+@media (max-width: 576px) {
+    .card {
+        max-width: 150px;
+        height: 300px;
+    }
+
+    .title {
+        font-size: 14px;
+    }
+
+    .brand {
+        font-size: 10px;
+    }
+
+    .content {
+        padding: 10px;
+    }
+
+    .img-container {
+        height: 120px;
+    }
+}
+
+@media (max-width: 330px) {
+    .card {
+        width: 90%;
+        max-width: 330px;
+    }
+
+    .title {
+        font-size: 18px;
+    }
+
+    .brand {
+        font-size: 14px;
+    }
+
+    .content {
+        padding: 16px;
+    }
+
+    .img-container {
+        height: 200px;
+    }
 }
