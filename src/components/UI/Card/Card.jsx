@@ -3,8 +3,10 @@ import CompareContext from "../../../store/compare-context";
 import CardForm from "../CardForm/CardForm";
 import classes from "./Card.module.css";
 import React from "react";
+import useImageFallback from "../../../hooks/useImageFallback";
 
 const Card = React.forwardRef((props, ref) => {
+    const [currentImage, handleImageError] = useImageFallback(props.images);
     const cartCtx = useContext(CompareContext);
 
     const stopPropagation = (event) => {
@@ -30,8 +32,9 @@ const Card = React.forwardRef((props, ref) => {
             <div className={classes["img-container"]}>
                 <img
                     className={classes.img}
-                    src={props.image}
+                    src={currentImage}
                     alt={props.name}
+                    onError={handleImageError}
                 />
             </div>
             <div className={classes.content}>
