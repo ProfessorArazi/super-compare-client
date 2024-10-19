@@ -29,6 +29,8 @@ const ProductDetails = ({ productData, onClose }) => {
                     className={classes.image}
                     onError={handleImageError}
                 />
+
+                <h3>{productData.name}</h3>
                 <div className={classes["form-wrapper"]}>
                     <div className={classes["form-container"]}>
                         <CardForm
@@ -37,17 +39,18 @@ const ProductDetails = ({ productData, onClose }) => {
                         />
                     </div>
                 </div>
-                <h3>{productData.name}</h3>
                 <ul className={classes["list-unstyled"]}>
                     {productData.prices.map((info) => (
-                        <li key={info._id} className="mb-3">
-                            <h6>{info.market}</h6>
+                        <li key={info._id} className={classes.item}>
+                            <div className={classes.logo}>
+                                <img src={info.logo} alt={info.market} />
+                            </div>
                             <p className={classes.price}>
                                 {!info.price ? (
                                     "חסר במלאי"
                                 ) : (
                                     <>
-                                        מחיר {info.discount ? " רגיל: " : ": "}
+                                        מחיר רגיל:
                                         <strong>
                                             {" "}
                                             {info.price.toFixed(2)}
@@ -55,11 +58,10 @@ const ProductDetails = ({ productData, onClose }) => {
                                     </>
                                 )}
                             </p>
-                            {info.discount > 0 && (
+                            {info.discount > 0 ? (
                                 <p className={classes.discount}>
-                                    {info.discount === 1 ? (
-                                        <strong>מבצע: </strong>
-                                    ) : (
+                                    <strong>מבצע: </strong>
+                                    {info.discount > 1 && (
                                         <>
                                             <strong>{info.discount} </strong>ב{" "}
                                         </>
@@ -68,6 +70,8 @@ const ProductDetails = ({ productData, onClose }) => {
                                         {info.discountPrice.toFixed(2)}
                                     </strong>
                                 </p>
+                            ) : (
+                                <p className={classes.discount}></p>
                             )}
                         </li>
                     ))}

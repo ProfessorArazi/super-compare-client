@@ -1,3 +1,8 @@
+.item {
+    display: flex;
+    border-radius: 30px;
+}
+
 .text-center {
     padding: 20px;
     color: var(--black);
@@ -8,9 +13,9 @@
 }
 
 .text-center img {
-    width: 100%;
-    max-width: 250px;
-    height: auto;
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
 }
 
 .text-center h3 {
@@ -40,14 +45,29 @@ strong {
     padding: 15px;
     border: 1px solid #ccc;
     background-color: #f9f9f9;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.list-unstyled img {
+    width: 100px;
+    height: 45px;
+    object-fit: contain;
+}
+
+.logo {
+    flex: 1;
 }
 
 .price {
+    flex: 1;
     font-size: 1.2em;
     font-weight: bold;
 }
 
 .discount {
+    flex: 1;
     font-weight: bold;
     color: #d32f2f;
 }
@@ -55,13 +75,14 @@ strong {
 .form-wrapper {
     display: flex;
     justify-content: center;
-    margin: 20px;
+    margin: 20px 0;
 }
 
 .modal-header {
     display: flex;
     justify-content: flex-start;
     background-color: transparent;
+    padding-bottom: 10px;
 }
 
 @media (max-width: 1024px) {
@@ -80,6 +101,10 @@ strong {
 
     .price {
         font-size: 1.1em;
+    }
+
+    .list-unstyled img {
+        width: 80px;
     }
 }
 
@@ -102,7 +127,7 @@ strong {
     }
 
     .form-container {
-        width: 40%;
+        width: 50%;
     }
 }
 
@@ -120,7 +145,7 @@ strong {
     }
 
     .form-wrapper {
-        margin: 10px;
+        margin: 10px 0;
     }
 
     .list-unstyled li {
