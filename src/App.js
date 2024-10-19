@@ -13,8 +13,8 @@ function App() {
     const bannerStyle = {
         color: "#fff",
         background: "#1c1c20",
-        marginTop: "18vh",
-        height: "20vh",
+        marginTop: "18dvh",
+        height: "20dvh",
         width: "100%",
         display: "flex",
         justifyContent: "center",
