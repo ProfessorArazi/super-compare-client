@@ -1,12 +1,13 @@
 .grid {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    padding: 20px;
+    gap: 1.5rem;
+    padding: 2rem 1rem;
     overflow-y: auto;
-    background-color: #ededed;
-    height: 75vh;
+    background-color: #f7f7f7;
     direction: rtl;
+    box-sizing: border-box;
+    height: 70vh;
 }
 
 .card {
@@ -112,10 +113,4 @@
 .grid::-webkit-scrollbar-thumb {
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 10px;
-}
-
-@media (max-width: 768px) {
-    .grid {
-        grid-template-columns: 1fr;
-    }
 }
