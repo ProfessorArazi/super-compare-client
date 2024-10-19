@@ -3,8 +3,12 @@ import Modal from "../../UI/Modal/Modal";
 import classes from "./ProductDetails.module.css";
 import CompareContext from "../../../store/compare-context";
 import CardForm from "../../UI/CardForm/CardForm";
+import useImageFallback from "../../../hooks/useImageFallback";
 
 const ProductDetails = ({ productData, onClose }) => {
+    const [currentImage, handleImageError] = useImageFallback(
+        productData.images
+    );
     const cartCtx = useContext(CompareContext);
 
     const addToCartHandler = (event, amount) => {
@@ -17,16 +21,13 @@ const ProductDetails = ({ productData, onClose }) => {
 
     return (
         <Modal onClose={onClose}>
-            <div className={classes["modal-header"]}>
-                <button className={classes["close-button"]} onClick={onClose}>
-                    &times;
-                </button>
-            </div>
+            <div className={classes["modal-header"]}></div>
             <div className={classes["text-center"]}>
                 <img
-                    src={productData.image}
+                    src={currentImage}
                     alt={productData.name}
                     className={classes.image}
+                    onError={handleImageError}
                 />
                 <div className={classes["form-wrapper"]}>
                     <div className={classes["form-container"]}>

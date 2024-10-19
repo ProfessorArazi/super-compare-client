@@ -4,7 +4,7 @@ import LoadingSpinner from "../../components/UI/LoadingSpinner/LoadingSpinner";
 import classes from "./Cart.module.css";
 import { useState } from "react";
 import { compareItems } from "../../services/products-api";
-import Result from "../../components/Cart/Result/Result";
+import Result from "../Result/Result";
 
 const Cart = ({
     items,

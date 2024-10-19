@@ -6,7 +6,7 @@
 .cart-item {
     background: #fff;
     border-radius: 50px;
-    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.1);
     padding: 10px 25px;
     display: flex;
     align-items: start;
@@ -14,6 +14,7 @@
     gap: 15px;
     text-align: right;
     position: relative;
+    color: var(--black);
 }
 
 .img {
@@ -28,7 +29,6 @@
     position: absolute;
     left: 30px;
     bottom: 10px;
-    color: #222831;
     cursor: pointer;
     font-size: 14px;
 }
@@ -45,13 +45,11 @@
 .cart-item h5 {
     font-size: 1.1rem;
     margin: 0 0 0.5rem 0;
-    color: #333;
     font-weight: 600;
 }
 
 .amount {
     font-size: 0.9rem;
-    color: #555;
     display: block;
     margin-top: 0.25rem;
 }
