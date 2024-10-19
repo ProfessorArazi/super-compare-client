@@ -45,30 +45,24 @@ const ProductDetails = ({ productData, onClose }) => {
                             <div className={classes.logo}>
                                 <img src={info.logo} alt={info.market} />
                             </div>
-                            <p className={classes.price}>
-                                {!info.price ? (
-                                    "חסר במלאי"
-                                ) : (
-                                    <>
-                                        מחיר רגיל:
-                                        <strong>
-                                            {" "}
-                                            {info.price.toFixed(2)}
-                                        </strong>
-                                    </>
-                                )}
-                            </p>
+                            {!info.price ? (
+                                <p className={classes.price}>חסר במלאי</p>
+                            ) : (
+                                <p className={classes.price}>
+                                    <span> מחיר רגיל:</span>
+                                    <br />
+                                    {info.price.toFixed(2)}
+                                </p>
+                            )}
+
                             {info.discount > 0 ? (
                                 <p className={classes.discount}>
-                                    <strong>מבצע: </strong>
+                                    <span>מבצע: </span>
+                                    <br />
                                     {info.discount > 1 && (
-                                        <>
-                                            <strong>{info.discount} </strong>ב{" "}
-                                        </>
+                                        <>{info.discount} ב </>
                                     )}
-                                    <strong>
-                                        {info.discountPrice.toFixed(2)}
-                                    </strong>
+                                    {info.discountPrice.toFixed(2)}
                                 </p>
                             ) : (
                                 <p className={classes.discount}></p>
