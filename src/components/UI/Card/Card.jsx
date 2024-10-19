@@ -38,7 +38,7 @@ const Card = React.forwardRef((props, ref) => {
                 />
             </div>
             <div className={classes.content}>
-                {props.brand && <p className={classes.brand}>{props.brand}</p>}
+                <p className={classes.brand}>{props.brand}</p>
                 <p className={classes.title}>{props.name}</p>
                 <CardForm
                     className={classes.form}
