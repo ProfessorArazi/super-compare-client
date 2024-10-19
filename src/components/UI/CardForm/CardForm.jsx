@@ -3,19 +3,29 @@ import classes from "./CardForm.module.css";
 
 const CardForm = ({ onAddToCart }) => {
     const [quantity, setQuantity] = useState(1);
+    const [isBumping, setIsBumping] = useState(false);
 
     const inputClickHandler = (event) => {
         event.stopPropagation();
     };
 
     const handleButtonClick = (event) => {
-        event.preventDefault();
         event.stopPropagation();
+
+        setIsBumping(true);
+        setTimeout(() => {
+            setIsBumping(false);
+        }, 300);
+
         onAddToCart(event, quantity);
     };
 
     return (
-        <div className={classes["card-form-container"]}>
+        <div
+            className={`${classes["card-form-container"]} ${
+                isBumping ? classes.bump : ""
+            }`}
+        >
             <div onClick={handleButtonClick}>
                 <p className={classes["add-to-cart-button"]}></p>
             </div>
