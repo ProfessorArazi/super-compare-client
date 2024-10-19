@@ -15,10 +15,13 @@
     text-align: right;
     position: relative;
     color: var(--black);
+    width: 100%;
 }
 
 .img {
-    width: 30%;
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
 }
 
 .img:hover {
@@ -88,10 +91,5 @@
     .cart-item {
         width: 400px;
         max-width: 100%;
-    }
-
-    .img {
-        width: 100%;
-        max-width: 50px;
     }
 }
