@@ -13,7 +13,7 @@
 
 .home h2 {
     text-align: center;
-    color: #333;
+    color: var(--black);
     margin-bottom: 20px;
 }
 
