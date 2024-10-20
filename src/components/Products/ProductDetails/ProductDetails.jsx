@@ -21,7 +21,6 @@ const ProductDetails = ({ productData, onClose }) => {
 
     return (
         <Modal onClose={onClose}>
-            <div className={classes["modal-header"]}></div>
             <div className={classes["text-center"]}>
                 <img
                     src={currentImage}
