@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Modal from "../../UI/Modal/Modal";
 import classes from "./ProductDetails.module.css";
-import CompareContext from "../../../store/compare-context";
+import CompareContext from "../../../store/Cart/compare-context";
 import CardForm from "../../UI/CardForm/CardForm";
 import useImageFallback from "../../../hooks/useImageFallback";
 

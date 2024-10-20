@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import CompareContext from "../../../store/compare-context";
+import CompareContext from "../../../store/Cart/compare-context";
 import CardForm from "../CardForm/CardForm";
 import classes from "./Card.module.css";
 import React from "react";
