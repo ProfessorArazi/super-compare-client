@@ -7,20 +7,10 @@ import { Helmet } from "react-helmet";
 import Home from "./pages/Home/Home";
 import ProductDetails from "./components/Products/ProductDetails/ProductDetails";
 import FavoritesProvider from "./store/Favorites/FavoritesProvider";
+import { Banner } from "./components/UI/Banner/Banner";
 
 function App() {
     const [productData, setProductData] = useState(null);
-
-    const bannerStyle = {
-        color: "#fff",
-        background: "#1c1c20",
-        marginTop: "18dvh",
-        height: "20dvh",
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-    };
 
     return (
         <>
@@ -36,9 +26,7 @@ function App() {
                         />
                     )}
                     <Header setProductData={setProductData}>
-                        <div style={bannerStyle}>
-                            <h1>Banner</h1>
-                        </div>
+                        <Banner />
                         <Routes>
                             <Route path="/" element={<Home />} />
                             <Route

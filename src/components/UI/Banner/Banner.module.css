@@ -1,0 +1,11 @@
+.banner {
+    color: #fff;
+    background: var(--black);
+    opacity: 0.9;
+    margin-top: 18dvh;
+    height: 20dvh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
