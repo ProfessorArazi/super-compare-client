@@ -4,7 +4,7 @@ import Modal from "../UI/Modal/Modal";
 import { signin, signup } from "../../services/auth-api";
 import FavoritesContext from "../../store/Favorites/favorites-context";
 
-const AuthForm = ({ onClose }) => {
+const AuthForm = ({ onClose, isVerified, setIsVerified }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [type, setType] = useState("login");
@@ -68,6 +68,7 @@ const AuthForm = ({ onClose }) => {
     const toggleType = () => {
         setErrorMessage(null);
         setSuccessMessage(null);
+        setIsVerified(false);
         setType((prevType) => (prevType === "login" ? "register" : "login"));
     };
 
@@ -77,6 +78,11 @@ const AuthForm = ({ onClose }) => {
                 <form
                     onSubmit={type === "login" ? signinHanlder : signupHanlder}
                 >
+                    {isVerified && (
+                        <div className={classes.successMessage}>
+                            המשתמש אומת בהצלחה
+                        </div>
+                    )}
                     <h3 className={classes.title}>
                         {type === "login" ? "כניסה" : "הרשמה"}
                     </h3>

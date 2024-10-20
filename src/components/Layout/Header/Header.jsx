@@ -25,6 +25,7 @@ const Header = (props) => {
 
     const queryParams = new URLSearchParams(location.search);
     const loginParam = queryParams.get("login") === "1";
+    const verifyParam = queryParams.get("verify") === "1";
 
     const isLoggedIn = localStorage.getItem("token");
 
@@ -34,6 +35,7 @@ const Header = (props) => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 1600);
     const [showCarousel, setShowCarousel] = useState(false);
     const [showLogin, setShowLogin] = useState(!isLoggedIn && loginParam);
+    const [isVerified, setIsVerified] = useState(verifyParam);
 
     const ctx = useContext(CompareContext);
     const { setFavorites } = useContext(FavoritesContext);
@@ -98,11 +100,29 @@ const Header = (props) => {
     };
 
     const closeLoginHandler = () => {
+        removeQueryParams(["login", "verify"]);
         setShowLogin(false);
+    };
+
+    const showFavorites = () => {};
+
+    const removeQueryParams = (paramsToRemove) => {
+        paramsToRemove.forEach((param) => queryParams.delete(param));
+
+        navigate(
+            {
+                pathname: location.pathname,
+                search: queryParams.toString(),
+            },
+            { replace: true }
+        );
     };
 
     const getFavoritesHandler = useCallback(async () => {
         try {
+            const token = localStorage.getItem("token");
+            if (!token) return;
+
             const response = await getFavorites();
             setFavorites(response.data.favorites);
         } catch (error) {
@@ -162,7 +182,15 @@ const Header = (props) => {
                                     onClick={cartClickHandler}
                                     isMobile={isMobile}
                                 />
-                                <LoginIcon />
+                                <div
+                                    onClick={
+                                        !isLoggedIn
+                                            ? openLoginHandler
+                                            : showFavorites
+                                    }
+                                >
+                                    <LoginIcon />
+                                </div>
                             </div>
                             <img
                                 onClick={logoClickHandler}
@@ -291,7 +319,13 @@ const Header = (props) => {
                         />
                     </div>
                 )}
-                {showLogin && <AuthForm onClose={closeLoginHandler} />}
+                {showLogin && (
+                    <AuthForm
+                        onClose={closeLoginHandler}
+                        isVerified={isVerified}
+                        setIsVerified={setIsVerified}
+                    />
+                )}
             </div>
         </>
     );

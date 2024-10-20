@@ -94,6 +94,7 @@
     flex-direction: column;
     box-sizing: border-box;
     transition: opacity 0.2s ease-in-out;
+    z-index: 1;
 }
 
 .categories-popup {
