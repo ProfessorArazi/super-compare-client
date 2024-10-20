@@ -1,10 +1,10 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useCallback } from "react";
 import HeaderCartButton from "../../UI/HeaderCartButton/HeaderCartButton";
 import Cart from "../../../pages/Cart/Cart";
 import classes from "./Header.module.css";
 import LogoMobile from "../../../assets/logo-white.png";
 import LogoWeb from "../../../assets/logo.png";
-import CompareContext from "../../../store/compare-context";
+import CompareContext from "../../../store/Cart/compare-context";
 import { SearchInput } from "../../UI/SearchInput/SearchInput";
 import LoginIcon from "../../../assets/LoginIcon";
 import SaveIcon from "../../../assets/SaveIcon";
@@ -13,19 +13,30 @@ import Categories from "../../../pages/Categories/Categories";
 import CategoriesIconBlack from "../../../assets/CategoriesIconBlack";
 import CategoriesIcon from "../../../assets/CategoriesIcon";
 import ListIcon from "../../../assets/ListIcon";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ArrowLeftIcon from "../../../assets/ArrowLeftIcon";
+import AuthForm from "../../Auth/AuthForm";
+import { getFavorites } from "../../../services/favorites-api";
+import FavoritesContext from "../../../store/Favorites/favorites-context";
 
 const Header = (props) => {
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const queryParams = new URLSearchParams(location.search);
+    const loginParam = queryParams.get("login") === "1";
+
+    const isLoggedIn = localStorage.getItem("token");
+
     const [isFirstRender, setIsFirstRender] = useState(true);
     const [cartIsShown, setCartIsShown] = useState(false);
     const [categoriesIsShown, setCategoriesIsShown] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 1600);
     const [showCarousel, setShowCarousel] = useState(false);
-
-    const navigate = useNavigate();
+    const [showLogin, setShowLogin] = useState(!isLoggedIn && loginParam);
 
     const ctx = useContext(CompareContext);
+    const { setFavorites } = useContext(FavoritesContext);
 
     const cartItemRemoveHandler = (event, id) => {
         event.stopPropagation();
@@ -82,6 +93,23 @@ const Header = (props) => {
         navigate("/");
     };
 
+    const openLoginHandler = () => {
+        setShowLogin(true);
+    };
+
+    const closeLoginHandler = () => {
+        setShowLogin(false);
+    };
+
+    const getFavoritesHandler = useCallback(async () => {
+        try {
+            const response = await getFavorites();
+            setFavorites(response.data.favorites);
+        } catch (error) {
+            console.log(error);
+        }
+    }, [setFavorites]);
+
     useEffect(() => {
         if (isMobile && (cartIsShown || categoriesIsShown)) {
             document.body.style.overflow = "hidden";
@@ -111,6 +139,8 @@ const Header = (props) => {
             if (storedItems) {
                 ctx.updateItems(JSON.parse(storedItems));
             }
+
+            getFavoritesHandler();
             setIsFirstRender(false);
         } else {
             if (ctx.items.length) {
@@ -119,7 +149,7 @@ const Header = (props) => {
                 sessionStorage.removeItem("items");
             }
         }
-    }, [ctx, isFirstRender]);
+    }, [ctx, isFirstRender, getFavoritesHandler]);
 
     return (
         <>
@@ -142,9 +172,14 @@ const Header = (props) => {
                             />
                         </>
                     ) : (
-                        <button className={classes.btn}>
-                            <LoginIcon /> כניסה
-                        </button>
+                        !isLoggedIn && (
+                            <button
+                                onClick={openLoginHandler}
+                                className={classes.btn}
+                            >
+                                <LoginIcon /> כניסה
+                            </button>
+                        )
                     )}
                 </div>
 
@@ -256,6 +291,7 @@ const Header = (props) => {
                         />
                     </div>
                 )}
+                {showLogin && <AuthForm onClose={closeLoginHandler} />}
             </div>
         </>
     );

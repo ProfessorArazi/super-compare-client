@@ -1,0 +1,71 @@
+.formContainer {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: right;
+    direction: rtl;
+    padding: 0.5rem 1rem;
+}
+
+.title {
+    text-align: center;
+    font-size: 24px;
+}
+
+.formGroup {
+    margin-bottom: 15px;
+}
+
+.errorMessage {
+    color: red;
+    margin-bottom: 10px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.successMessage {
+    color: green;
+    margin-bottom: 10px;
+    font-size: 14px;
+    text-align: center;
+}
+
+input {
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 30px;
+    background-color: var(--turquoise);
+    border-radius: 20px;
+    color: #ffffff;
+    font-size: 18px;
+    border: none;
+    width: 100%;
+    justify-content: center;
+}
+
+.button:hover {
+    background-color: var(--turquoiseHover);
+}
+
+.toggleText {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.toggleButton {
+    background: none;
+    border: none;
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
