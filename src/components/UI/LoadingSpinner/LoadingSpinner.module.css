@@ -6,6 +6,7 @@
     height: 100%;
     position: relative;
     z-index: 1000;
+    margin-bottom: 20px;
 }
 
 .spinner {
