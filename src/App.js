@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CartProvider from "./store/Cart/CartProvider";
 import { Route, Routes } from "react-router-dom";
 import Products from "./pages/Products/Products";
@@ -11,7 +11,14 @@ import { Banner } from "./components/UI/Banner/Banner";
 
 function App() {
     const [productData, setProductData] = useState(null);
-    const [showOutOfStock, setShowOutOfStock] = useState(true);
+    const [showOutOfStock, setShowOutOfStock] = useState(() => {
+        const storedValue = localStorage.getItem("showOutOfStock");
+        return storedValue !== null ? JSON.parse(storedValue) : true;
+    });
+
+    useEffect(() => {
+        localStorage.setItem("showOutOfStock", JSON.stringify(showOutOfStock));
+    }, [showOutOfStock]);
 
     return (
         <>
