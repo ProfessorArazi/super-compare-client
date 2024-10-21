@@ -175,6 +175,11 @@ const Header = (props) => {
         <>
             <div className={classes.header}>
                 <div className={classes["login-container"]}>
+                    <button
+                        onClick={() => props.setShowOutOfStock((prev) => !prev)}
+                    >
+                        out of stock
+                    </button>
                     {isMobile ? (
                         <>
                             <div className={classes["mobile-actions"]}>
@@ -230,6 +235,7 @@ const Header = (props) => {
                             closeAll={closeAll}
                             isMobile={isMobile}
                             setProductData={props.setProductData}
+                            showOutOfStock={props.showOutOfStock}
                         />
                         {isMobile && (
                             <div

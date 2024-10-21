@@ -11,6 +11,7 @@ import { Banner } from "./components/UI/Banner/Banner";
 
 function App() {
     const [productData, setProductData] = useState(null);
+    const [showOutOfStock, setShowOutOfStock] = useState(true);
 
     return (
         <>
@@ -25,14 +26,21 @@ function App() {
                             onClose={() => setProductData(null)}
                         />
                     )}
-                    <Header setProductData={setProductData}>
+                    <Header
+                        setProductData={setProductData}
+                        showOutOfStock={showOutOfStock}
+                        setShowOutOfStock={setShowOutOfStock}
+                    >
                         <Banner />
                         <Routes>
                             <Route path="/" element={<Home />} />
                             <Route
                                 path="/products/:subject"
                                 element={
-                                    <Products setProductData={setProductData} />
+                                    <Products
+                                        setProductData={setProductData}
+                                        showOutOfStock={showOutOfStock}
+                                    />
                                 }
                             />
                             <Route path="*" element={<Home />} />
