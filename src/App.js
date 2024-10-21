@@ -35,6 +35,7 @@ function App() {
                                     <Products setProductData={setProductData} />
                                 }
                             />
+                            <Route path="*" element={<Home />} />
                         </Routes>
                     </Header>
                     {/* <Footer /> */}
