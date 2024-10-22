@@ -1,20 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import classes from "./ToggleButton.module.css";
 
 export const ToggleButton = ({ isActive, onToggleClick }) => {
-    const [isToggled, setIsToggled] = useState(isActive);
-
-    const handleToggle = () => {
-        setIsToggled((prev) => !prev);
-        onToggleClick();
-    };
-
     return (
         <div
             className={`${classes["toggle-button"]} ${
-                isToggled ? classes.toggled : ""
+                isActive ? classes.toggled : ""
             }`}
-            onClick={handleToggle}
+            onClick={onToggleClick}
         >
             <div className={classes["toggle-circle"]} />
         </div>
