@@ -5,8 +5,9 @@ export const compareItems = (items) =>
 
 export const fetchProductsBySubject = async (subject, page, limit = 11) => {
     const outOfStock = localStorage.getItem("showOutOfStock");
+    console.log(outOfStock);
 
-    return apiClient.get(
+    return await apiClient.get(
         `/products/${subject}?page=${page}&limit=${limit}&outOfStock=${
             outOfStock ? JSON.parse(outOfStock) : "true"
         }`
