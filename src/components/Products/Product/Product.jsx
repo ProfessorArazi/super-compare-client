@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import CompareContext from "../../../store/Cart/compare-context";
-import CardForm from "../CardForm/CardForm";
-import classes from "./Card.module.css";
+import classes from "./Product.module.css";
 import React from "react";
 import useImageFallback from "../../../hooks/useImageFallback";
+import ProductForm from "../ProductForm/ProductForm";
 
-const Card = React.forwardRef((props, ref) => {
+const Product = React.forwardRef((props, ref) => {
     const [currentImage, handleImageError] = useImageFallback(props.images);
     const cartCtx = useContext(CompareContext);
 
@@ -45,7 +45,7 @@ const Card = React.forwardRef((props, ref) => {
                         ? ` - ${props.minPrice.toFixed(2)}₪`
                         : ""
                 }`}</p>
-                <CardForm
+                <ProductForm
                     className={classes.form}
                     onAddToCart={addToCartHandler}
                     stopPropagation={stopPropagation}
@@ -55,4 +55,4 @@ const Card = React.forwardRef((props, ref) => {
     );
 });
 
-export default Card;
+export default Product;

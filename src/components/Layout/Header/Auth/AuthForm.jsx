@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import classes from "./AuthForm.module.css";
-import Modal from "../UI/Modal/Modal";
-import { signin, signup } from "../../services/auth-api";
-import FavoritesContext from "../../store/Favorites/favorites-context";
-import LoadingSpinner from "../UI/LoadingSpinner/LoadingSpinner";
+import Modal from "../../../UI/Modal/Modal";
+import { signin, signup } from "../../../../services/auth-api";
+import FavoritesContext from "../../../../store/Favorites/favorites-context";
+import LoadingSpinner from "../../../UI/LoadingSpinner/LoadingSpinner";
 
 const AuthForm = ({ onClose, isVerified, setIsVerified }) => {
     const [email, setEmail] = useState("");

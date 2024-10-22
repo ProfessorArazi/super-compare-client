@@ -2,8 +2,8 @@ import { useContext } from "react";
 import Modal from "../../UI/Modal/Modal";
 import classes from "./ProductDetails.module.css";
 import CompareContext from "../../../store/Cart/compare-context";
-import CardForm from "../../UI/CardForm/CardForm";
 import useImageFallback from "../../../hooks/useImageFallback";
+import ProductForm from "../ProductForm/ProductForm";
 
 const ProductDetails = ({ productData, onClose }) => {
     const [currentImage, handleImageError] = useImageFallback(
@@ -32,7 +32,7 @@ const ProductDetails = ({ productData, onClose }) => {
                 <h3>{productData.name}</h3>
                 <div className={classes["form-wrapper"]}>
                     <div className={classes["form-container"]}>
-                        <CardForm
+                        <ProductForm
                             className={classes.form}
                             onAddToCart={addToCartHandler}
                         />

@@ -1,4 +1,4 @@
-import Card from "../../UI/Card/Card";
+import Product from "../Product/Product";
 import classes from "./ProductList.module.css";
 
 const ProductList = ({ products, onProductClick, lastProductRef }) => {
@@ -9,7 +9,7 @@ const ProductList = ({ products, onProductClick, lastProductRef }) => {
     return (
         <div className={classes.products}>
             {products.map((product, index) => (
-                <Card
+                <Product
                     ref={index === products.length - 1 ? lastProductRef : null}
                     key={product.id}
                     onClickHandler={() => setProduct(product)}
