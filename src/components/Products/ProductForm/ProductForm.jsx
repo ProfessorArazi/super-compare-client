@@ -1,7 +1,7 @@
 import { useState } from "react";
-import classes from "./CardForm.module.css";
+import classes from "./ProductForm.module.css";
 
-const CardForm = ({ onAddToCart }) => {
+const ProductForm = ({ onAddToCart }) => {
     const [quantity, setQuantity] = useState(1);
     const [isBumping, setIsBumping] = useState(false);
 
@@ -41,4 +41,4 @@ const CardForm = ({ onAddToCart }) => {
         </div>
     );
 };
-export default CardForm;
+export default ProductForm;

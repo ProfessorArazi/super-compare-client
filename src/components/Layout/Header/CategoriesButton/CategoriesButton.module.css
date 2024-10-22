@@ -1,0 +1,24 @@
+.btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 30px;
+    background-color: var(--black);
+    border-radius: 20px;
+    color: #ffffff;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+}
+
+.categories-btn {
+    background-color: var(--turquoise);
+    direction: ltr;
+}
+
+.categories-btn:hover {
+    background-color: var(--turquoiseHover);
+}
+
+.btn svg {
+    margin-right: 10px;
+}

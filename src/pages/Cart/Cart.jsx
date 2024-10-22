@@ -6,19 +6,26 @@ import { useState } from "react";
 import { compareItems } from "../../services/products-api";
 import Result from "../Result/Result";
 
-const Cart = ({
-    items,
-    onRemove,
-    onRemoveTotal,
-    onAdd,
-    setProductData,
-    showCarousel,
-    setShowCarousel,
-}) => {
+const Cart = ({ setProductData, showCarousel, setShowCarousel, ctx }) => {
     const [prices, setPrices] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
-    const hasItems = items?.length > 0;
+    const hasItems = ctx.items?.length > 0;
+
+    const cartItemRemoveHandler = (event, id) => {
+        event.stopPropagation();
+        ctx.removeItem(id);
+    };
+
+    const cartItemRemoveTotalHandler = (event, id) => {
+        event.stopPropagation();
+        ctx.removeTotalItem(id);
+    };
+
+    const cartItemAddHandler = (event, item) => {
+        event.stopPropagation();
+        ctx.addItem({ ...item, amount: 1 });
+    };
 
     const compare = async (items) => {
         setIsLoading(true);
@@ -45,15 +52,15 @@ const Cart = ({
                 ) : (
                     <>
                         <CartItems
-                            items={items}
-                            onRemove={onRemove}
-                            onRemoveTotal={onRemoveTotal}
-                            onAdd={onAdd}
+                            items={ctx.items}
+                            onRemove={cartItemRemoveHandler}
+                            onRemoveTotal={cartItemRemoveTotalHandler}
+                            onAdd={cartItemAddHandler}
                             setProductData={setProductData}
                         />
                         <CartActions
                             hasItems={hasItems}
-                            onCompare={() => compare(items)}
+                            onCompare={() => compare(ctx.items)}
                         />
                     </>
                 )}

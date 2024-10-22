@@ -26,16 +26,16 @@
     cursor: pointer;
 }
 
+.btn svg {
+    margin-right: 10px;
+}
+
 .categories-btn {
     background-color: var(--turquoise);
 }
 
 .categories-btn:hover {
     background-color: var(--turquoiseHover);
-}
-
-.btn svg {
-    margin-right: 10px;
 }
 
 .container {
@@ -57,122 +57,9 @@
     gap: 30px;
 }
 
-.side-top {
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    align-items: center;
-    width: 100%;
-}
-
 .categories-container {
     direction: rtl;
     align-items: start;
-}
-
-.search-container {
-    flex: 0.5;
-    display: flex;
-    justify-content: center;
-    align-items: start;
-    flex-direction: column;
-    width: 100%;
-}
-
-.lists {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.side-popup {
-    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.25);
-    border-radius: 0 0 20px 0;
-    position: fixed;
-    top: 18dvh;
-    width: 18%;
-    height: 82dvh;
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    transition: opacity 0.2s ease-in-out;
-    z-index: 1;
-}
-
-.categories-popup {
-    border-radius: 0 0 0 20px;
-    right: 0;
-}
-
-.side-title {
-    background-color: var(--turquoise);
-    color: #fff;
-    padding: 0 20px;
-    text-align: right;
-    flex: 0.1;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: row-reverse;
-}
-
-.side-title-actions {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.side-title-action {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-}
-
-.side-title h3 {
-    font-size: 28px;
-    font-weight: 600;
-    line-height: 40px;
-    font-style: normal;
-    margin: 0;
-}
-
-nav {
-    background-color: #2f302e;
-    justify-content: space-between !important;
-}
-
-.collapse {
-    text-align: right;
-}
-
-.nav-icon {
-    display: block;
-    margin: 0 auto;
-    font-size: 30px;
-}
-
-.link {
-    margin: 0 auto;
-    color: #fff !important;
-}
-
-.link :hover {
-    transition: all 0.4s ease-in-out;
-    color: #272727;
-}
-
-.links-card__hidden {
-    visibility: hidden;
-}
-
-.cart-button {
-    margin-left: 0;
-}
-
-.logo {
-    max-width: 100px;
-    cursor: pointer;
 }
 
 @media (max-width: 1600px) {
@@ -185,21 +72,5 @@ nav {
         display: flex;
         align-items: center;
         gap: 20px;
-    }
-
-    .side-popup {
-        width: 100%;
-    }
-
-    .search-container {
-        flex: 1;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .logo {
-        max-width: 80px;
     }
 }

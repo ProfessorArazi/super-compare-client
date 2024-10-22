@@ -1,24 +1,21 @@
 import { useEffect, useState, useContext, useCallback } from "react";
-import HeaderCartButton from "../../UI/HeaderCartButton/HeaderCartButton";
-import Cart from "../../../pages/Cart/Cart";
+import HeaderCartButton from "./HeaderCartButton/HeaderCartButton";
 import classes from "./Header.module.css";
-import LogoMobile from "../../../assets/logo-white.png";
-import LogoWeb from "../../../assets/logo.png";
 import CompareContext from "../../../store/Cart/compare-context";
-import { SearchInput } from "../../UI/SearchInput/SearchInput";
 import LoginIcon from "../../../assets/LoginIcon";
-import SaveIcon from "../../../assets/SaveIcon";
-import TrashIcon from "../../../assets/TrashIcon";
-import Categories from "../../../pages/Categories/Categories";
 import CategoriesIconBlack from "../../../assets/CategoriesIconBlack";
-import CategoriesIcon from "../../../assets/CategoriesIcon";
 import ListIcon from "../../../assets/ListIcon";
 import { useLocation, useNavigate } from "react-router-dom";
-import ArrowLeftIcon from "../../../assets/ArrowLeftIcon";
-import AuthForm from "../../Auth/AuthForm";
+import AuthForm from "./Auth/AuthForm";
 import { getFavorites } from "../../../services/favorites-api";
 import FavoritesContext from "../../../store/Favorites/favorites-context";
 import { ToggleButton } from "../../UI/ToggleButton/ToggleButton";
+import LoginButton from "./LoginButton/LoginButton";
+import Logo from "./Logo/Logo";
+import SearchBar from "./SearchBar/SearchBar";
+import CategoriesButton from "./CategoriesButton/CategoriesButton";
+import CartPopup from "./CartPopup/CartPopup";
+import CategoriesPopup from "./CategoriesPopup/CategoriesPopup";
 
 const Header = (props) => {
     const navigate = useNavigate();
@@ -40,26 +37,6 @@ const Header = (props) => {
 
     const ctx = useContext(CompareContext);
     const { setFavorites } = useContext(FavoritesContext);
-
-    const cartItemRemoveHandler = (event, id) => {
-        event.stopPropagation();
-        ctx.removeItem(id);
-    };
-
-    const cartItemRemoveTotalHandler = (event, id) => {
-        event.stopPropagation();
-        ctx.removeTotalItem(id);
-    };
-
-    const cartItemAddHandler = (event, item) => {
-        event.stopPropagation();
-        ctx.addItem({ ...item, amount: 1 });
-    };
-
-    const cartClearItemsHandler = () => {
-        sessionStorage.removeItem("items");
-        ctx.clearCart();
-    };
 
     const cartClickHandler = () => {
         if (cartIsShown) {
@@ -183,21 +160,15 @@ const Header = (props) => {
                                     onClick={cartClickHandler}
                                     isMobile={isMobile}
                                 />
-                                <div
-                                    onClick={
-                                        !isLoggedIn
-                                            ? openLoginHandler
-                                            : showFavorites
-                                    }
-                                >
-                                    <LoginIcon />
-                                </div>
+                                <LoginButton
+                                    isLoggedIn={isLoggedIn}
+                                    openLoginHandler={openLoginHandler}
+                                    showFavorites={showFavorites}
+                                />
                             </div>
-                            <img
-                                onClick={logoClickHandler}
-                                className={classes.logo}
-                                src={LogoMobile}
-                                alt="logo"
+                            <Logo
+                                isMobile={isMobile}
+                                logoClickHandler={logoClickHandler}
                             />
                         </>
                     ) : (
@@ -232,19 +203,20 @@ const Header = (props) => {
                             </button>
                         </div>
                     )}
+
                     {isMobile && (
                         <ToggleButton
                             isActive={props.showOutOfStock}
                             onToggleClick={props.toggleClickHandler}
                         />
                     )}
-                    <div className={classes["search-container"]}>
-                        <SearchInput
-                            closeAll={closeAll}
-                            isMobile={isMobile}
-                            setProductData={props.setProductData}
-                        />
-                    </div>
+
+                    <SearchBar
+                        closeAll={closeAll}
+                        isMobile={isMobile}
+                        setProductData={props.setProductData}
+                    />
+
                     {isMobile && (
                         <div onClick={categoriesClickHandler}>
                             <CategoriesIconBlack />
@@ -255,88 +227,44 @@ const Header = (props) => {
                         <div
                             className={`${classes["side-container"]} ${classes["categories-container"]}`}
                         >
-                            <img
-                                onClick={logoClickHandler}
-                                className={classes.logo}
-                                src={LogoWeb}
-                                alt="logo"
+                            <Logo
+                                isMobile={isMobile}
+                                logoClickHandler={logoClickHandler}
                             />
-                            <button
-                                onClick={categoriesClickHandler}
-                                className={`${classes.btn} ${classes["categories-btn"]}`}
-                            >
-                                קטגוריות <CategoriesIcon />
-                            </button>
+                            <CategoriesButton
+                                categoriesClickHandler={categoriesClickHandler}
+                                isMobile={isMobile}
+                            />
                         </div>
                     )}
                 </div>
             </div>
-            <div>
-                {cartIsShown && (
-                    <div className={classes["side-popup"]}>
-                        <div className={classes["side-title"]}>
-                            <h3>הסל שלי</h3>
-                            <div className={classes["side-title-actions"]}>
-                                {showCarousel ? (
-                                    <div
-                                        onClick={backToCartHandler}
-                                        className={classes["side-title-action"]}
-                                    >
-                                        <ArrowLeftIcon />
-                                        חזרה לסל
-                                    </div>
-                                ) : (
-                                    <div
-                                        onClick={cartClearItemsHandler}
-                                        className={classes["side-title-action"]}
-                                    >
-                                        <TrashIcon />
-                                        ניקוי סל
-                                    </div>
-                                )}
-                                <div
-                                    onClick={() => console.log(ctx.items)}
-                                    className={classes["side-title-action"]}
-                                >
-                                    <SaveIcon /> שמירת סל
-                                </div>
-                            </div>
-                        </div>
-                        <Cart
-                            items={ctx.items}
-                            onAdd={cartItemAddHandler}
-                            onRemove={cartItemRemoveHandler}
-                            onRemoveTotal={cartItemRemoveTotalHandler}
-                            setProductData={props.setProductData}
-                            showCarousel={showCarousel}
-                            setShowCarousel={setShowCarousel}
-                        />
-                    </div>
-                )}
+            {cartIsShown && (
+                <CartPopup
+                    setShowCarousel={setShowCarousel}
+                    showCarousel={showCarousel}
+                    backToCartHandler={backToCartHandler}
+                    setProductData={props.setProductData}
+                    ctx={ctx}
+                />
+            )}
 
-                {props.children}
+            <div>{props.children}</div>
 
-                {categoriesIsShown && (
-                    <div
-                        className={`${classes["side-popup"]} ${classes["categories-popup"]}`}
-                    >
-                        <div className={classes["side-title"]}>
-                            <h3>קטגוריות</h3>
-                        </div>
-                        <Categories
-                            isMobile={isMobile}
-                            setCategoriesIsShown={setCategoriesIsShown}
-                        />
-                    </div>
-                )}
-                {showLogin && (
-                    <AuthForm
-                        onClose={closeLoginHandler}
-                        isVerified={isVerified}
-                        setIsVerified={setIsVerified}
-                    />
-                )}
-            </div>
+            {categoriesIsShown && (
+                <CategoriesPopup
+                    isMobile={isMobile}
+                    setCategoriesIsShown={setCategoriesIsShown}
+                />
+            )}
+
+            {showLogin && (
+                <AuthForm
+                    onClose={closeLoginHandler}
+                    isVerified={isVerified}
+                    setIsVerified={setIsVerified}
+                />
+            )}
         </>
     );
 };
