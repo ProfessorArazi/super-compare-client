@@ -18,6 +18,7 @@ import ArrowLeftIcon from "../../../assets/ArrowLeftIcon";
 import AuthForm from "../../Auth/AuthForm";
 import { getFavorites } from "../../../services/favorites-api";
 import FavoritesContext from "../../../store/Favorites/favorites-context";
+import { ToggleButton } from "../../UI/ToggleButton/ToggleButton";
 
 const Header = (props) => {
     const navigate = useNavigate();
@@ -175,11 +176,6 @@ const Header = (props) => {
         <>
             <div className={classes.header}>
                 <div className={classes["login-container"]}>
-                    <button
-                        onClick={() => props.setShowOutOfStock((prev) => !prev)}
-                    >
-                        out of stock
-                    </button>
                     {isMobile ? (
                         <>
                             <div className={classes["mobile-actions"]}>
@@ -205,14 +201,20 @@ const Header = (props) => {
                             />
                         </>
                     ) : (
-                        !isLoggedIn && (
-                            <button
-                                onClick={openLoginHandler}
-                                className={classes.btn}
-                            >
-                                <LoginIcon /> כניסה
-                            </button>
-                        )
+                        <>
+                            {!isLoggedIn && (
+                                <button
+                                    onClick={openLoginHandler}
+                                    className={classes.btn}
+                                >
+                                    <LoginIcon /> כניסה
+                                </button>
+                            )}
+                            <ToggleButton
+                                isActive={props.showOutOfStock}
+                                onToggleClick={props.toggleClickHandler}
+                            />
+                        </>
                     )}
                 </div>
 
@@ -230,22 +232,24 @@ const Header = (props) => {
                             </button>
                         </div>
                     )}
+                    {isMobile && (
+                        <ToggleButton
+                            isActive={props.showOutOfStock}
+                            onToggleClick={props.toggleClickHandler}
+                        />
+                    )}
                     <div className={classes["search-container"]}>
                         <SearchInput
                             closeAll={closeAll}
                             isMobile={isMobile}
                             setProductData={props.setProductData}
-                            showOutOfStock={props.showOutOfStock}
                         />
-                        {isMobile && (
-                            <div
-                                onClick={categoriesClickHandler}
-                                className={classes["categories-icon"]}
-                            >
-                                <CategoriesIconBlack />
-                            </div>
-                        )}
                     </div>
+                    {isMobile && (
+                        <div onClick={categoriesClickHandler}>
+                            <CategoriesIconBlack />
+                        </div>
+                    )}
 
                     {!isMobile && (
                         <div

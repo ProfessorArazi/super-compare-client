@@ -14,13 +14,9 @@ const Products = ({ setProductData, showOutOfStock }) => {
     const prevPage = useRef(page);
     const lastProductRef = useRef(null);
 
-    const fetchProducts = useCallback(async (subject, page, showOutOfStock) => {
+    const fetchProducts = useCallback(async (subject, page) => {
         try {
-            const response = await fetchProductsBySubject(
-                subject,
-                page,
-                showOutOfStock
-            );
+            const response = await fetchProductsBySubject(subject, page);
 
             if (response.data.length === 0) {
                 setHasMore(false);
@@ -41,21 +37,21 @@ const Products = ({ setProductData, showOutOfStock }) => {
         setHasMore(true);
 
         setIsLoading(true);
-        await fetchProducts(subject, 1, showOutOfStock);
+        await fetchProducts(subject, 1);
         setIsLoading(false);
-    }, [fetchProducts, subject, showOutOfStock]);
+    }, [fetchProducts, subject]);
 
     useEffect(() => {
         firstFetch();
-    }, [firstFetch]);
+    }, [showOutOfStock, firstFetch]);
 
     useEffect(() => {
         if (prevPage.current !== page && page > 1) {
-            fetchProducts(subject, page, showOutOfStock);
+            fetchProducts(subject, page);
         }
 
         prevPage.current = page;
-    }, [page, subject, fetchProducts, showOutOfStock]);
+    }, [page, subject, fetchProducts]);
 
     const handleIntersection = useCallback(
         (entries) => {

@@ -136,8 +136,10 @@
     .input-container {
         width: 100%;
     }
+}
 
+@media (max-width: 480px) {
     .search {
-        max-width: 100%;
+        width: 80%;
     }
 }

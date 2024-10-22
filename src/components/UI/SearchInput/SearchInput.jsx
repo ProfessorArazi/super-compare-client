@@ -4,12 +4,7 @@ import classes from "./SearchInput.module.css";
 import { fetchProductsBySubject } from "../../../services/products-api";
 import SearchIcon from "../../../assets/SearchIcon";
 
-export const SearchInput = ({
-    setProductData,
-    closeAll,
-    isMobile,
-    showOutOfStock,
-}) => {
+export const SearchInput = ({ setProductData, closeAll, isMobile }) => {
     const [searchResults, setSearchResults] = useState([]);
     const [value, setValue] = useState("");
     const [typingTimeout, setTypingTimeout] = useState(null);
@@ -21,12 +16,7 @@ export const SearchInput = ({
 
     const searchHandler = async (value) => {
         try {
-            const response = await fetchProductsBySubject(
-                value,
-                1,
-                showOutOfStock,
-                10
-            );
+            const response = await fetchProductsBySubject(value, 1, 10);
             setSearchResults(response.data);
         } catch (error) {
             console.error("Error fetching products:", error);
