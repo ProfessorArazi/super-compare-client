@@ -4,20 +4,20 @@ import ProductList from "../../components/Products/ProductList/ProductList";
 import { fetchProductsBySubject } from "../../services/products-api";
 import LoadingSpinner from "../../components/UI/LoadingSpinner/LoadingSpinner";
 
-const Products = ({ setProductData }) => {
+const Products = ({ setProductData, showOutOfStock }) => {
     const { subject } = useParams();
     const [products, setProducts] = useState([]);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
 
-    const prevSubject = useRef(null);
     const prevPage = useRef(page);
     const lastProductRef = useRef(null);
 
     const fetchProducts = useCallback(async (subject, page) => {
         try {
             const response = await fetchProductsBySubject(subject, page);
+
             if (response.data.length === 0) {
                 setHasMore(false);
             } else {
@@ -35,21 +35,23 @@ const Products = ({ setProductData }) => {
         setProducts([]);
         setPage(1);
         setHasMore(true);
+
         setIsLoading(true);
         await fetchProducts(subject, 1);
         setIsLoading(false);
     }, [fetchProducts, subject]);
 
     useEffect(() => {
+        firstFetch();
+    }, [showOutOfStock, firstFetch]);
+
+    useEffect(() => {
         if (prevPage.current !== page && page > 1) {
             fetchProducts(subject, page);
-        } else if (prevSubject.current !== subject) {
-            firstFetch();
         }
 
-        prevSubject.current = subject;
         prevPage.current = page;
-    }, [subject, page, fetchProducts, firstFetch, hasMore]);
+    }, [page, subject, fetchProducts]);
 
     const handleIntersection = useCallback(
         (entries) => {

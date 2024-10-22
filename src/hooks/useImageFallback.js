@@ -1,18 +1,18 @@
 import { useState } from "react";
 
 const useImageFallback = (images) => {
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [hasError, setHasError] = useState(false);
 
     const handleImageError = () => {
-        if (currentImageIndex < images.length - 1) {
-            setCurrentImageIndex((prevIndex) => prevIndex + 1);
-        }
+        setHasError(true);
     };
 
-    return [
-        images?.length > 0 ? images[currentImageIndex] : "",
-        handleImageError,
-    ];
+    const currentImage =
+        hasError || images.length === 0
+            ? "https://d226b0iufwcjmj.cloudfront.net/global/frontend-icons/missing-image.png"
+            : images[0];
+
+    return [currentImage, handleImageError];
 };
 
 export default useImageFallback;

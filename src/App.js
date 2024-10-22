@@ -11,6 +11,17 @@ import { Banner } from "./components/UI/Banner/Banner";
 
 function App() {
     const [productData, setProductData] = useState(null);
+    const [showOutOfStock, setShowOutOfStock] = useState(() => {
+        const storageOutOfStock = localStorage.getItem("showOutOfStock");
+        return storageOutOfStock !== null
+            ? JSON.parse(storageOutOfStock)
+            : true;
+    });
+
+    const toggleClickHandler = () => {
+        localStorage.setItem("showOutOfStock", !showOutOfStock);
+        setShowOutOfStock((prev) => !prev);
+    };
 
     return (
         <>
@@ -25,14 +36,21 @@ function App() {
                             onClose={() => setProductData(null)}
                         />
                     )}
-                    <Header setProductData={setProductData}>
+                    <Header
+                        setProductData={setProductData}
+                        showOutOfStock={showOutOfStock}
+                        toggleClickHandler={toggleClickHandler}
+                    >
                         <Banner />
                         <Routes>
                             <Route path="/" element={<Home />} />
                             <Route
                                 path="/products/:subject"
                                 element={
-                                    <Products setProductData={setProductData} />
+                                    <Products
+                                        setProductData={setProductData}
+                                        showOutOfStock={showOutOfStock}
+                                    />
                                 }
                             />
                             <Route path="*" element={<Home />} />
