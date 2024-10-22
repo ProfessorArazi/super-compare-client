@@ -249,7 +249,7 @@ const Header = (props) => {
                 />
             )}
 
-            <div>{props.children}</div>
+            <div className={classes.children}>{props.children}</div>
 
             {categoriesIsShown && (
                 <CategoriesPopup
