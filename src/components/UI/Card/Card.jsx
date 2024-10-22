@@ -40,6 +40,11 @@ const Card = React.forwardRef((props, ref) => {
             <div className={classes.content}>
                 <p className={classes.brand}>{props.brand}</p>
                 <p className={classes.title}>{props.name}</p>
+                <p className={classes.range}>{`${props.maxPrice.toFixed(2)}₪${
+                    props.minPrice !== props.maxPrice
+                        ? ` - ${props.minPrice.toFixed(2)}₪`
+                        : ""
+                }`}</p>
                 <CardForm
                     className={classes.form}
                     onAddToCart={addToCartHandler}
