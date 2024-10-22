@@ -4,12 +4,16 @@ import ProductList from "../../components/Products/ProductList/ProductList";
 import { fetchProductsBySubject } from "../../services/products-api";
 import LoadingSpinner from "../../components/UI/LoadingSpinner/LoadingSpinner";
 
-const Products = ({ setProductData, showOutOfStock }) => {
+const Products = ({
+    setProductData,
+    showOutOfStock,
+    isLoading,
+    setIsLoading,
+}) => {
     const { subject } = useParams();
     const [products, setProducts] = useState([]);
     const [page, setPage] = useState(1);
     const [hasMore, setHasMore] = useState(true);
-    const [isLoading, setIsLoading] = useState(false);
 
     const prevPage = useRef(page);
     const lastProductRef = useRef(null);
@@ -39,7 +43,7 @@ const Products = ({ setProductData, showOutOfStock }) => {
         setIsLoading(true);
         await fetchProducts(subject, 1);
         setIsLoading(false);
-    }, [fetchProducts, subject]);
+    }, [fetchProducts, subject, setIsLoading]);
 
     useEffect(() => {
         firstFetch();

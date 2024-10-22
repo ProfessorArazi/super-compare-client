@@ -11,6 +11,7 @@ import { Banner } from "./components/UI/Banner/Banner";
 
 function App() {
     const [productData, setProductData] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
     const [showOutOfStock, setShowOutOfStock] = useState(() => {
         const storageOutOfStock = localStorage.getItem("showOutOfStock");
         return storageOutOfStock !== null
@@ -19,6 +20,7 @@ function App() {
     });
 
     const toggleClickHandler = () => {
+        if (isLoading) return;
         localStorage.setItem("showOutOfStock", !showOutOfStock);
         setShowOutOfStock((prev) => !prev);
     };
@@ -50,6 +52,8 @@ function App() {
                                     <Products
                                         setProductData={setProductData}
                                         showOutOfStock={showOutOfStock}
+                                        isLoading={isLoading}
+                                        setIsLoading={setIsLoading}
                                     />
                                 }
                             />
