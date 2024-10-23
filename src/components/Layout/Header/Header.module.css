@@ -65,6 +65,7 @@
 }
 
 .children {
+    min-height: 100dvh;
     background-color: #edf1f3;
 }
 
