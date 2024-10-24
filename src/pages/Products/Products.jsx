@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import ProductList from "../../components/Products/ProductList/ProductList";
 import { fetchProductsBySubject } from "../../services/products-api";
 import LoadingSpinner from "../../components/UI/LoadingSpinner/LoadingSpinner";
+import classes from "./Products.module.css";
 
 const Products = ({
     setProductData,
@@ -87,18 +88,17 @@ const Products = ({
     }, [handleIntersection, products]);
 
     return (
-        <>
-            {isLoading && (
-                <div className="loading">
-                    <LoadingSpinner />
-                </div>
+        <div className={classes.products}>
+            {isLoading ? (
+                <LoadingSpinner />
+            ) : (
+                <ProductList
+                    products={products}
+                    onProductClick={setProductData}
+                    lastProductRef={lastProductRef}
+                />
             )}
-            <ProductList
-                products={products}
-                onProductClick={setProductData}
-                lastProductRef={lastProductRef}
-            />
-        </>
+        </div>
     );
 };
 

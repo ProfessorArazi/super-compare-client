@@ -82,7 +82,11 @@ const AuthForm = ({ onClose, isVerified, setIsVerified }) => {
 
     return (
         <Modal onClose={onClose}>
-            {
+            {isLoading ? (
+                <div className="loading">
+                    <LoadingSpinner />
+                </div>
+            ) : (
                 <div className={classes.formContainer}>
                     <form
                         onSubmit={
@@ -94,13 +98,9 @@ const AuthForm = ({ onClose, isVerified, setIsVerified }) => {
                                 המשתמש אומת בהצלחה
                             </div>
                         )}
-                        {isLoading ? (
-                            <LoadingSpinner />
-                        ) : (
-                            <h3 className={classes.title}>
-                                {type === "login" ? "כניסה" : "הרשמה"}
-                            </h3>
-                        )}
+                        <h3 className={classes.title}>
+                            {type === "login" ? "כניסה" : "הרשמה"}
+                        </h3>
                         {errorMessage && (
                             <div className={classes.errorMessage}>
                                 {errorMessage}
@@ -147,7 +147,7 @@ const AuthForm = ({ onClose, isVerified, setIsVerified }) => {
                         </button>
                     </div>
                 </div>
-            }
+            )}
         </Modal>
     );
 };

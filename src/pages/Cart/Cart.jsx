@@ -44,9 +44,7 @@ const Cart = ({ setProductData, showCarousel, setShowCarousel, ctx }) => {
         <>
             <div className={classes.cart}>
                 {isLoading ? (
-                    <div className="loading">
-                        <LoadingSpinner />
-                    </div>
+                    <LoadingSpinner />
                 ) : showCarousel ? (
                     <Result prices={Object.entries(prices)} />
                 ) : (

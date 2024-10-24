@@ -50,6 +50,7 @@ export const SearchInput = ({ setProductData, closeAll, isMobile }) => {
     };
 
     const showAllResults = (subject) => {
+        if (!subject.trim()) return;
         setShowResults(false);
         resetSearchHandler();
         closeAll();

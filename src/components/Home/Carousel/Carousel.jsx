@@ -7,7 +7,10 @@ import rightArrow from "../../../assets/right-arrow.png";
 const Carousel = ({ items, title, onProductClick, hotSale }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [itemsToShow, setItemsToShow] = useState(1);
+    const [titleMarginRight, setTitleMarginRight] = useState(-1);
+    const [isLayoutReady, setIsLayoutReady] = useState(false);
     const carouselRef = useRef(null);
+    const productContainerRefs = useRef([]);
     const productRefs = useRef([]);
 
     const nextSlide = () => {
@@ -26,11 +29,17 @@ const Carousel = ({ items, title, onProductClick, hotSale }) => {
 
     useEffect(() => {
         const updateItemsToShow = () => {
-            if (productRefs.current[0]) {
+            if (productRefs.current[0] && carouselRef.current) {
                 const itemWidth = productRefs.current[0].offsetWidth;
                 const containerWidth = carouselRef.current.offsetWidth;
                 const visibleItems = Math.floor(containerWidth / itemWidth);
+                const productWidth =
+                    productContainerRefs.current[0]?.offsetWidth;
+                setTitleMarginRight(
+                    Math.max((productWidth / visibleItems - itemWidth) / 2, 0)
+                );
                 setItemsToShow(visibleItems > 0 ? visibleItems : 1);
+                setIsLayoutReady(true);
             }
         };
 
@@ -41,7 +50,10 @@ const Carousel = ({ items, title, onProductClick, hotSale }) => {
     }, []);
 
     return (
-        <div className={classes["carousel-container"]}>
+        <div
+            className={classes["carousel-container"]}
+            style={{ visibility: isLayoutReady ? "visible" : "hidden" }}
+        >
             <div
                 className={classes["carousel-viewport"]}
                 ref={carouselRef}
@@ -49,7 +61,14 @@ const Carousel = ({ items, title, onProductClick, hotSale }) => {
                     "--items-to-show": itemsToShow,
                 }}
             >
-                <h1 className={classes["carousel-title"]}>{title}</h1>{" "}
+                {titleMarginRight >= 0 && (
+                    <h1
+                        className={classes["carousel-title"]}
+                        style={{ marginRight: `${titleMarginRight}px` }}
+                    >
+                        {title}
+                    </h1>
+                )}
                 <div
                     className={classes["carousel-items"]}
                     style={{
@@ -58,6 +77,9 @@ const Carousel = ({ items, title, onProductClick, hotSale }) => {
                 >
                     {items.map((item, index) => (
                         <div
+                            ref={(el) =>
+                                (productContainerRefs.current[index] = el)
+                            }
                             key={item.name}
                             className={classes["carousel-item"]}
                         >
