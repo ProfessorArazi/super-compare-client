@@ -1,6 +1,6 @@
 .card-form-container {
     display: inline-flex;
-    width: 100%;
+    width: 90%;
     border: 1px solid #eeeeee;
     border-radius: 30px;
 }
@@ -78,10 +78,6 @@
 
 @media (max-width: 576px) {
     .card-form-container {
-        width: 100%;
-    }
-
-    .quantity-input {
         width: 100%;
     }
 }

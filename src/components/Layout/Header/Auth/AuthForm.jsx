@@ -4,6 +4,7 @@ import Modal from "../../../UI/Modal/Modal";
 import { signin, signup } from "../../../../services/auth-api";
 import FavoritesContext from "../../../../store/Favorites/favorites-context";
 import LoadingSpinner from "../../../UI/LoadingSpinner/LoadingSpinner";
+import Logo from "../Logo/Logo";
 
 const AuthForm = ({ isOpen, onClose, isVerified, setIsVerified }) => {
     const [email, setEmail] = useState("");
@@ -57,7 +58,9 @@ const AuthForm = ({ isOpen, onClose, isVerified, setIsVerified }) => {
             const response = await signup(user);
 
             if (response?.data?.id) {
-                setSuccessMessage("נשלח אליך אימייל לאימות המשתמש");
+                setSuccessMessage(
+                    "מצויין! שלחנו לך מייל עם אימות סיסמה, נשאר רק לאשר אותו ואפשר להתחיל"
+                );
             } else {
                 setSuccessMessage(null);
                 setErrorMessage("משהו השתבש, נסה שוב מאוחר יותר...");
@@ -98,17 +101,12 @@ const AuthForm = ({ isOpen, onClose, isVerified, setIsVerified }) => {
                                 המשתמש אומת בהצלחה
                             </div>
                         )}
-                        <h3 className={classes.title}>
-                            {type === "login" ? "כניסה" : "הרשמה"}
-                        </h3>
+                        <div className={classes["logo-container"]}>
+                            <Logo />
+                        </div>
                         {errorMessage && (
                             <div className={classes.errorMessage}>
                                 {errorMessage}
-                            </div>
-                        )}
-                        {successMessage && (
-                            <div className={classes.successMessage}>
-                                {successMessage}
                             </div>
                         )}
                         <div className={classes.formGroup}>
@@ -132,20 +130,25 @@ const AuthForm = ({ isOpen, onClose, isVerified, setIsVerified }) => {
                             />
                         </div>
                         <button type="submit" className={classes.button}>
-                            {type === "login" ? "כניסה" : "הרשמה"}
+                            {type === "login" ? "התחברות" : "הרשמה"}
                         </button>
                     </form>
 
                     <div className={classes.toggleText}>
-                        {type === "login" ? "עדיין לא רשום?" : "כבר רשום?"}{" "}
+                        {type === "login" ? "לא נרשמת עדיין?" : "יש לך משתמש?"}{" "}
                         <button
                             type="button"
                             onClick={toggleType}
                             className={classes.toggleButton}
                         >
-                            {type === "login" ? "הרשם כאן" : "התחבר כאן"}
+                            {type === "login" ? "להרשמה" : "להתחברות"}
                         </button>
                     </div>
+                    {successMessage && (
+                        <div className={classes.successMessage}>
+                            {successMessage}
+                        </div>
+                    )}
                 </div>
             )}
         </Modal>

@@ -1,9 +1,20 @@
 .formContainer {
-    max-width: 400px;
+    max-width: 500px;
     margin: 0 auto;
     text-align: right;
     direction: rtl;
-    padding: 0 1rem;
+    padding: 2rem 1rem;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.logo-container img {
+    cursor: unset;
 }
 
 .title {
@@ -24,8 +35,7 @@
 }
 
 .successMessage {
-    color: green;
-    margin-bottom: 10px;
+    margin-bottom: 25px;
     font-size: 16px;
     text-align: center;
 }
@@ -59,14 +69,13 @@ input {
 
 .toggleText {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 25px;
 }
 
 .toggleButton {
     background: none;
     border: none;
-    color: blue;
+    color: var(--turquoise);
     text-decoration: underline;
     cursor: pointer;
-    margin-bottom: 20px;
 }
