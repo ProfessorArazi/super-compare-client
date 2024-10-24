@@ -67,6 +67,9 @@
 .children {
     min-height: 100dvh;
     background-color: #edf1f3;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 @media (max-width: 1600px) {

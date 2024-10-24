@@ -1,18 +1,39 @@
+import React, { useRef, useEffect, useState } from "react";
 import ReactDOM from "react-dom";
-
 import classes from "./Modal.module.css";
-import { useEffect } from "react";
+import closeBtn from "../../../assets/close-btn.png";
 
 const Backdrop = (props) => {
     return <div className={classes.backdrop} onClick={props.onClose} />;
 };
 
 const ModalOverlay = (props) => {
+    const modalRef = useRef();
+    const [isScrollable, setIsScrollable] = useState(false);
+
+    useEffect(() => {
+        const modal = modalRef.current;
+        if (modal && modal.scrollHeight > modal.clientHeight) {
+            setIsScrollable(true);
+        } else {
+            setIsScrollable(false);
+        }
+    }, [props.children]);
+
     return (
-        <div className={classes.modal}>
-            <button className={classes["close-button"]} onClick={props.onClose}>
-                &times;
-            </button>
+        <div
+            ref={modalRef}
+            className={`${classes.modal} ${
+                isScrollable ? classes["no-radius"] : ""
+            }`}
+        >
+            <img
+                className={classes["close-button"]}
+                src={closeBtn}
+                alt="close"
+                onClick={props.onClose}
+            />
+
             <div className={classes.content}>{props.children}</div>
         </div>
     );

@@ -1,4 +1,11 @@
 .home {
     padding: 20px;
     min-height: 100dvh;
+    width: 64dvw;
+}
+
+@media (max-width: 1600px) {
+    .home {
+        width: 100dvw;
+    }
 }

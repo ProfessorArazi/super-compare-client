@@ -16,8 +16,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) !important;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+    border-radius: 30px;
     background-color: #ffffff;
     box-shadow: 0 2px 8px rgba(221, 213, 213, 0.25);
     z-index: 30;
@@ -26,22 +25,30 @@
     overflow-y: auto;
 }
 
+.no-radius {
+    border-radius: 0;
+}
+
 .content {
+    padding-top: 1rem;
     max-height: 46rem;
 }
 
 .close-button {
-    background: none;
-    border: none;
-    font-size: 2.5rem;
-    font-weight: bold;
+    position: absolute;
+    top: 20px;
+    left: 20px;
     cursor: pointer;
-    color: var(--black);
-    padding-left: 1.5rem;
+    transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 .close-button:hover {
-    color: rgb(120, 117, 117);
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+.close-button:active {
+    transform: scale(0.95);
 }
 
 @keyframes slide-down {
@@ -72,10 +79,6 @@
         width: 85vw;
         max-height: 70dvh;
     }
-
-    .close-button {
-        padding-left: 1rem;
-    }
 }
 
 @media (max-width: 480px) {
@@ -86,9 +89,5 @@
 
     .content {
         font-size: 0.9rem;
-    }
-
-    .close-button {
-        padding-left: 0.75rem;
     }
 }

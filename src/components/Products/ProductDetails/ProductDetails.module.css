@@ -7,6 +7,11 @@
     color: var(--black);
     text-align: center;
     direction: rtl;
+    padding: 2rem 0 1rem;
+}
+
+.text-center h3 {
+    margin: 1rem 0;
 }
 
 .text-center img {
@@ -15,20 +20,9 @@
     object-fit: contain;
 }
 
-.text-center h3 {
-    margin: 10px 0;
-    font-size: 1.8em;
-    color: var(--black);
-    font-weight: bold;
-}
-
 .text-center p {
     margin: 0;
     font-size: 1em;
-}
-
-strong {
-    color: #f57c00;
 }
 
 .list-unstyled {
@@ -79,7 +73,11 @@ strong {
 .form-wrapper {
     display: flex;
     justify-content: center;
-    margin: 20px 0;
+    margin: 1rem 0 0.5rem;
+}
+
+.form-container {
+    width: 35%;
 }
 
 .modal-header {
@@ -89,11 +87,13 @@ strong {
     padding-bottom: 10px;
 }
 
-@media (max-width: 1024px) {
-    .text-center h3 {
-        font-size: 1.6em;
+@media (max-width: 1400px) {
+    .form-container {
+        width: 40%;
     }
+}
 
+@media (max-width: 1024px) {
     .list-unstyled li {
         padding: 12px;
         font-size: 0.9em;
@@ -109,10 +109,6 @@ strong {
 }
 
 @media (max-width: 768px) {
-    .text-center h3 {
-        font-size: 1.4em;
-    }
-
     .text-center img {
         max-width: 200px;
     }
@@ -127,15 +123,11 @@ strong {
     }
 
     .form-container {
-        width: 50%;
+        width: 30%;
     }
 }
 
 @media (max-width: 480px) {
-    .text-center h3 {
-        font-size: 1.2em;
-    }
-
     .text-center img {
         max-width: 150px;
     }
@@ -156,6 +148,6 @@ strong {
 
 @media (max-width: 330px) {
     .form-container {
-        width: 90%;
+        width: 70%;
     }
 }
