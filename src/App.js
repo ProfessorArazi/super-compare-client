@@ -32,12 +32,11 @@ function App() {
             </Helmet>
             <CartProvider>
                 <FavoritesProvider>
-                    {productData && (
-                        <ProductDetails
-                            productData={productData}
-                            onClose={() => setProductData(null)}
-                        />
-                    )}
+                    <ProductDetails
+                        isOpen={productData}
+                        productData={productData}
+                        onClose={() => setProductData(null)}
+                    />
                     <Header
                         setProductData={setProductData}
                         showOutOfStock={showOutOfStock}

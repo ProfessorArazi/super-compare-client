@@ -1,6 +1,7 @@
 import ReactDOM from "react-dom";
 
 import classes from "./Modal.module.css";
+import { useEffect } from "react";
 
 const Backdrop = (props) => {
     return <div className={classes.backdrop} onClick={props.onClose} />;
@@ -20,6 +21,16 @@ const ModalOverlay = (props) => {
 const portalElement = document.getElementById("overlays");
 
 const Modal = (props) => {
+    useEffect(() => {
+        document.body.style.overflow = props.isOpen ? "hidden" : "auto";
+
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, [props.isOpen]);
+
+    if (!props.isOpen) return null;
+
     return (
         <>
             {ReactDOM.createPortal(

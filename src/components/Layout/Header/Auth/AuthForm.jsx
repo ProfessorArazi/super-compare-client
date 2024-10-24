@@ -5,7 +5,7 @@ import { signin, signup } from "../../../../services/auth-api";
 import FavoritesContext from "../../../../store/Favorites/favorites-context";
 import LoadingSpinner from "../../../UI/LoadingSpinner/LoadingSpinner";
 
-const AuthForm = ({ onClose, isVerified, setIsVerified }) => {
+const AuthForm = ({ isOpen, onClose, isVerified, setIsVerified }) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [type, setType] = useState("login");
@@ -81,7 +81,7 @@ const AuthForm = ({ onClose, isVerified, setIsVerified }) => {
     };
 
     return (
-        <Modal onClose={onClose}>
+        <Modal isOpen={isOpen} onClose={onClose}>
             {isLoading ? (
                 <div className="loading">
                     <LoadingSpinner />

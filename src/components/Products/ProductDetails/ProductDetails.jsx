@@ -5,9 +5,9 @@ import CompareContext from "../../../store/Cart/compare-context";
 import useImageFallback from "../../../hooks/useImageFallback";
 import ProductForm from "../ProductForm/ProductForm";
 
-const ProductDetails = ({ productData, onClose }) => {
+const ProductDetails = ({ productData, onClose, isOpen }) => {
     const [currentImage, handleImageError] = useImageFallback(
-        productData.images
+        productData?.images || []
     );
     const cartCtx = useContext(CompareContext);
 
@@ -20,16 +20,16 @@ const ProductDetails = ({ productData, onClose }) => {
     };
 
     return (
-        <Modal onClose={onClose}>
+        <Modal onClose={onClose} isOpen={isOpen}>
             <div className={classes["text-center"]}>
                 <img
                     src={currentImage}
-                    alt={productData.name}
+                    alt={productData?.name}
                     className={classes.image}
                     onError={handleImageError}
                 />
 
-                <h3>{productData.name}</h3>
+                <h3>{productData?.name}</h3>
                 <div className={classes["form-wrapper"]}>
                     <div className={classes["form-container"]}>
                         <ProductForm
@@ -39,7 +39,7 @@ const ProductDetails = ({ productData, onClose }) => {
                     </div>
                 </div>
                 <ul className={classes["list-unstyled"]}>
-                    {productData.prices.map((info) => (
+                    {productData?.prices.map((info) => (
                         <li key={info._id} className={classes.item}>
                             <div className={classes.logo}>
                                 <img src={info.logo} alt={info.market} />
