@@ -248,23 +248,19 @@ const Header = (props) => {
                     ctx={ctx}
                 />
             )}
-
             <div className={classes.children}>{props.children}</div>
-
             {categoriesIsShown && (
                 <CategoriesPopup
                     isMobile={isMobile}
                     setCategoriesIsShown={setCategoriesIsShown}
                 />
             )}
-
-            {showLogin && (
-                <AuthForm
-                    onClose={closeLoginHandler}
-                    isVerified={isVerified}
-                    setIsVerified={setIsVerified}
-                />
-            )}
+            <AuthForm
+                isOpen={showLogin}
+                onClose={closeLoginHandler}
+                isVerified={isVerified}
+                setIsVerified={setIsVerified}
+            />
         </>
     );
 };

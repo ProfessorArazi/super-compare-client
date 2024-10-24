@@ -31,9 +31,11 @@ const Result = ({ prices }) => {
                         />
                     ))}
             </div>
-            {missing && (
-                <MissingItems products={missing} onClose={closeMissing} />
-            )}
+            <MissingItems
+                products={missing}
+                onClose={closeMissing}
+                isOpen={missing}
+            />
         </>
     );
 };
