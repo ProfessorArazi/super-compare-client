@@ -45,7 +45,15 @@ function App() {
                     >
                         <Banner />
                         <Routes>
-                            <Route path="/" element={<Home />} />
+                            <Route
+                                path="/"
+                                element={
+                                    <Home
+                                        showOutOfStock={showOutOfStock}
+                                        setProductData={setProductData}
+                                    />
+                                }
+                            />
                             <Route
                                 path="/products/:subject"
                                 element={

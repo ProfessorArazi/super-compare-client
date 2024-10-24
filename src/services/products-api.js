@@ -12,3 +12,13 @@ export const fetchProductsBySubject = async (subject, page, limit = 11) => {
         }`
     );
 };
+
+export const getHomePageContent = async () => {
+    const outOfStock = localStorage.getItem("showOutOfStock");
+
+    return apiClient.get(
+        `/special/products/?outOfStock=${
+            outOfStock ? JSON.parse(outOfStock) : "true"
+        }`
+    );
+};

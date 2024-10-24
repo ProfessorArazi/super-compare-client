@@ -1,54 +1,58 @@
+import { useEffect, useState } from "react";
 import classes from "./Home.module.css";
+import { getHomePageContent } from "../../services/products-api";
+import LoadingSpinner from "../../components/UI/LoadingSpinner/LoadingSpinner";
+import Carousel from "../../components/Home/Carousel/Carousel";
 
-const Home = () => {
+const Home = ({ showOutOfStock, setProductData }) => {
+    const [popular, setPopular] = useState([]);
+    const [sales, setSales] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+
+    const setProduct = (product) => {
+        setProductData({ ...product });
+    };
+
+    useEffect(() => {
+        const getContent = async () => {
+            try {
+                setIsLoading(true);
+                const response = await getHomePageContent();
+                setPopular(response.data.popular);
+                setSales(response.data.hotSales);
+            } catch (error) {
+                console.log(error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+
+        getContent();
+    }, [showOutOfStock]);
+
     return (
         <div className={classes.home}>
-            <h2>ברוכים הבאים לSuper Compare</h2>
-            <p>
-                האתר שיעזור לכם להשוות מחירים בין סופרים שונים, ולבחור את
-                האפשרות הטובה ביותר עבור הרכישה שלכם.
-            </p>
-
-            <h3>איך לאפשר יצירת עגלת קניות בצורה אוטומטית באתר הסופר הנבחר?</h3>
-            <ol>
-                <li>
-                    התקינו את{" "}
-                    <a
-                        href="https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        tampermonkey
-                    </a>{" "}
-                    בדפדפן שלכם.
-                </li>
-                <li>
-                    הוסיפו את{" "}
-                    <a
-                        href="https://greasyfork.org/scripts/512078-super-compare-cart/code/Super%20Compare%20Cart.user.js"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        הסקריפט
-                    </a>
-                    .
-                </li>
-                <li>התחילו להוסיף פריטים לעגלה.</li>
-                <li>
-                    כשסיימתם, לחצו על אייקון העגלה ולאחר מכן לחצו על{" "}
-                    <strong>"השוואה"</strong> כדי לראות את ההבדלים במחירים בין
-                    הסופרים הנתמכים.
-                </li>
-                <li>
-                    לאחר שמצאתם את הסופר המתאים לכם, לחצו על{" "}
-                    <strong>"הזמנה"</strong>, והסקריפט ייצור אוטומטית את העגלה
-                    עבורכם באתר הסופר הנבחר.
-                </li>
-            </ol>
-            <p>
-                הסקריפט יוסיף את הפריטים הנבחרים לעגלת הקניות שלכם באתר הסופר
-                ויחיל את כל ההנחות הזמינות באופן אוטומטי.
-            </p>
+            {isLoading ? (
+                <LoadingSpinner />
+            ) : (
+                <div>
+                    {popular.length > 0 && (
+                        <Carousel
+                            items={popular}
+                            title={"מוצרים פופולריים"}
+                            onProductClick={setProduct}
+                        />
+                    )}
+                    {sales.length > 0 && (
+                        <Carousel
+                            items={sales}
+                            title={"מבצעים שווים"}
+                            onProductClick={setProduct}
+                            hotSale
+                        />
+                    )}
+                </div>
+            )}
         </div>
     );
 };
