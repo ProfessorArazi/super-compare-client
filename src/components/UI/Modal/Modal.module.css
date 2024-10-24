@@ -40,6 +40,8 @@
     left: 20px;
     cursor: pointer;
     transition: transform 0.2s ease, opacity 0.2s ease;
+    width: 22px;
+    height: 22px;
 }
 
 .close-button:hover {
@@ -78,6 +80,11 @@
     .modal {
         width: 85vw;
         max-height: 70dvh;
+    }
+
+    .close-button {
+        width: 18px;
+        height: 18px;
     }
 }
 
