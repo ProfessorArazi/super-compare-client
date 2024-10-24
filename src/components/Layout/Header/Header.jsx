@@ -152,7 +152,11 @@ const Header = (props) => {
     return (
         <>
             <div className={classes.header}>
-                <div className={classes["login-container"]}>
+                <div
+                    className={`${classes["login-container"]} ${
+                        isLoggedIn ? classes["toggle-container"] : ""
+                    }`}
+                >
                     {isMobile ? (
                         <>
                             <div className={classes["mobile-actions"]}>
