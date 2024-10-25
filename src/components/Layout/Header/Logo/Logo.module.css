@@ -1,10 +1,10 @@
 .logo {
-    max-width: 100px;
+    max-width: 230px;
     cursor: pointer;
 }
 
 @media (max-width: 1600px) {
     .logo {
-        max-width: 80px;
+        max-width: 150px;
     }
 }

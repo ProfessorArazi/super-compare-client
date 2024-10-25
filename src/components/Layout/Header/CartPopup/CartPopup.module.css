@@ -2,9 +2,9 @@
     box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.25);
     border-radius: 0 0 20px 0;
     position: fixed;
-    top: 18dvh;
+    top: 22dvh;
     width: 18dvw;
-    height: 82dvh;
+    height: 78dvh;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;

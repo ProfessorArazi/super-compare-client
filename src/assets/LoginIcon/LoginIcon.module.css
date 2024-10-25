@@ -1,0 +1,22 @@
+.login-icon {
+    width: 20px;
+    height: auto;
+}
+
+@media (max-width: 1600px) {
+    .login-icon {
+        width: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .login-icon {
+        width: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-icon {
+        width: 16px;
+    }
+}

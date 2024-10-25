@@ -9,9 +9,16 @@
     background-color: var(--turquoise);
     padding: 0 60px;
     display: flex;
-    height: 8dvh;
+    height: 12dvh;
     align-items: center;
     justify-content: space-between;
+}
+
+.logo-container {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+    flex: 1;
 }
 
 .toggle-container {
@@ -32,6 +39,11 @@
 
 .btn svg {
     margin-right: 10px;
+}
+
+.login-btn {
+    background-color: #ffffff;
+    color: var(--turquoise);
 }
 
 .categories-btn {

@@ -2,7 +2,7 @@ import { useEffect, useState, useContext, useCallback } from "react";
 import HeaderCartButton from "./HeaderCartButton/HeaderCartButton";
 import classes from "./Header.module.css";
 import CompareContext from "../../../store/Cart/compare-context";
-import LoginIcon from "../../../assets/LoginIcon";
+import LoginIcon from "../../../assets/LoginIcon/LoginIcon";
 import CategoriesIconBlack from "../../../assets/CategoriesIconBlack";
 import ListIcon from "../../../assets/ListIcon";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -161,14 +161,15 @@ const Header = (props) => {
                     {isMobile ? (
                         <>
                             <div className={classes["mobile-actions"]}>
-                                <HeaderCartButton
-                                    onClick={cartClickHandler}
-                                    isMobile={isMobile}
-                                />
                                 <LoginButton
+                                    isMobile
                                     isLoggedIn={isLoggedIn}
                                     openLoginHandler={openLoginHandler}
                                     showFavorites={showFavorites}
+                                />
+                                <HeaderCartButton
+                                    onClick={cartClickHandler}
+                                    isMobile={isMobile}
                                 />
                             </div>
                             <Logo
@@ -178,18 +179,27 @@ const Header = (props) => {
                         </>
                     ) : (
                         <>
-                            {!isLoggedIn && (
-                                <button
-                                    onClick={openLoginHandler}
-                                    className={classes.btn}
-                                >
-                                    <LoginIcon /> כניסה
-                                </button>
-                            )}
-                            <ToggleButton
-                                isActive={props.showOutOfStock}
-                                onToggleClick={props.toggleClickHandler}
-                            />
+                            <div className={classes["logo-container"]}>
+                                {!isLoggedIn && (
+                                    <button
+                                        onClick={openLoginHandler}
+                                        className={`${classes.btn} ${classes["login-btn"]}`}
+                                    >
+                                        <LoginIcon /> כניסה
+                                    </button>
+                                )}
+                                <Logo
+                                    isMobile={true}
+                                    logoClickHandler={logoClickHandler}
+                                />
+                            </div>
+
+                            <div>
+                                <ToggleButton
+                                    isActive={props.showOutOfStock}
+                                    onToggleClick={props.toggleClickHandler}
+                                />
+                            </div>
                         </>
                     )}
                 </div>
@@ -232,10 +242,6 @@ const Header = (props) => {
                         <div
                             className={`${classes["side-container"]} ${classes["categories-container"]}`}
                         >
-                            <Logo
-                                isMobile={isMobile}
-                                logoClickHandler={logoClickHandler}
-                            />
                             <CategoriesButton
                                 categoriesClickHandler={categoriesClickHandler}
                                 isMobile={isMobile}
