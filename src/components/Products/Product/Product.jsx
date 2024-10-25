@@ -30,20 +30,20 @@ const Product = React.forwardRef((props, ref) => {
             className={classes.card}
             ref={ref}
         >
+            {props.isHotSale && (
+                <Trapezoid
+                    title={`${
+                        props.hotSale.discount > 1
+                            ? `${props.hotSale.discount} `
+                            : ""
+                    }בהנחה`}
+                />
+            )}
             <div
                 className={`${classes["img-container"]} ${
                     props.isHotSale ? classes["hot-sale"] : ""
                 }`}
             >
-                {props.isHotSale && (
-                    <Trapezoid
-                        title={`${
-                            props.hotSale.discount > 1
-                                ? `${props.hotSale.discount} `
-                                : ""
-                        }בהנחה`}
-                    />
-                )}
                 <img
                     className={classes.img}
                     src={currentImage}
@@ -52,8 +52,15 @@ const Product = React.forwardRef((props, ref) => {
                 />
             </div>
             <div className={classes.content}>
-                <p className={classes.brand}>{props.brand}</p>
+                {props.isHotSale ? (
+                    <div className={classes.market}>
+                        <p>{props.hotSale.market}</p>
+                    </div>
+                ) : (
+                    <p className={classes.brand}>{props.brand}</p>
+                )}
                 <p className={classes.title}>{props.name}</p>
+
                 <p className={classes.range}>{`${props.maxPrice.toFixed(2)}${
                     props.minPrice !== props.maxPrice
                         ? ` - ${props.minPrice.toFixed(2)}`
