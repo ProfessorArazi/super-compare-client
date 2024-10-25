@@ -16,6 +16,7 @@ import SearchBar from "./SearchBar/SearchBar";
 import CategoriesButton from "./CategoriesButton/CategoriesButton";
 import CartPopup from "./CartPopup/CartPopup";
 import CategoriesPopup from "./CategoriesPopup/CategoriesPopup";
+import { ToggleButtonMobile } from "../../UI/ToggleButton/Mobile/ToggleButtonMobile";
 
 const Header = (props) => {
     const navigate = useNavigate();
@@ -209,7 +210,7 @@ const Header = (props) => {
                     )}
 
                     {isMobile && (
-                        <ToggleButton
+                        <ToggleButtonMobile
                             isActive={props.showOutOfStock}
                             onToggleClick={props.toggleClickHandler}
                         />
