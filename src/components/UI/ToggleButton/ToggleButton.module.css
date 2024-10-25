@@ -1,44 +1,31 @@
-.toggle-button {
-    width: 60px;
-    height: 30px;
-    background-color: #ddd;
-    border-radius: 30px;
+.toggle-container {
     display: flex;
-    align-items: center;
-    padding: 2px;
+    overflow: hidden;
+    background-color: white;
+    padding: 5px;
+    border-radius: 8px;
+}
+
+.toggle-button {
+    border-radius: 4px;
+    background-color: white;
+    color: var(--black);
+    padding: 10px 20px;
+    border: none;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    text-align: center;
 }
 
-.toggle-button.toggled {
-    background-color: rgb(58 155 87 / 91%);
-}
-
-.toggle-circle {
-    width: 26px;
-    height: 26px;
-    background-color: #fff;
-    border-radius: 50%;
-    transition: transform 0.3s ease;
-}
-
-.toggle-button.toggled .toggle-circle {
-    transform: translateX(30px);
+.active {
+    background-color: rgba(9, 144, 49, 0.905);
+    color: white;
 }
 
 @media (max-width: 1600px) {
     .toggle-button {
-        width: 40px;
-        height: 20px;
-        padding: 1px;
-    }
-
-    .toggle-circle {
-        width: 18px;
-        height: 18px;
-    }
-
-    .toggle-button.toggled .toggle-circle {
-        transform: translateX(20px);
+        font-size: 14px;
+        padding: 8px 15px;
     }
 }

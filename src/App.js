@@ -19,10 +19,10 @@ function App() {
             : true;
     });
 
-    const toggleClickHandler = () => {
+    const toggleClickHandler = (show) => {
         if (isLoading) return;
-        localStorage.setItem("showOutOfStock", !showOutOfStock);
-        setShowOutOfStock((prev) => !prev);
+        localStorage.setItem("showOutOfStock", show);
+        setShowOutOfStock(show);
     };
 
     return (
