@@ -26,7 +26,7 @@
 }
 
 .hot-sale {
-    margin-top: 45px;
+    margin-top: 35px;
 }
 
 .img {
@@ -87,6 +87,10 @@
     .content {
         padding: 12px;
     }
+
+    .hot-sale {
+        margin-top: 30px;
+    }
 }
 
 @media (max-width: 576px) {
@@ -107,6 +111,10 @@
 
     .content {
         padding: 10px;
+    }
+
+    .hot-sale {
+        margin-top: 25px;
     }
 }
 
