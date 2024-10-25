@@ -61,11 +61,34 @@ const Product = React.forwardRef((props, ref) => {
                 )}
                 <p className={classes.title}>{props.name}</p>
 
-                <p className={classes.range}>{`${props.maxPrice.toFixed(2)}${
-                    props.minPrice !== props.maxPrice
-                        ? ` - ${props.minPrice.toFixed(2)}`
-                        : ""
-                } ₪`}</p>
+                {!props.isHotSale ? (
+                    <p className={classes.range}>{`${props.maxPrice.toFixed(
+                        2
+                    )}${
+                        props.minPrice !== props.maxPrice
+                            ? `₪ - ${props.minPrice.toFixed(2)}`
+                            : ""
+                    }₪`}</p>
+                ) : (
+                    <p>
+                        <span
+                            className={`${classes.discount} ${
+                                props.hotSale.discount === 1
+                                    ? `${classes["regular-price"]}`
+                                    : ""
+                            }`}
+                        >
+                            {props.hotSale.discount > 1
+                                ? `${props.hotSale.discount} ב-`
+                                : `₪${props.hotSale.regularPrice.toFixed(
+                                      2
+                                  )}`}{" "}
+                        </span>
+                        <span className={classes.range}>
+                            ₪{props.hotSale.discountPrice.toFixed(2)}
+                        </span>
+                    </p>
+                )}
                 <ProductForm
                     className={classes.form}
                     onAddToCart={addToCartHandler}
