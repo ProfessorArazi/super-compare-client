@@ -1,19 +1,27 @@
 .clipped-shape {
-    width: 60%;
+    width: 70%;
     height: 40px;
-    top: 0;
     background: #e007bc;
     color: white;
     clip-path: url(#roundedClip);
-    border-bottom-left-radius: 5vw;
-    border-bottom-right-radius: 5vw;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 18px;
     font-weight: 500;
     direction: rtl;
+}
+
+.wrapper {
+    top: 0;
     position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    right: 0;
 }
 
 .clipped-shape p {
@@ -21,43 +29,16 @@
     padding-bottom: 10px;
 }
 
-@media (max-width: 789px) {
-    .clipped-shape {
-        width: 50%;
-    }
-}
-
 @media (max-width: 768px) {
     .clipped-shape {
-        width: 60%;
         height: 35px;
         font-size: 16px;
-    }
-}
-
-@media (max-width: 639px) {
-    .clipped-shape {
-        width: 45%;
     }
 }
 
 @media (max-width: 576px) {
     .clipped-shape {
         height: 30px;
-        width: 60%;
         font-size: 14px;
-    }
-}
-
-@media (max-width: 490px) {
-    .clipped-shape {
-        width: 45%;
-    }
-}
-
-@media (max-width: 339px) {
-    .clipped-shape {
-        width: 35%;
-        font-size: 18px;
     }
 }
