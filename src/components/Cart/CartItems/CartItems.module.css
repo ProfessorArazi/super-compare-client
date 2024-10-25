@@ -9,11 +9,11 @@
     padding: 2rem 1rem;
     background-color: #f7f7f7;
     box-sizing: border-box;
-    max-height: 65dvh;
+    max-height: 61dvh;
 }
 
 @media (max-width: 1600px) {
     .cart-items {
-        max-height: 60dvh;
+        max-height: 58dvh;
     }
 }
