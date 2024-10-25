@@ -87,7 +87,7 @@ const Carousel = ({ items, title, onProductClick, hotSale }) => {
                                 ref={(el) => (productRefs.current[index] = el)}
                                 {...item}
                                 onClickHandler={() => onProductClick(item)}
-                                hotSale={hotSale}
+                                isHotSale={hotSale}
                             />
                         </div>
                     ))}

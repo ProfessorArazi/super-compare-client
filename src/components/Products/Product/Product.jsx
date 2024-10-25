@@ -4,6 +4,7 @@ import classes from "./Product.module.css";
 import React from "react";
 import useImageFallback from "../../../hooks/useImageFallback";
 import ProductForm from "../ProductForm/ProductForm";
+import { Trapezoid } from "../../../assets/Trapezoid/Trapezoid";
 
 const Product = React.forwardRef((props, ref) => {
     const [currentImage, handleImageError] = useImageFallback(props.images);
@@ -29,7 +30,20 @@ const Product = React.forwardRef((props, ref) => {
             className={classes.card}
             ref={ref}
         >
-            <div className={classes["img-container"]}>
+            <div
+                className={`${classes["img-container"]} ${
+                    props.isHotSale ? classes["hot-sale"] : ""
+                }`}
+            >
+                {props.isHotSale && (
+                    <Trapezoid
+                        title={`${
+                            props.hotSale.discount > 1
+                                ? `${props.hotSale.discount} `
+                                : ""
+                        }בהנחה`}
+                    />
+                )}
                 <img
                     className={classes.img}
                     src={currentImage}
