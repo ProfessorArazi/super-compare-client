@@ -25,7 +25,6 @@
 
 .clipped-shape p {
     margin: 0;
-    padding-bottom: 10px;
 }
 
 @media (max-width: 768px) {

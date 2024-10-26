@@ -83,7 +83,12 @@ const Header = (props) => {
         setShowLogin(false);
     };
 
-    const showFavorites = () => {};
+    const showFavorites = () => {
+        if (!isLoggedIn) {
+            setShowLogin(true);
+        } else {
+        }
+    };
 
     const removeQueryParams = (paramsToRemove) => {
         paramsToRemove.forEach((param) => queryParams.delete(param));
@@ -212,6 +217,7 @@ const Header = (props) => {
                                 isMobile={isMobile}
                             />
                             <button
+                                onClick={showFavorites}
                                 className={`${classes.btn} ${classes["categories-btn"]}`}
                             >
                                 {<ListIcon />} רשימות שמורות
@@ -256,6 +262,8 @@ const Header = (props) => {
                     showCarousel={showCarousel}
                     backToCartHandler={backToCartHandler}
                     setProductData={props.setProductData}
+                    isLoggedIn={isLoggedIn}
+                    setShowLogin={setShowLogin}
                     ctx={ctx}
                 />
             )}

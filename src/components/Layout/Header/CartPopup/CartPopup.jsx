@@ -9,11 +9,20 @@ const CartPopup = ({
     setShowCarousel,
     backToCartHandler,
     setProductData,
+    isLoggedIn,
+    setShowLogin,
     ctx,
 }) => {
     const cartClearItemsHandler = () => {
         sessionStorage.removeItem("items");
         ctx.clearCart();
+    };
+
+    const saveCartHandler = () => {
+        if (!isLoggedIn) {
+            setShowLogin(true);
+        } else {
+        }
     };
 
     return (
@@ -39,7 +48,7 @@ const CartPopup = ({
                         </div>
                     )}
                     <div
-                        onClick={() => console.log(ctx.items)}
+                        onClick={saveCartHandler}
                         className={classes["side-title-action"]}
                     >
                         <SaveIcon /> שמירת סל

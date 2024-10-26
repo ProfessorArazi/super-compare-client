@@ -1,13 +1,9 @@
-.item {
-    display: flex;
-    border-radius: 30px;
-}
-
 .text-center {
     color: var(--black);
     text-align: center;
     direction: rtl;
     padding: 2rem 0 1rem;
+    font-weight: 500;
 }
 
 .text-center h3 {
@@ -35,18 +31,20 @@
 }
 
 .list-unstyled li {
-    background: #f9f9f9;
-    border-radius: 50px;
-    border: 1px solid #ccc;
-    padding: 10px 25px;
+    background: #fff;
+    border-radius: 30px;
+    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.1);
+    padding: 0 25px;
     display: flex;
     align-items: center;
     direction: rtl;
+    gap: 15px;
     text-align: right;
     position: relative;
     color: var(--black);
     width: 100%;
-    gap: 50px;
+    flex-shrink: 1;
+    align-items: stretch;
 }
 
 .list-unstyled img {
@@ -57,17 +55,31 @@
 
 .logo {
     flex: 1;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    padding: 10px 0;
 }
 
 .price {
-    flex: 1;
-    font-size: 1.2em;
+    color: var(--black);
 }
 
 .discount {
-    flex: 1;
-    font-weight: bold;
-    color: #d32f2f;
+    flex: 0.5;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px 10px 0;
+    border-right: 2px solid #eeeeee;
+}
+
+.discount p {
+    margin: 0;
+}
+
+.discount-price {
+    color: var(--turquoise);
+    font-weight: 600;
 }
 
 .form-wrapper {
@@ -95,8 +107,12 @@
 
 @media (max-width: 1024px) {
     .list-unstyled li {
-        padding: 12px;
+        padding: 0 20px;
         font-size: 0.9em;
+    }
+
+    .discount {
+        padding-right: 15px;
     }
 
     .price {
@@ -114,8 +130,12 @@
     }
 
     .list-unstyled li {
-        padding: 10px;
+        padding: 0 15px;
         font-size: 0.85em;
+    }
+
+    .discount {
+        padding-right: 10px;
     }
 
     .price {
@@ -137,8 +157,16 @@
     }
 
     .list-unstyled li {
-        padding: 8px;
+        padding: 0 12px;
         font-size: 0.75em;
+    }
+
+    .discount {
+        padding-right: 7px;
+    }
+
+    .logo {
+        gap: 15px;
     }
 
     .price {
