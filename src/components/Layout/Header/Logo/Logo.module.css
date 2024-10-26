@@ -1,11 +1,11 @@
 .logo {
+    margin-top: 10px;
     max-width: 230px;
     cursor: pointer;
 }
 
 @media (max-width: 1600px) {
     .logo {
-        margin-top: 10px;
         max-width: 150px;
     }
 }
