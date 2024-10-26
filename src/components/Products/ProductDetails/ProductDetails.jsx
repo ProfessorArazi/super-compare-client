@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Modal from "../../UI/Modal/Modal";
 import classes from "./ProductDetails.module.css";
 import CompareContext from "../../../store/Cart/compare-context";
@@ -6,9 +6,10 @@ import useImageFallback from "../../../hooks/useImageFallback";
 import ProductForm from "../ProductForm/ProductForm";
 
 const ProductDetails = ({ productData, onClose, isOpen }) => {
-    const [currentImage, handleImageError] = useImageFallback(
+    const [currentImage, handleImageError, setHasError] = useImageFallback(
         productData?.images || []
     );
+
     const cartCtx = useContext(CompareContext);
 
     const addToCartHandler = (event, amount) => {
@@ -18,6 +19,10 @@ const ProductDetails = ({ productData, onClose, isOpen }) => {
             amount: +amount,
         });
     };
+
+    useEffect(() => {
+        setHasError(false);
+    }, [productData, setHasError]);
 
     return (
         <Modal onClose={onClose} isOpen={isOpen}>
