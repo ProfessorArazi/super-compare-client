@@ -21,6 +21,7 @@ function App() {
 
     const toggleClickHandler = (show) => {
         if (isLoading) return;
+        window.scrollTo(0, 0);
         localStorage.setItem("showOutOfStock", show);
         setShowOutOfStock(show);
     };
