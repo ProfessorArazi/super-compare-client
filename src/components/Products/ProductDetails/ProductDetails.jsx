@@ -43,28 +43,30 @@ const ProductDetails = ({ productData, onClose, isOpen }) => {
                         <li key={info._id} className={classes.item}>
                             <div className={classes.logo}>
                                 <img src={info.logo} alt={info.market} />
-                            </div>
-                            {!info.price ? (
-                                <p className={classes.price}>חסר במלאי</p>
-                            ) : (
                                 <p className={classes.price}>
-                                    <span> מחיר רגיל:</span>
-                                    <br />
-                                    {info.price.toFixed(2)}
+                                    {!info.price
+                                        ? "חסר במלאי"
+                                        : `מחיר רגיל: ₪${info.price.toFixed(
+                                              2
+                                          )}`}
                                 </p>
-                            )}
+                            </div>
 
-                            {info.discount > 0 ? (
-                                <p className={classes.discount}>
-                                    <span>מבצע: </span>
-                                    <br />
-                                    {info.discount > 1 && (
-                                        <>{info.discount} ב </>
-                                    )}
-                                    {info.discountPrice.toFixed(2)}
-                                </p>
-                            ) : (
-                                <p className={classes.discount}></p>
+                            {info.discount > 0 && (
+                                <div className={classes.discount}>
+                                    <p>
+                                        במבצע:{" "}
+                                        <span
+                                            className={
+                                                classes["discount-price"]
+                                            }
+                                        >
+                                            {info.discount > 1 &&
+                                                `${info.discount} ב- `}{" "}
+                                            ₪{info.discountPrice.toFixed(2)}
+                                        </span>
+                                    </p>
+                                </div>
                             )}
                         </li>
                     ))}
