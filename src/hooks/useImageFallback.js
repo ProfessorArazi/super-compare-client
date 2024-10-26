@@ -12,7 +12,7 @@ const useImageFallback = (images) => {
             ? "https://d226b0iufwcjmj.cloudfront.net/global/frontend-icons/missing-image.png"
             : images[0];
 
-    return [currentImage, handleImageError];
+    return [currentImage, handleImageError, setHasError];
 };
 
 export default useImageFallback;
