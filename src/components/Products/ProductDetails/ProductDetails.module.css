@@ -66,7 +66,7 @@
 }
 
 .discount {
-    flex: 0.55;
+    flex: 0.6;
     display: flex;
     align-items: center;
     padding: 10px 20px 10px 0;
@@ -111,10 +111,6 @@
         font-size: 0.9em;
     }
 
-    .discount {
-        padding-right: 15px;
-    }
-
     .price {
         font-size: 1.1em;
     }
@@ -132,10 +128,6 @@
     .list-unstyled li {
         padding: 0 15px;
         font-size: 0.85em;
-    }
-
-    .discount {
-        padding-right: 10px;
     }
 
     .price {
@@ -161,16 +153,16 @@
         font-size: 0.75em;
     }
 
-    .discount {
-        padding-right: 7px;
-    }
-
     .logo {
         gap: 15px;
     }
 
     .price {
         font-size: 0.9em;
+    }
+
+    .list-unstyled img {
+        width: 60px;
     }
 }
 
