@@ -94,6 +94,8 @@
     font-size: 18px;
     color: var(--turquoise);
     font-weight: 600;
+    direction: ltr;
+    text-align: center;
 }
 
 .discount {

@@ -62,13 +62,13 @@ const Product = React.forwardRef((props, ref) => {
                 <p className={classes.title}>{props.name}</p>
 
                 {!props.isHotSale ? (
-                    <p className={classes.range}>{`${props.maxPrice.toFixed(
-                        2
-                    )}${
-                        props.minPrice !== props.maxPrice
-                            ? `₪ - ${props.minPrice.toFixed(2)}`
-                            : ""
-                    }₪`}</p>
+                    <p className={classes.range}>
+                        {`${props.minPrice.toFixed(2)}${
+                            props.minPrice !== props.maxPrice
+                                ? `₪ - ${props.maxPrice.toFixed(2)}`
+                                : ""
+                        }₪`}
+                    </p>
                 ) : (
                     <p>
                         <span
