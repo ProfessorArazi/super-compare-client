@@ -60,6 +60,7 @@
 
 .market p {
     margin: 0;
+    font-size: 14px;
 }
 
 .content {
@@ -127,6 +128,10 @@
 
     .hot-sale {
         margin-top: 30px;
+    }
+
+    .market p {
+        font-size: 12px;
     }
 }
 
