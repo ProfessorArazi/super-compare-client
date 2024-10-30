@@ -27,26 +27,31 @@ const Carousel = ({ items, title, onProductClick, hotSale }) => {
 
     const translateValue = currentIndex * (100 / itemsToShow);
 
-    useEffect(() => {
-        const updateItemsToShow = () => {
-            if (productRefs.current[0] && carouselRef.current) {
-                const itemWidth = productRefs.current[0].offsetWidth;
-                const containerWidth = carouselRef.current.offsetWidth;
-                const visibleItems = Math.floor(containerWidth / itemWidth);
-                const productWidth =
-                    productContainerRefs.current[0]?.offsetWidth;
+    const updateLayout = (isResize) => {
+        if (productRefs.current[0] && carouselRef.current) {
+            const itemWidth = productRefs.current[0].offsetWidth;
+            const containerWidth = carouselRef.current.offsetWidth;
+            const visibleItems = Math.floor(containerWidth / itemWidth) || 1;
+            const productWidth = productContainerRefs.current[0]?.offsetWidth;
+            setItemsToShow(visibleItems);
+            if (!isResize) {
                 setTitleMarginRight(
-                    Math.max((productWidth / visibleItems - itemWidth) / 2, 0)
+                    (productWidth / visibleItems - itemWidth) / 2
                 );
-                setItemsToShow(visibleItems > 0 ? visibleItems : 1);
-                setIsLayoutReady(true);
             }
-        };
 
-        updateItemsToShow();
-        window.addEventListener("resize", updateItemsToShow);
+            setIsLayoutReady(true);
+        }
+    };
 
-        return () => window.removeEventListener("resize", updateItemsToShow);
+    useEffect(() => {
+        updateLayout(false);
+    }, []);
+
+    useEffect(() => {
+        window.addEventListener("resize", () => updateLayout(true));
+        return () =>
+            window.removeEventListener("resize", () => updateLayout(true));
     }, []);
 
     return (
