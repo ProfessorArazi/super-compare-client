@@ -1,14 +1,12 @@
-import { useEffect, useState, useContext, useCallback } from "react";
+import { useEffect, useState, useCallback } from "react";
 import HeaderCartButton from "./HeaderCartButton/HeaderCartButton";
 import classes from "./Header.module.css";
-import CompareContext from "../../../store/Cart/compare-context";
 import LoginIcon from "../../../assets/LoginIcon/LoginIcon";
 import CategoriesIconBlack from "../../../assets/CategoriesIconBlack";
 import ListIcon from "../../../assets/ListIcon";
 import { useLocation, useNavigate } from "react-router-dom";
 import AuthForm from "./Auth/AuthForm";
 import { getFavorites } from "../../../services/favorites-api";
-import FavoritesContext from "../../../store/Favorites/favorites-context";
 import { ToggleButton } from "../../UI/ToggleButton/ToggleButton";
 import LoginButton from "./LoginButton/LoginButton";
 import Logo from "./Logo/Logo";
@@ -17,10 +15,14 @@ import CategoriesButton from "./CategoriesButton/CategoriesButton";
 import CartPopup from "./CartPopup/CartPopup";
 import CategoriesPopup from "./CategoriesPopup/CategoriesPopup";
 import { ToggleButtonMobile } from "../../UI/ToggleButton/Mobile/ToggleButtonMobile";
+import { useDispatch, useSelector } from "react-redux";
+import { setFavorites } from "../../../store/Favorites/favoritesSlice";
+import { updateItems } from "../../../store/Cart/cartSlice";
 
 const Header = (props) => {
     const navigate = useNavigate();
     const location = useLocation();
+    const dispatch = useDispatch();
 
     const queryParams = new URLSearchParams(location.search);
     const loginParam = queryParams.get("login") === "1";
@@ -36,8 +38,7 @@ const Header = (props) => {
     const [showLogin, setShowLogin] = useState(!isLoggedIn && loginParam);
     const [isVerified, setIsVerified] = useState(verifyParam);
 
-    const ctx = useContext(CompareContext);
-    const { setFavorites } = useContext(FavoritesContext);
+    const cartItems = useSelector((state) => state.cart.items);
 
     const cartClickHandler = () => {
         if (cartIsShown) {
@@ -108,11 +109,11 @@ const Header = (props) => {
             if (!token) return;
 
             const response = await getFavorites();
-            setFavorites(response.data.favorites);
+            dispatch(setFavorites(response.data.favorites));
         } catch (error) {
             console.log(error);
         }
-    }, [setFavorites]);
+    }, [dispatch]);
 
     useEffect(() => {
         if (isMobile && (cartIsShown || categoriesIsShown)) {
@@ -141,19 +142,21 @@ const Header = (props) => {
         if (isFirstRender) {
             const storedItems = sessionStorage.getItem("items");
             if (storedItems) {
-                ctx.updateItems(JSON.parse(storedItems));
+                dispatch(updateItems(JSON.parse(storedItems)));
             }
 
             getFavoritesHandler();
             setIsFirstRender(false);
-        } else {
-            if (ctx.items.length) {
-                sessionStorage.setItem("items", JSON.stringify(ctx.items));
-            } else {
-                sessionStorage.removeItem("items");
-            }
         }
-    }, [ctx, isFirstRender, getFavoritesHandler]);
+    }, [isFirstRender, dispatch, getFavoritesHandler]);
+
+    useEffect(() => {
+        if (cartItems.length > 0) {
+            sessionStorage.setItem("items", JSON.stringify(cartItems));
+        } else {
+            sessionStorage.removeItem("items");
+        }
+    }, [cartItems]);
 
     return (
         <>
@@ -264,7 +267,6 @@ const Header = (props) => {
                     setProductData={props.setProductData}
                     isLoggedIn={isLoggedIn}
                     setShowLogin={setShowLogin}
-                    ctx={ctx}
                 />
             )}
             <div className={classes.children}>{props.children}</div>

@@ -3,6 +3,8 @@ import TrashIcon from "../../../../assets/TrashIcon";
 import SaveIcon from "../../../../assets/SaveIcon";
 import ArrowLeftIcon from "../../../../assets/ArrowLeftIcon";
 import classes from "./CartPopup.module.css";
+import { useDispatch } from "react-redux";
+import { clearCart } from "../../../../store/Cart/cartSlice";
 
 const CartPopup = ({
     showCarousel,
@@ -11,11 +13,12 @@ const CartPopup = ({
     setProductData,
     isLoggedIn,
     setShowLogin,
-    ctx,
 }) => {
+    const dispatch = useDispatch();
+
     const cartClearItemsHandler = () => {
         sessionStorage.removeItem("items");
-        ctx.clearCart();
+        dispatch(clearCart());
     };
 
     const saveCartHandler = () => {
@@ -56,7 +59,6 @@ const CartPopup = ({
                 </div>
             </div>
             <Cart
-                ctx={ctx}
                 setProductData={setProductData}
                 setShowCarousel={setShowCarousel}
                 showCarousel={showCarousel}

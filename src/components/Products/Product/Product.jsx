@@ -1,14 +1,14 @@
-import { useContext } from "react";
-import CompareContext from "../../../store/Cart/compare-context";
 import classes from "./Product.module.css";
 import React from "react";
 import useImageFallback from "../../../hooks/useImageFallback";
 import ProductForm from "../ProductForm/ProductForm";
 import { Trapezoid } from "../../../assets/Trapezoid/Trapezoid";
+import { useDispatch } from "react-redux";
+import { addItem } from "../../../store/Cart/cartSlice";
 
 const Product = React.forwardRef((props, ref) => {
     const [currentImage, handleImageError] = useImageFallback(props.images);
-    const cartCtx = useContext(CompareContext);
+    const dispatch = useDispatch();
 
     const stopPropagation = (event) => {
         event.stopPropagation();
@@ -17,10 +17,7 @@ const Product = React.forwardRef((props, ref) => {
     const addToCartHandler = (event, amount) => {
         event.preventDefault();
         stopPropagation(event);
-        cartCtx.addItem({
-            ...props,
-            amount: +amount,
-        });
+        dispatch(addItem({ ...props, amount: +amount }));
     };
 
     return (
