@@ -1,23 +1,21 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import Modal from "../../UI/Modal/Modal";
 import classes from "./ProductDetails.module.css";
-import CompareContext from "../../../store/Cart/compare-context";
 import useImageFallback from "../../../hooks/useImageFallback";
 import ProductForm from "../ProductForm/ProductForm";
+import { useDispatch } from "react-redux";
+import { addItem } from "../../../store/Cart/cartSlice";
 
 const ProductDetails = ({ productData, onClose, isOpen }) => {
     const [currentImage, handleImageError, setHasError] = useImageFallback(
         productData?.images || []
     );
 
-    const cartCtx = useContext(CompareContext);
+    const dispatch = useDispatch();
 
     const addToCartHandler = (event, amount) => {
         event.preventDefault();
-        cartCtx.addItem({
-            ...productData,
-            amount: +amount,
-        });
+        dispatch(addItem({ ...productData, amount: +amount }));
     };
 
     useEffect(() => {

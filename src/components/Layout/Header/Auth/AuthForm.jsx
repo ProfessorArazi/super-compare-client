@@ -1,10 +1,11 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import classes from "./AuthForm.module.css";
 import Modal from "../../../UI/Modal/Modal";
 import { signin, signup } from "../../../../services/auth-api";
-import FavoritesContext from "../../../../store/Favorites/favorites-context";
 import LoadingSpinner from "../../../UI/LoadingSpinner/LoadingSpinner";
 import Logo from "../Logo/Logo";
+import { useDispatch } from "react-redux";
+import { setFavorites } from "../../../../store/Favorites/favoritesSlice";
 
 const AuthForm = ({ isOpen, onClose, isVerified, setIsVerified }) => {
     const [email, setEmail] = useState("");
@@ -14,7 +15,7 @@ const AuthForm = ({ isOpen, onClose, isVerified, setIsVerified }) => {
     const [successMessage, setSuccessMessage] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
-    const ctx = useContext(FavoritesContext);
+    const dispatch = useDispatch();
 
     const signinHanlder = async (e) => {
         e.preventDefault();
@@ -31,7 +32,7 @@ const AuthForm = ({ isOpen, onClose, isVerified, setIsVerified }) => {
                     JSON.stringify(response.data.token)
                 );
 
-                ctx.setFavorites(response.data.favorites);
+                dispatch(setFavorites(response.data.favorites));
                 onClose();
             } else {
                 setSuccessMessage(null);
