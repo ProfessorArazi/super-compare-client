@@ -3,8 +3,9 @@ import TrashIcon from "../../../../assets/TrashIcon";
 import SaveIcon from "../../../../assets/SaveIcon";
 import ArrowLeftIcon from "../../../../assets/ArrowLeftIcon";
 import classes from "./CartPopup.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "../../../../store/Cart/cartSlice";
+import { manageCart } from "../../../../services/cart-api";
 
 const CartPopup = ({
     showCarousel,
@@ -15,10 +16,22 @@ const CartPopup = ({
     setShowLogin,
 }) => {
     const dispatch = useDispatch();
+    const cartItems = useSelector((state) => state.cart.items);
 
-    const cartClearItemsHandler = () => {
-        sessionStorage.removeItem("items");
-        dispatch(clearCart());
+    const cartClearItemsHandler = async () => {
+        if (cartItems?.length > 0) {
+            dispatch(clearCart());
+            try {
+                const cartId = localStorage.getItem("cartId");
+                const response = await manageCart(cartId, "clear");
+
+                if (response?.data?.cartId) {
+                    localStorage.setItem("cartId", response?.data?.cartId);
+                }
+            } catch (error) {
+                localStorage.removeItem("cartId");
+            }
+        }
     };
 
     const saveCartHandler = () => {

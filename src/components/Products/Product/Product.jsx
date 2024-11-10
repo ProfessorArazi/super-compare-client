@@ -1,23 +1,19 @@
-import classes from "./Product.module.css";
 import React from "react";
 import useImageFallback from "../../../hooks/useImageFallback";
 import ProductForm from "../ProductForm/ProductForm";
 import { Trapezoid } from "../../../assets/Trapezoid/Trapezoid";
-import { useDispatch } from "react-redux";
-import { addItem } from "../../../store/Cart/cartSlice";
+import useDebouncedCartUpdate from "../../../hooks/useDebouncedCartUpdate";
+import classes from "./Product.module.css";
+import { filterNonSerializableProps } from "../../../utils/filterNonSerializableProps";
 
 const Product = React.forwardRef((props, ref) => {
     const [currentImage, handleImageError] = useImageFallback(props.images);
-    const dispatch = useDispatch();
+    const updateCart = useDebouncedCartUpdate(
+        filterNonSerializableProps(props)
+    );
 
     const stopPropagation = (event) => {
         event.stopPropagation();
-    };
-
-    const addToCartHandler = (event, amount) => {
-        event.preventDefault();
-        stopPropagation(event);
-        dispatch(addItem({ ...props, amount: +amount }));
     };
 
     return (
@@ -57,7 +53,6 @@ const Product = React.forwardRef((props, ref) => {
                     <p className={classes.brand}>{props.brand}</p>
                 )}
                 <p className={classes.title}>{props.name}</p>
-
                 {!props.isHotSale ? (
                     <p className={classes.range}>
                         {`${props.minPrice.toFixed(2)}${
@@ -88,8 +83,11 @@ const Product = React.forwardRef((props, ref) => {
                 )}
                 <ProductForm
                     className={classes.form}
-                    onAddToCart={addToCartHandler}
-                    stopPropagation={stopPropagation}
+                    onAddToCart={(event, amount) => {
+                        event.preventDefault();
+                        stopPropagation(event);
+                        updateCart(amount);
+                    }}
                 />
             </div>
         </div>

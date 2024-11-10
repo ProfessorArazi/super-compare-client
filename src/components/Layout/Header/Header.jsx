@@ -18,6 +18,7 @@ import { ToggleButtonMobile } from "../../UI/ToggleButton/Mobile/ToggleButtonMob
 import { useDispatch, useSelector } from "react-redux";
 import { setFavorites } from "../../../store/Favorites/favoritesSlice";
 import { updateItems } from "../../../store/Cart/cartSlice";
+import { getCart } from "../../../services/cart-api";
 
 const Header = (props) => {
     const navigate = useNavigate();
@@ -139,12 +140,21 @@ const Header = (props) => {
     }, []);
 
     useEffect(() => {
-        if (isFirstRender) {
-            const storedItems = sessionStorage.getItem("items");
-            if (storedItems) {
-                dispatch(updateItems(JSON.parse(storedItems)));
-            }
+        const getCartHandler = async () => {
+            try {
+                const cartId = localStorage.getItem("cartId");
 
+                if (cartId) {
+                    const response = await getCart(cartId);
+                    dispatch(updateItems(response.data));
+                }
+            } catch (e) {
+                localStorage.removeItem("cartId");
+            }
+        };
+
+        if (isFirstRender) {
+            getCartHandler();
             getFavoritesHandler();
             setIsFirstRender(false);
         }
