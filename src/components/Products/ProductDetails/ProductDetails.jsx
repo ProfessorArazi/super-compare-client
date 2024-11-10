@@ -1,22 +1,16 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import Modal from "../../UI/Modal/Modal";
 import classes from "./ProductDetails.module.css";
 import useImageFallback from "../../../hooks/useImageFallback";
 import ProductForm from "../ProductForm/ProductForm";
-import { useDispatch } from "react-redux";
-import { addItem } from "../../../store/Cart/cartSlice";
+import useDebouncedCartUpdate from "../../../hooks/useDebouncedCartUpdate";
 
 const ProductDetails = ({ productData, onClose, isOpen }) => {
     const [currentImage, handleImageError, setHasError] = useImageFallback(
         productData?.images || []
     );
 
-    const dispatch = useDispatch();
-
-    const addToCartHandler = (event, amount) => {
-        event.preventDefault();
-        dispatch(addItem({ ...productData, amount: +amount }));
-    };
+    const addToCartHandler = useDebouncedCartUpdate(productData);
 
     useEffect(() => {
         setHasError(false);
@@ -37,7 +31,10 @@ const ProductDetails = ({ productData, onClose, isOpen }) => {
                     <div className={classes["form-container"]}>
                         <ProductForm
                             className={classes.form}
-                            onAddToCart={addToCartHandler}
+                            onAddToCart={(event, amount) => {
+                                event.preventDefault();
+                                addToCartHandler(amount);
+                            }}
                         />
                     </div>
                 </div>
